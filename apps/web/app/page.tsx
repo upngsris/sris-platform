@@ -1,35 +1,33 @@
-import { SiteHeader } from "@/components/layout/site-header";
-import { SiteFooter } from "@/components/layout/site-footer";
-import { Hero } from "@/components/home/hero";
-import { Introduction } from "@/components/home/introduction";
-import { Stats } from "@/components/home/stats";
-import { FeaturedResearch } from "@/components/home/featured-research";
-import { Disciplines } from "@/components/home/disciplines";
-import { ProjectsToJoin } from "@/components/home/projects-to-join";
-import { LearnAndDo } from "@/components/home/learn-and-do";
-import { StudentStory } from "@/components/home/student-story";
-import { UpcomingEvents } from "@/components/home/upcoming-events";
-import { LatestStories } from "@/components/home/latest-stories";
-import { MembershipCta } from "@/components/home/membership-cta";
+const disciplines=["Physics","Chemistry","Biology","Environmental Science","Mathematics & Computer Science","Earth Sciences"];
+const events=[["24","SEP","Research Skills Workshop","MSCS Laboratory · 10:00 AM"],["03","OCT","Introduction to Scientific Writing","Science Lecture Theatre · 1:00 PM"],["11","OCT","SRIS Project Showcase","UPNG · 9:00 AM"]];
 
-export default function Home() {
-  return (
-    <>
-      <SiteHeader />
-      <main>
-        <Hero />
-        <Introduction />
-        <Stats />
-        <FeaturedResearch />
-        <Disciplines />
-        <ProjectsToJoin />
-        <LearnAndDo />
-        <StudentStory />
-        <UpcomingEvents />
-        <LatestStories />
-        <MembershipCta />
-      </main>
-      <SiteFooter />
-    </>
-  );
+function ImagePlaceholder({label,className=""}:{label:string,className?:string}) {
+  return <div className={`ph ${className}`}><span>{label}</span></div>;
+}
+function Arrow({children}:{children:React.ReactNode}) { return <a href="#" className="arrow">{children}<i>→</i></a>; }
+
+export default function Home(){
+return <>
+<header className="header"><div className="brandbar"/><div className="shell nav"><a className="logo">UPNG SRIS</a><nav><a>About</a><a>Research</a><a>Learn & Do</a><a>Community</a></nav><div className="actions"><button>Search</button><a className="primary">Join SRIS →</a></div><button className="menu">MENU</button></div></header>
+<main>
+<section className="hero"><ImagePlaceholder label="Future SRIS documentary photograph · students conducting scientific or project work"/><div className="shade"/><div className="shell hero-inner"><div className="span8"><p className="eyebrow">Science · Research · Innovation</p><h1>GO BEYOND<br/>THE CLASSROOM.</h1><p className="lead">Explore ideas. Test them. Build things. Share what you discover.</p><div className="hero-actions"><a className="primary">Explore projects →</a><Arrow>Become a member</Arrow></div></div></div></section>
+
+<section className="section"><div className="shell grid"><div className="span7"><p className="eyebrow blue">About SRIS</p><h2>Learning doesn&apos;t end when the lecture does.</h2></div><div className="span4 start9 intro-copy"><p className="lead muted">SRIS creates opportunities for students to take concepts beyond the classroom and apply them through research, experimentation, projects and knowledge sharing.</p><Arrow>Discover SRIS</Arrow></div></div><div className="shell stats">{[["6","Disciplines"],["XX","Projects"],["XX","Members"]].map(([n,l])=><div key={l}><strong>{n}</strong><p className="eyebrow">{l}</p></div>)}</div></section>
+
+<section className="section white"><div className="shell"><p className="eyebrow blue">Featured research</p><h2 className="max">Research isn&apos;t something students only read about.</h2><article className="feature grid"><ImagePlaceholder className="span8 tall" label="Research photography · documentary style"/><div className="span4 bluebox"><div><p className="eyebrow fade">Environmental Science · Research · 2026</p><h3>Understanding our environment through practical research.</h3><p>A student research story introduces the question, people and practical work behind the project.</p></div><Arrow>Explore project</Arrow></div></article><article className="feature grid"><div className="span4 pale"><div><p className="eyebrow blue">Physics · Project · 2026</p><h3>Testing ideas beyond the lecture theatre.</h3><p className="muted">Students turn theory into observable, testable work.</p></div><Arrow>Explore project</Arrow></div><ImagePlaceholder className="span8 medium" label="Project photography · authentic activity"/></article></div></section>
+
+<section className="section blue-section"><div className="shell grid"><div className="span5"><p className="eyebrow fade">Explore</p><h2>Different fields.<br/>Shared curiosity.</h2></div><div className="span6 start7 discipline-list">{disciplines.map((x,i)=><a key={x}><small>{String(i+1).padStart(2,"0")}</small><b>{x}</b><span>→</span></a>)}</div></div></section>
+
+<section className="section"><div className="shell grid"><div className="span5"><p className="eyebrow blue">Projects to join</p><h2>Don&apos;t just read about the work.<br/><br/>Take part.</h2></div><div className="span6 start7 opportunities">{[["MSCS","Python Data Analysis Research Project","Build practical data-analysis skills while contributing to a student-led research activity."],["Environmental Science","Water Quality Research","Join a practical investigation focused on observation, sampling, analysis and scientific reporting."]].map(([d,t,x])=><article key={t}><p className="eyebrow blue">{d}</p><h3>{t}</h3><p className="muted">{x}</p><p className="eyebrow alert">Applications open</p><Arrow>View opportunity</Arrow></article>)}</div></div></section>
+
+<section className="section pale-section"><div className="shell"><p className="eyebrow blue">Learn & Do</p><h2 className="max">Learn something.<br/>Then do something with it.</h2><div className="grid learning"><article className="span7"><ImagePlaceholder className="ratio" label="Skills-track photography"/><p className="eyebrow blue">Skills track</p><h3>Python for Data Analysis</h3><p className="muted">Build practical skills for analysing scientific datasets.</p><Arrow>Explore</Arrow></article><article className="span4 start9 offset"><ImagePlaceholder className="ratio" label="Laboratory practical photography"/><p className="eyebrow blue">Lab practical</p><h3>Introduction to Microscopy</h3><Arrow>Explore</Arrow></article></div></div></section>
+
+<section className="story"><ImagePlaceholder label="Documentary student portrait / project environment"/><div className="shade"/><div className="shell story-inner"><p className="eyebrow">Student stories</p><h2>“Research changed how I think about science.”</h2><p>Student Name · Environmental Science</p><Arrow>Read their story</Arrow></div></section>
+
+<section className="section white"><div className="shell grid"><div className="span5"><p className="eyebrow blue">Upcoming events</p><h2>What&apos;s happening at SRIS.</h2></div><div className="span7 events">{events.map(([d,m,t,x])=><a key={t}><div><strong>{d}</strong><small>{m}</small></div><div><b>{t}</b><p>{x}</p></div><span>→</span></a>)}</div></div></section>
+
+<section className="section blue-section"><div className="shell grid"><div className="span7"><p className="eyebrow fade">Membership</p><h2>Your next idea<br/>could start here.</h2></div><div className="span4 start9"><p className="lead fade">Join a community of students exploring science through research, projects and practical learning.</p><a className="primary">Become an SRIS member →</a></div></div></section>
+</main>
+<footer><div className="shell grid"><div className="span5"><p className="eyebrow fade">Science · Research · Innovation</p><h3>UPNG SRIS</h3><p className="fade">Go beyond the classroom.</p></div><div className="span7 footerlinks"><div><b>About</b><a>About SRIS</a><a>Mission & Vision</a><a>Our People</a></div><div><b>Research</b><a>Projects</a><a>Publications</a><a>Student Showcase</a></div><div><b>Community</b><a>Events</a><a>Membership</a><a>News</a></div></div></div></footer>
+</>;
 }
