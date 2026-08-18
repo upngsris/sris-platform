@@ -1,50 +1,140 @@
+@import "tailwindcss";
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --surface: #f9f9fc;
+  --surface-low: #f3f3f6;
+  --surface-container: #eeeef0;
+  --surface-high: #e8e8ea;
+  --surface-highest: #e2e2e5;
+  --white: #ffffff;
+  --ink: #1a1c1e;
+  --ink-muted: #42474f;
+  --outline: #737780;
+  --outline-soft: #c2c6d1;
+  --blue-dark: #002d56;
+  --blue: #0e4477;
+  --orange-dark: #a23f00;
+  --orange: #ee6b23;
+  --red: #eb243b;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-inter), Arial, sans-serif;
+}
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; }
+::selection { background: var(--blue); color: white; }
+
+.editorial-shell {
+  width: min(100%, 1440px);
+  margin-inline: auto;
+  padding-inline: 64px;
+}
+.editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 32px;
+}
+.section-space { padding-block: 160px; }
+.eyebrow {
+  font-family: var(--font-geist), sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.display {
+  font-family: var(--font-geist), sans-serif;
+  font-size: clamp(56px, 5.84vw, 84px);
+  line-height: 1.095;
+  letter-spacing: -.03em;
+  font-weight: 600;
+}
+.headline-lg {
+  font-family: var(--font-geist), sans-serif;
+  font-size: clamp(40px, 3.9vw, 56px);
+  line-height: 1.14;
+  letter-spacing: -.02em;
+  font-weight: 500;
+}
+.headline-md {
+  font-family: var(--font-geist), sans-serif;
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 500;
+}
+.opening {
+  font-size: 24px;
+  line-height: 36px;
+}
+.body-lg { font-size: 18px; line-height: 28px; }
+.muted { color: var(--ink-muted); }
+.rule { border-top: 1px solid var(--outline-soft); }
+
+.btn-primary,
+.btn-secondary {
+  min-height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 0 24px;
+  font-family: var(--font-geist), sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 0;
+  transition: background .2s ease, color .2s ease;
+}
+.btn-primary { background: var(--orange); color: white; }
+.btn-primary:hover { background: var(--orange-dark); }
+.btn-secondary { border: 2px solid var(--blue); color: var(--blue); }
+.btn-secondary:hover { background: var(--blue); color: white; }
+.ghost-link {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  font-family: var(--font-geist), sans-serif;
+  font-weight: 500;
+}
+.ghost-link span { transition: transform .2s ease; }
+.ghost-link:hover span { transform: translateX(4px); }
+
+.placeholder {
+  background:
+    linear-gradient(135deg, transparent 49.8%, rgba(26,28,30,.16) 50%, transparent 50.2%),
+    linear-gradient(45deg, transparent 49.8%, rgba(26,28,30,.16) 50%, transparent 50.2%),
+    var(--surface-container);
+  border: 1px solid var(--outline-soft);
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+}
+.placeholder-label {
+  max-width: 260px;
+  padding: 12px 16px;
+  background: rgba(249,249,252,.92);
+  font-family: var(--font-geist), sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.imgDark {
-  display: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-
-  .imgLight {
-    display: none;
-  }
-  .imgDark {
-    display: unset;
-  }
+@media (max-width: 767px) {
+  .editorial-shell { padding-inline: 24px; }
+  .editorial-grid { grid-template-columns: 1fr; gap: 24px; }
+  .section-space { padding-block: 96px; }
+  .display { font-size: 48px; line-height: 52px; letter-spacing: -.02em; }
+  .headline-lg { font-size: 36px; line-height: 42px; letter-spacing: -.01em; }
+  .headline-md { font-size: 28px; line-height: 36px; }
+  .opening { font-size: 20px; line-height: 30px; }
 }
