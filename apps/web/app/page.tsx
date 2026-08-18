@@ -1,39 +1,29 @@
-const navGroups=[
- {name:"About",intro:"Who we are, why SRIS exists and the people behind it.",links:[["About SRIS","Our story and purpose"],["Mission & Vision","What we are working toward"],["Our Team","Meet SRIS leadership and coordinators"],["Contact Us","Connect with the society"]]},
- {name:"Explore",intro:"Discover research, practical work and student-led opportunities.",links:[["Research Projects","Student research and investigation"],["Lab Practicals","Hands-on scientific learning"],["Projects to Join","Open opportunities for students"],["Student Showcase","Projects built by students"]]},
- {name:"Learn & Do",intro:"Develop useful skills and put classroom knowledge into practice.",links:[["Skills Tracks","Structured practical learning"],["Knowledge Sharing","Students teaching students"],["News & Articles","Ideas, explainers and updates"]]},
- {name:"Community",intro:"Take part in SRIS activities and connect across disciplines.",links:[["Events","Workshops, talks and activities"],["Membership","Become part of SRIS"],["Collaborations","Work with SRIS"],["Student Showcase","See what students are building"]]}
-];
-const disciplines=["Physics","Chemistry","Biology","Environmental Science","Mathematics & Computer Science","Earth Sciences"];
-const projects=[
- {n:"01",field:"MSCS",title:"Python Data Analysis Research Project",desc:"Work with real datasets, develop practical analysis skills and contribute to a student-led research activity.",meta:"Beginner friendly",status:"Applications open"},
- {n:"02",field:"Environmental Science",title:"Water Quality Research",desc:"Take part in field observation, sampling, laboratory analysis and scientific reporting.",meta:"Field + laboratory",status:"Positions available"}
-];
-const events=[["24","SEP","Research Skills Workshop","MSCS Laboratory · 10:00 AM"],["03","OCT","Introduction to Scientific Writing","Science Lecture Theatre · 1:00 PM"],["11","OCT","SRIS Project Showcase","UPNG · 9:00 AM"]];
+import { SiteHeader } from "@/components/layout/site-header";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { Hero } from "@/components/home/hero";
+import { AboutIntro } from "@/components/home/about-intro";
+import { FeaturedResearch } from "@/components/home/featured-research";
+import { DisciplineExplorer } from "@/components/home/discipline-explorer";
+import { ProjectsToJoin } from "@/components/home/projects-to-join";
+import { LearnAndDo } from "@/components/home/learn-and-do";
+import { StudentStory } from "@/components/home/student-story";
+import { Events } from "@/components/home/events";
+import { MembershipCTA } from "@/components/home/membership-cta";
 
-function PH({label,className=""}:{label:string,className?:string}){return <div className={`ph ${className}`}><span>{label}</span></div>}
-function Link({children}:{children:React.ReactNode}){return <a href="#" className="textlink">{children}<i>→</i></a>}
-
-export default function Home(){return <>
-<header className="header"><div className="topline"/><div className="shell nav"><a className="logo">UPNG <b>SRIS</b></a><nav className="desktopNav">{navGroups.map(g=><div className="navItem" key={g.name}><button>{g.name}<span>⌄</span></button><div className="mega"><div className="shell megaGrid"><div className="megaIntro"><p className="eyebrow blue">{g.name}</p><h3>{g.intro}</h3></div><div className="megaLinks">{g.links.map(([t,d],i)=><a href="#" key={t}><small>{String(i+1).padStart(2,"0")}</small><div><b>{t}</b><span>{d}</span></div><i>→</i></a>)}</div></div></div></div>)}</nav><div className="navright"><button>Search</button><a className="button">Join SRIS <span>→</span></a></div><details className="mobileMenu"><summary>MENU</summary><div className="mobilePanel">{navGroups.map(g=><details key={g.name}><summary>{g.name}<span>+</span></summary><div>{g.links.map(([t])=><a key={t} href="#">{t}<span>→</span></a>)}</div></details>)}<a className="button">Become a member <span>→</span></a></div></details></div></header>
-<main>
-<section className="hero"><PH label="Future SRIS documentary photography · active student research, laboratory or project environment"/><div className="overlay"/><div className="shell heroContent"><div className="heroCopy"><p className="eyebrow">Science · Research · Innovation</p><h1>GO BEYOND<br/>THE CLASSROOM.</h1><p className="lead">Explore ideas. Test them. Build things. Share what you discover.</p><div className="row"><a className="button">Explore projects <span>→</span></a><Link>Become a member</Link></div></div><div className="heroIndex"><span>UPNG</span><b>01</b><small>Student-led science<br/>in practice</small></div></div></section>
-
-<section className="intro section"><div className="shell"><div className="introGrid"><div><p className="eyebrow blue">About SRIS</p><h2>Learning doesn&apos;t end when the lecture does.</h2></div><div className="introText"><p className="lead">SRIS creates room for students to move from <b>understanding concepts</b> to actually using them.</p><p className="body muted">Research. Laboratory practicals. Student projects. Peer teaching. New skills. Different disciplines working together.</p><Link>Discover why SRIS exists</Link></div></div><div className="stats"><div><strong>6</strong><p>Science disciplines</p></div><div><strong>XX</strong><p>Student projects</p></div><div><strong>XX</strong><p>Members & contributors</p></div><div className="statNote"><p className="eyebrow blue">One community</p><p>Built around curiosity, practical learning and student initiative.</p></div></div></div></section>
-
-<section className="research section"><div className="shell"><div className="sectionHead"><div><p className="eyebrow blue">Research & projects</p><h2>Ideas become more useful when you test them.</h2></div><p className="lead muted">See how students turn questions, classroom concepts and curiosity into practical investigation.</p></div><article className="feature"><PH className="featureImage" label="Featured research photography · wide documentary crop"/><div className="featurePanel"><div><p className="eyebrow soft">Environmental Science · 2026</p><h3>Understanding our environment through practical research.</h3><p>Follow the question, method, observations and students behind an SRIS research activity.</p></div><Link>Explore the research</Link></div></article><div className="researchStrip"><div><p className="eyebrow blue">Also exploring</p><h3>Testing ideas beyond the lecture theatre.</h3></div><p className="body muted">Student-led practical work creates space to experiment, make mistakes, discuss results and understand the theory more deeply.</p><Link>View all projects</Link></div></div></section>
-
-<section className="disciplines section"><div className="shell disciplineGrid"><div className="disciplineTitle"><p className="eyebrow soft">Explore by discipline</p><h2>Different fields.<br/>Shared curiosity.</h2><p>SRIS connects students across the sciences while leaving room for interdisciplinary work.</p></div><div className="disciplineList">{disciplines.map((x,i)=><a key={x}><small>{String(i+1).padStart(2,"0")}</small><b>{x}</b><span>→</span></a>)}</div></div></section>
-
-<section className="opps section"><div className="shell"><div className="oppsHead"><div><p className="eyebrow blue">Projects to join</p><h2>Don&apos;t just read<br/>about the work.</h2></div><p>Take part.</p></div><div className="projectList">{projects.map(p=><article key={p.n}><div className="projectNum">{p.n}</div><div className="projectMain"><div className="projectMeta"><span>{p.field}</span><span>{p.meta}</span></div><h3>{p.title}</h3><p className="body muted">{p.desc}</p></div><div className="projectAction"><p>{p.status}</p><Link>View opportunity</Link></div></article>)}</div></div></section>
-
-<section className="learn section"><div className="shell"><div className="sectionHead"><div><p className="eyebrow blue">Learn & Do</p><h2>Learn something.<br/>Then do something with it.</h2></div><p className="lead muted">Skills become meaningful when students can immediately put them to work.</p></div><div className="learnGrid"><article className="learnPrimary"><PH label="Skills track · students learning with real tools and datasets"/><div className="learnCopy"><p className="eyebrow blue">Skills track</p><h3>Python for Data Analysis</h3><p className="body muted">Build practical skills for exploring and interpreting scientific datasets.</p><Link>Explore skills track</Link></div></article><article className="learnSecondary"><PH label="Laboratory practical photography"/><p className="eyebrow blue">Laboratory practical</p><h3>Introduction to Microscopy</h3><Link>Explore practical</Link></article></div></div></section>
-
-<section className="studentStory"><PH label="Documentary student portrait · natural environment, not studio photography"/><div className="overlay"/><div className="shell storyCopy"><p className="eyebrow">Student stories · 01</p><blockquote>“Research changed how I think about science.”</blockquote><div><p>Student Name</p><span>Environmental Science</span></div><Link>Read their story</Link></div></section>
-
-<section className="events section"><div className="shell eventGrid"><div><p className="eyebrow blue">Upcoming events</p><h2>What&apos;s happening<br/>at SRIS.</h2><p className="body muted eventIntro">Workshops, practical sessions, project activities and opportunities to meet other curious students.</p><Link>View all events</Link></div><div className="eventList">{events.map(([d,m,t,x])=><a key={t}><div className="date"><strong>{d}</strong><small>{m}</small></div><div><b>{t}</b><p>{x}</p></div><span>→</span></a>)}</div></div></section>
-
-<section className="membership section"><div className="shell membershipGrid"><div><p className="eyebrow soft">Membership</p><h2>Your next idea<br/>could start here.</h2></div><div className="membershipCopy"><p className="lead">Join students who want to explore further, build practical skills and contribute to work beyond lectures.</p><a className="button">Become an SRIS member <span>→</span></a></div></div></section>
-</main>
-<footer><div className="shell footerGrid"><div><p className="eyebrow soft">Science · Research · Innovation</p><h3>UPNG SRIS</h3><p className="soft">Go beyond the classroom.</p></div><div className="footerLinks">{[["About","About SRIS","Mission & Vision","Our People"],["Research","Projects","Publications","Student Showcase"],["Community","Events","Membership","News"]].map(([h,...l])=><div key={h}><b>{h}</b>{l.map(x=><a key={x}>{x}</a>)}</div>)}</div></div><div className="shell copyright">Science, Research & Innovation Society · University of Papua New Guinea</div></footer>
-</>}
+export default function Home() {
+  return <>
+    <SiteHeader />
+    <main>
+      <Hero />
+      <AboutIntro />
+      <FeaturedResearch />
+      <DisciplineExplorer />
+      <ProjectsToJoin />
+      <LearnAndDo />
+      <StudentStory />
+      <Events />
+      <MembershipCTA />
+    </main>
+    <SiteFooter />
+  </>;
+}

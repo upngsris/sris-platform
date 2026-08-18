@@ -1,26 +1,2 @@
-export function LearnAndDo() {
-  return (
-    <section id="learn" className="section-space bg-[var(--surface-low)]">
-      <div className="editorial-shell">
-        <p className="eyebrow text-[var(--blue)]">Learn &amp; Do</p>
-        <h2 className="headline-lg mt-6 max-w-3xl">Learn something.<br />Then do something with it.</h2>
-
-        <div className="editorial-grid mt-20 items-start">
-          <article className="md:col-span-7">
-            <div className="placeholder aspect-[4/3]"><span className="placeholder-label">Skills track photograph · 4:3</span></div>
-            <p className="eyebrow mt-6 text-[var(--blue)]">Skills track</p>
-            <h3 className="headline-md mt-3">Python for Data Analysis</h3>
-            <p className="body-lg muted mt-4 max-w-xl">Build practical skills for analysing scientific datasets.</p>
-            <a className="ghost-link mt-6 text-[var(--blue)]" href="#">Explore <span>→</span></a>
-          </article>
-          <article className="mt-16 md:col-span-4 md:col-start-9 md:mt-40">
-            <div className="placeholder aspect-[4/3] min-h-0"><span className="placeholder-label">Lab practical photograph · 4:3</span></div>
-            <p className="eyebrow mt-6 text-[var(--blue)]">Lab practical</p>
-            <h3 className="headline-md mt-3">Introduction to Microscopy</h3>
-            <a className="ghost-link mt-6 text-[var(--blue)]" href="#">Explore <span>→</span></a>
-          </article>
-        </div>
-      </div>
-    </section>
-  );
-}
+import {ImagePlaceholder} from "@/components/ui/image-placeholder";import {TextLink} from "@/components/ui/text-link";
+export function LearnAndDo(){return <section className="learn section"><div className="shell"><div className="sectionHead"><div><p className="eyebrow blue">Learn & Do</p><h2>Learn something.<br/>Then do something with it.</h2></div><p className="lead muted">Skills become meaningful when students can immediately put them to work.</p></div><div className="learnGrid"><article className="learnPrimary"><ImagePlaceholder label="Skills track · students learning with real tools and datasets"/><div className="learnCopy"><p className="eyebrow blue">Skills track</p><h3>Python for Data Analysis</h3><p className="body muted">Build practical skills for exploring and interpreting scientific datasets.</p><TextLink href="/learn/skills">Explore skills track</TextLink></div></article><article className="learnSecondary"><ImagePlaceholder label="Laboratory practical photography"/><p className="eyebrow blue">Laboratory practical</p><h3>Introduction to Microscopy</h3><TextLink href="/explore/lab-practicals">Explore practical</TextLink></article></div></div></section>}
