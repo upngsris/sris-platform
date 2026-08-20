@@ -1,150 +1,224 @@
 @import "tailwindcss";
+
+/* =========================================================
+   01. DESIGN TOKENS
+   ========================================================= */
+
 :root {
   --paper: #f9f9fc;
   --pale: #eaecf2;
+
   --ink: #17191b;
   --muted: #4c5158;
   --line: #c9ccd3;
+
   --blue: #0e4477;
   --deep: #002d56;
+
   --orange: #ee6b23;
   --orange2: #a23f00;
+
   --red: #eb243b;
 }
+
+
+/* =========================================================
+   02. RESET + GLOBAL
+   ========================================================= */
+
 * {
   box-sizing: border-box;
 }
+
 html {
   scroll-behavior: smooth;
 }
+
 body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-inter), Arial, sans-serif;
 }
+
 a {
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
   cursor: pointer;
 }
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+
+/* =========================================================
+   03. SHARED LAYOUT
+   ========================================================= */
+
 .shell {
   width: min(100%, 1440px);
-  margin: auto;
+  margin-inline: auto;
   padding-inline: 64px;
 }
+
 .section {
   padding-block: 136px;
 }
+
+
+/* =========================================================
+   04. TYPOGRAPHY
+   ========================================================= */
+
 .eyebrow {
   font:
     600 12px/16px var(--font-geist),
     sans-serif;
+
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
+
 .blue {
   color: var(--blue);
 }
+
 .muted {
   color: var(--muted);
 }
+
 .soft {
   color: rgba(255, 255, 255, 0.68);
 }
+
 h1,
 h2,
 h3 {
-  font-family: var(--font-geist), sans-serif;
   margin: 0;
+  font-family: var(--font-geist), sans-serif;
 }
+
 h1 {
   font-size: clamp(68px, 6.3vw, 96px);
   line-height: 0.95;
   letter-spacing: -0.05em;
   font-weight: 600;
 }
+
 h2 {
   font-size: clamp(46px, 4.35vw, 66px);
   line-height: 1.02;
   letter-spacing: -0.04em;
   font-weight: 500;
 }
+
 h3 {
   font-size: 32px;
   line-height: 1.13;
   letter-spacing: -0.025em;
   font-weight: 500;
 }
+
 .lead {
   font-size: 22px;
   line-height: 1.52;
 }
+
 .body {
   font-size: 18px;
   line-height: 1.62;
 }
+
+
+/* =========================================================
+   05. BUTTONS + TEXT LINKS
+   ========================================================= */
+
 .button {
   display: inline-flex;
   min-height: 54px;
+
   align-items: center;
   justify-content: space-between;
+
   gap: 28px;
   padding: 0 24px;
+
   background: var(--orange);
   color: #fff;
+
   font:
     600 14px var(--font-geist),
     sans-serif;
-  transition: background 0.2s;
+
+  transition: background 0.2s ease;
 }
+
 .button:hover {
   background: var(--orange2);
 }
+
 .textlink {
   display: inline-flex;
   align-items: center;
   gap: 12px;
+
   font:
     500 14px var(--font-geist),
     sans-serif;
 }
+
 .textlink i {
   font-style: normal;
-  transition: transform 0.2s;
+  transition: transform 0.2s ease;
 }
+
 .textlink:hover i {
   transform: translateX(5px);
 }
+
+
+/* =========================================================
+   06. HEADER
+   ========================================================= */
+
 .topline {
   height: 12px;
   background: var(--blue);
 }
+
 .header {
   position: sticky;
   top: 0;
   z-index: 50;
+
   background: var(--paper);
 }
+
 .nav {
   height: 88px;
+
   display: flex;
   align-items: center;
+
   border-bottom: 1px solid var(--line);
 }
-.logo {
-  font: 500 19px var(--font-geist);
-  letter-spacing: -0.02em;
-}
+
 
 /* =========================================================
-   SRIS Institutional Identity
+   07. SRIS IDENTITY
    ========================================================= */
 
 .siteIdentity {
   display: flex;
   align-items: center;
+
   gap: 14px;
+
   flex-shrink: 0;
   text-decoration: none;
 }
@@ -152,6 +226,7 @@ h3 {
 .siteLogo {
   width: 48px;
   height: 48px;
+
   object-fit: contain;
   flex-shrink: 0;
 }
@@ -160,17 +235,20 @@ h3 {
   display: flex;
   flex-direction: column;
   justify-content: center;
+
   gap: 3px;
   line-height: 1;
 }
 
 .institutionName {
   font-family: var(--font-geist), sans-serif;
-  font-size: 9px;
+  font-size: 13.5px;
   line-height: 12px;
   font-weight: 600;
+
   letter-spacing: 0.09em;
   text-transform: uppercase;
+
   color: var(--muted);
 }
 
@@ -179,744 +257,1048 @@ h3 {
   font-size: 15px;
   line-height: 18px;
   font-weight: 500;
+
   letter-spacing: -0.02em;
   color: var(--ink);
 }
 
+.mobileSocietyName {
+  display: none;
+}
+
+
+/* =========================================================
+   08. DESKTOP NAVIGATION
+   ========================================================= */
+
 .desktopNav {
   display: flex;
   align-self: stretch;
+
   margin-left: auto;
   padding-left: 24px;
 }
+
 .navItem {
   display: flex;
   align-items: stretch;
 }
+
 .navItem > button {
   padding: 0 14px;
 }
+
 .navItem > button span {
   margin-left: 7px;
   font-size: 11px;
 }
+
 .navItem:hover > button,
 .navItem:focus-within > button {
   color: var(--blue);
 }
+
+
+/* =========================================================
+   09. MEGA MENU
+   ========================================================= */
+
 .mega {
   position: absolute;
+
   left: 0;
   right: 0;
   top: 100%;
+
   background: var(--paper);
+
   border-top: 1px solid var(--line);
   border-bottom: 4px solid var(--blue);
+
   opacity: 0;
   visibility: hidden;
+
   transform: translateY(-5px);
-  transition: 0.18s;
+
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease,
+    visibility 0.18s ease;
 }
+
 .navItem:hover .mega,
 .navItem:focus-within .mega {
   opacity: 1;
   visibility: visible;
   transform: none;
 }
+
 .megaGrid {
   display: grid;
   grid-template-columns: 4fr 8fr;
+
   gap: 80px;
+
   padding-top: 50px;
   padding-bottom: 56px;
 }
+
 .megaIntro h3 {
-  font-size: 28px;
   max-width: 390px;
+
   margin-top: 18px;
+
+  font-size: 28px;
 }
+
 .megaLinks {
   display: grid;
   grid-template-columns: 1fr 1fr;
+
   column-gap: 55px;
 }
+
 .megaLinks > a {
   display: grid;
+
   grid-template-columns: 34px 1fr auto;
+
   gap: 15px;
   align-items: center;
+
   padding: 20px 0;
+
   border-top: 1px solid var(--line);
 }
+
 .megaLinks > a:nth-last-child(-n + 2) {
   border-bottom: 1px solid var(--line);
 }
+
 .megaLinks small {
   font: 600 10px var(--font-geist);
   color: var(--blue);
 }
+
 .megaLinks b {
   display: block;
-  font: 500 17px var(--font-geist);
+
+  font:
+    500 17px var(--font-geist),
+    sans-serif;
 }
+
 .megaLinks div span {
   display: block;
+
   margin-top: 4px;
+
   font-size: 12px;
   color: var(--muted);
 }
+
 .megaLinks i {
   font-style: normal;
   color: var(--blue);
 }
+
+
+/* =========================================================
+   10. NAVIGATION ACTIONS
+   ========================================================= */
+
 .navright {
   display: flex;
   align-items: center;
+
   gap: 25px;
+
   margin-left: 26px;
 }
+
 .navright > button {
   border: 0;
   background: none;
 }
+
+.menuButton {
+  display: none;
+
+  margin-left: auto;
+
+  border: 0;
+  background: none;
+
+  font: 600 13px var(--font-geist);
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   11. MOBILE NAVIGATION
+   ========================================================= */
+
 .mobileMenu {
   display: none;
-  margin-left: auto;
 }
-.mobileMenu > summary {
-  list-style: none;
-  font: 600 13px var(--font-geist);
-  cursor: pointer;
-}
+
 .mobilePanel {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%;
-  padding: 10px 24px 30px;
-  background: var(--paper);
-  border-bottom: 4px solid var(--blue);
+  display: none;
 }
-.mobilePanel > details {
-  border-top: 1px solid var(--line);
-}
-.mobilePanel > details:last-of-type {
-  border-bottom: 1px solid var(--line);
-}
-.mobilePanel details > summary {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 0;
-  list-style: none;
-  font: 500 20px var(--font-geist);
-  cursor: pointer;
-}
-.mobilePanel details div {
-  padding: 0 0 18px;
-}
-.mobilePanel details a {
-  display: flex;
-  justify-content: space-between;
-  padding: 9px 0;
-  font-size: 14px;
-  color: var(--muted);
-}
-.mobilePanel > .button {
-  margin-top: 24px;
-}
-.ph {
+
+
+/* =========================================================
+   12. SHARED IMAGE SYSTEM
+   ========================================================= */
+
+.learningImage {
   position: relative;
+
+  width: 100%;
+
   overflow: hidden;
+
   background: #d9dce1;
 }
-.ph:before,
-.ph:after {
+
+/*
+   Draw placeholder cross-lines ONLY when a real image
+   has not been rendered.
+*/
+
+.learningImage:not(:has(img))::before,
+.learningImage:not(:has(img))::after {
   content: "";
+
   position: absolute;
+
   left: -10%;
   top: 50%;
+
   width: 120%;
   height: 1px;
+
   background: rgba(23, 25, 27, 0.15);
 }
-.ph:before {
+
+.learningImage:not(:has(img))::before {
   transform: rotate(24deg);
 }
-.ph:after {
+
+.learningImage:not(:has(img))::after {
   transform: rotate(-24deg);
 }
-.ph > span {
+
+.learningImage > span {
   position: absolute;
   z-index: 2;
+
   left: 24px;
   bottom: 24px;
+
   max-width: 330px;
+
   padding: 11px 14px;
+
   background: rgba(249, 249, 252, 0.94);
+
   color: var(--ink);
-  font: 600 10px/1.5 var(--font-geist);
+
+  font:
+    600 10px/1.5 var(--font-geist),
+    sans-serif;
+
   letter-spacing: 0.09em;
   text-transform: uppercase;
 }
+
+.learningImageAsset {
+  object-fit: cover;
+  object-position: center;
+}
+
+
+/* =========================================================
+   13. HERO
+   ========================================================= */
+
 .hero {
   position: relative;
+
   min-height: 800px;
+
   color: #fff;
+
   overflow: hidden;
 }
-.hero > .ph,
-.studentStory > .ph {
+
+.heroImage {
+  object-fit: cover;
+  object-position: center;
+
+  z-index: 0;
+}
+
+.hero .overlay {
   position: absolute;
   inset: 0;
-  height: 100%;
+
+  z-index: 1;
+
+  background: rgba(0, 0, 0, 0.42);
 }
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.61);
-}
+
 .heroContent {
   position: relative;
+
+  z-index: 2;
+
   min-height: 800px;
+
   display: grid;
+
   grid-template-columns: repeat(12, 1fr);
+
   gap: 32px;
+
   align-items: end;
+
   padding-bottom: 92px;
 }
+
 .heroCopy {
-  grid-column: 1/9;
+  grid-column: 1 / 9;
 }
+
 .hero h1 {
   margin-top: 26px;
 }
+
 .hero .lead {
   max-width: 600px;
+
   margin: 30px 0 0;
+
   color: rgba(255, 255, 255, 0.82);
 }
+
 .row {
   display: flex;
+
   gap: 30px;
+
   align-items: center;
+
   margin-top: 38px;
 }
+
 .heroIndex {
-  grid-column: 11/13;
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
-  padding-top: 16px;
+  grid-column: 11 / 13;
+
   align-self: end;
+
   display: grid;
+
   grid-template-columns: auto 1fr;
+
   gap: 5px 14px;
+
+  padding-top: 16px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
 }
+
 .heroIndex span,
 .heroIndex small {
   font-size: 11px;
+
   text-transform: uppercase;
+
   letter-spacing: 0.08em;
 }
+
 .heroIndex b {
-  font: 500 34px var(--font-geist);
-  grid-row: 1/3;
+  grid-row: 1 / 3;
   grid-column: 2;
+
+  font: 500 34px var(--font-geist);
 }
+
+
+/* =========================================================
+   14. ABOUT / INTRO
+   ========================================================= */
+
 .introGrid {
   display: grid;
+
   grid-template-columns: 6.5fr 5.5fr;
+
   gap: 90px;
 }
+
 .introText {
   padding-top: 72px;
 }
+
 .introText .lead {
   margin-top: 0;
 }
+
 .introText .body {
   max-width: 520px;
 }
+
 .introText .textlink {
   margin-top: 20px;
+
   color: var(--blue);
 }
+
+
+/* =========================================================
+   15. STATS
+   ========================================================= */
+
 .stats {
   display: grid;
+
   grid-template-columns: repeat(3, 1fr) 1.45fr;
+
   margin-top: 92px;
+
   border-top: 1px solid var(--line);
 }
+
 .stats > div {
   padding: 34px 30px;
+
   border-right: 1px solid var(--line);
 }
+
 .stats > div:first-child {
   padding-left: 0;
 }
+
 .stats > div:last-child {
   border: 0;
 }
+
 .stats strong {
   font: 500 64px var(--font-geist);
+
   letter-spacing: -0.05em;
 }
+
 .statNote {
-  background: var(--pale);
   padding-left: 34px !important;
+
+  background: var(--pale);
 }
+
+
+/* =========================================================
+   16. SHARED SECTION HEADING
+   ========================================================= */
+
 .sectionHead {
   display: grid;
+
   grid-template-columns: 7fr 4.5fr;
+
   gap: 90px;
+
   align-items: end;
 }
+
 .sectionHead h2 {
   margin-top: 26px;
 }
+
 .sectionHead > .lead {
   margin: 0;
 }
+
+
+/* =========================================================
+   17. FEATURED RESEARCH
+   ========================================================= */
+
 .research {
   background: #fff;
 }
+
 .feature {
   display: grid;
+
   grid-template-columns: 8fr 4fr;
+
+  min-height: 570px;
+
   margin-top: 72px;
-  min-height: 570px;
 }
+
 .featureImage {
-  min-height: 570px;
+  position: relative;
+
+  overflow: hidden;
+
+  background: #d9dce1;
 }
+
+.researchImage {
+  object-fit: cover;
+  object-position: center;
+}
+
 .featurePanel {
-  background: var(--blue);
-  color: #fff;
-  padding: 44px;
   display: flex;
   flex-direction: column;
+
   justify-content: space-between;
+
+  padding: 44px;
+
+  background: var(--blue);
+
+  color: #fff;
 }
+
 .featurePanel h3 {
   margin-top: 26px;
 }
+
 .featurePanel p:not(.eyebrow) {
   font-size: 18px;
   line-height: 1.6;
+
   color: rgba(255, 255, 255, 0.72);
 }
+
 .researchStrip {
   display: grid;
+
   grid-template-columns: 5fr 5fr 2fr;
+
   gap: 50px;
+
   align-items: end;
-  border-bottom: 1px solid var(--line);
+
   padding: 48px 0;
+
+  border-bottom: 1px solid var(--line);
 }
+
 .researchStrip h3 {
   margin-top: 14px;
 }
+
 .researchStrip .textlink {
-  color: var(--blue);
   justify-self: end;
+
+  color: var(--blue);
 }
+
+
+/* =========================================================
+   18. DISCIPLINES
+   ========================================================= */
+
 .disciplines {
   background: var(--blue);
+
   color: #fff;
 }
+
 .disciplineGrid {
   display: grid;
+
   grid-template-columns: 5fr 6fr;
+
   gap: 100px;
 }
+
 .disciplineTitle > p:last-child {
   max-width: 440px;
+
+  margin-top: 30px;
+
   font-size: 18px;
   line-height: 1.6;
+
   color: rgba(255, 255, 255, 0.7);
-  margin-top: 30px;
 }
+
 .disciplineTitle h2 {
   margin-top: 25px;
 }
+
 .disciplineList a {
   display: grid;
+
   grid-template-columns: 50px 1fr auto;
+
   align-items: center;
+
   padding: 25px 0;
+
   border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
+
 .disciplineList a:last-child {
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
+
 .disciplineList small {
   font: 600 11px var(--font-geist);
+
   color: rgba(255, 255, 255, 0.45);
 }
+
 .disciplineList b {
   font: 500 20px var(--font-geist);
 }
+
+
+/* =========================================================
+   19. PROJECTS TO JOIN
+   ========================================================= */
+
 .oppsHead {
   display: grid;
+
   grid-template-columns: 7fr 5fr;
+
   align-items: end;
 }
+
 .oppsHead h2 {
   margin-top: 25px;
 }
+
 .oppsHead > p {
-  font: 500 clamp(44px, 4vw, 60px)/1 var(--font-geist);
-  letter-spacing: -0.04em;
   margin: 0;
+
   color: var(--blue);
+
+  font:
+    500 clamp(44px, 4vw, 60px) / 1
+    var(--font-geist);
+
+  letter-spacing: -0.04em;
 }
+
 .projectList {
   margin-top: 82px;
 }
+
 .projectList article {
   display: grid;
-  grid-template-columns: 100px minmax(0, 1fr) 240px;
+
+  grid-template-columns:
+    100px
+    minmax(0, 1fr)
+    240px;
+
   gap: 34px;
+
   padding: 42px 0;
+
   border-top: 1px solid var(--line);
 }
+
 .projectList article:last-child {
   border-bottom: 1px solid var(--line);
 }
+
 .projectNum {
-  font: 500 42px var(--font-geist);
   color: var(--blue);
+
+  font: 500 42px var(--font-geist);
 }
+
 .projectMeta {
   display: flex;
+
   gap: 24px;
-  font: 600 11px var(--font-geist);
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
+
   color: var(--blue);
+
+  font: 600 11px var(--font-geist);
+
+  letter-spacing: 0.09em;
+
+  text-transform: uppercase;
 }
+
 .projectMain h3 {
-  margin-top: 16px;
   max-width: 720px;
+
+  margin-top: 16px;
 }
+
 .projectMain .body {
   max-width: 720px;
 }
+
 .projectAction {
   display: flex;
+
   flex-direction: column;
+
   align-items: flex-start;
+
   justify-content: space-between;
 }
+
 .projectAction > p {
-  font: 600 11px var(--font-geist);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--red);
+
+  font: 600 11px var(--font-geist);
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
 }
+
 .projectAction .textlink {
   color: var(--blue);
 }
+
+
+/* =========================================================
+   20. LEARN & DO
+   ========================================================= */
+
 .learn {
   background: var(--pale);
 }
+
 .learnGrid {
   display: grid;
+
   grid-template-columns: 7fr 4.5fr;
+
   gap: 70px;
-  margin-top: 72px;
+
   align-items: start;
+
+  margin-top: 72px;
 }
-.learnPrimary > .ph {
-  aspect-ratio: 4/3;
+
+.learnPrimary .learningImage {
+  aspect-ratio: 4 / 3;
+
+  min-height: 0;
 }
+
 .learnSecondary {
   margin-top: 115px;
 }
-.learnSecondary > .ph {
-  aspect-ratio: 4/3;
+
+.learnSecondary .learningImage {
+  aspect-ratio: 4 / 3;
+
+  min-height: 0;
 }
+
 .learnCopy .eyebrow,
 .learnSecondary > .eyebrow {
   margin-top: 26px;
 }
+
 .learnCopy h3,
 .learnSecondary h3 {
   margin-top: 12px;
 }
+
 .learnCopy .textlink,
 .learnSecondary .textlink {
   color: var(--blue);
 }
+
+
+/* =========================================================
+   21. STUDENT STORY
+   ========================================================= */
+
 .studentStory {
   position: relative;
+
   min-height: 740px;
+
   color: #fff;
+
+  overflow: hidden;
+
+  background: #626466;
 }
+
+.studentStoryImage {
+  object-fit: cover;
+  object-position: center;
+
+  z-index: 0;
+}
+
+.studentStory .overlay {
+  position: absolute;
+  inset: 0;
+
+  z-index: 1;
+
+  background: rgba(0, 0, 0, 0.48);
+}
+
 .storyCopy {
   position: relative;
+
+  z-index: 2;
+
   min-height: 740px;
+
   display: flex;
+
   flex-direction: column;
+
   justify-content: flex-end;
+
   padding-bottom: 88px;
 }
+
 .storyCopy blockquote {
-  font: 500 clamp(46px, 4.3vw, 66px)/1.02 var(--font-geist);
-  letter-spacing: -0.04em;
   max-width: 860px;
+
   margin: 26px 0 30px;
+
+  font:
+    500 clamp(46px, 4.3vw, 66px) / 1.02
+    var(--font-geist);
+
+  letter-spacing: -0.04em;
 }
+
 .storyCopy div p {
   margin: 0;
+
   font-weight: 600;
 }
+
 .storyCopy div span {
   font-size: 14px;
+
   color: rgba(255, 255, 255, 0.7);
 }
+
+.storyCopy .textlink {
+  margin-top: 24px;
+
+  color: #fff;
+}
+
+
+/* =========================================================
+   22. EVENTS
+   ========================================================= */
+
 .eventGrid {
   display: grid;
+
   grid-template-columns: 5fr 7fr;
+
   gap: 90px;
 }
+
 .eventIntro {
   max-width: 430px;
+
   margin-top: 30px;
 }
+
 .eventList a {
   display: grid;
+
   grid-template-columns: 100px 1fr auto;
+
   gap: 24px;
+
   padding: 30px 0;
+
   border-top: 1px solid var(--line);
 }
+
 .eventList a:last-child {
   border-bottom: 1px solid var(--line);
 }
+
 .date strong {
   display: block;
-  font: 500 48px/1 var(--font-geist);
-  letter-spacing: -0.04em;
+
   color: var(--blue);
+
+  font: 500 48px/1 var(--font-geist);
+
+  letter-spacing: -0.04em;
 }
+
 .date small {
   font: 600 11px var(--font-geist);
+
   letter-spacing: 0.1em;
 }
+
 .eventList b {
   font: 500 20px var(--font-geist);
 }
+
 .eventList p {
   font-size: 14px;
+
   color: var(--muted);
 }
+
+
+/* =========================================================
+   23. MEMBERSHIP CTA
+   ========================================================= */
+
 .membership {
   background: var(--blue);
+
   color: #fff;
 }
+
 .membershipGrid {
   display: grid;
+
   grid-template-columns: 7fr 5fr;
+
   gap: 80px;
+
   align-items: end;
 }
+
 .membershipGrid h2 {
   margin-top: 25px;
 }
+
 .membershipCopy {
   max-width: 560px;
 }
+
 .membershipCopy .lead {
-  color: rgba(255, 255, 255, 0.78);
   margin-top: 0;
+
+  color: rgba(255, 255, 255, 0.78);
 }
+
 .membershipCopy .button {
   margin-top: 26px;
 }
+
+
+/* =========================================================
+   24. FOOTER
+   ========================================================= */
+
 footer {
-  background: var(--deep);
-  color: #fff;
   padding: 86px 0 30px;
+
+  background: var(--deep);
+
+  color: #fff;
 }
+
 .footerGrid {
   display: grid;
+
   grid-template-columns: 5fr 7fr;
+
   gap: 80px;
 }
+
 .footerGrid h3 {
-  font-size: 38px;
   margin-top: 22px;
+
+  font-size: 38px;
 }
+
 .footerLinks {
   display: grid;
+
   grid-template-columns: repeat(3, 1fr);
+
   gap: 30px;
 }
+
 .footerLinks div {
   display: grid;
+
   gap: 14px;
 }
+
 .footerLinks b {
   font: 600 12px var(--font-geist);
+
   letter-spacing: 0.1em;
+
   text-transform: uppercase;
 }
+
 .footerLinks a {
   font-size: 15px;
+
   color: rgba(255, 255, 255, 0.75);
 }
+
 .copyright {
   margin-top: 76px;
+
   padding-top: 25px;
+
   border-top: 1px solid rgba(255, 255, 255, 0.2);
+
   font-size: 12px;
+
   color: rgba(255, 255, 255, 0.5);
 }
+
+
+/* =========================================================
+   25. TABLET + MOBILE
+   ========================================================= */
+
 @media (max-width: 900px) {
+
   .shell {
     padding-inline: 24px;
   }
+
   .section {
     padding-block: 92px;
   }
-  .desktopNav,
-  .navright {
-    display: none;
-  }
-  .mobileMenu {
-    display: block;
-  }
+
+
+  /* -----------------------------------------
+     Header
+     ----------------------------------------- */
+
   .nav {
     height: 76px;
   }
-  h1 {
-    font-size: 50px;
-    line-height: 0.98;
-  }
-  h2 {
-    font-size: 38px;
-    line-height: 1.05;
-  }
-  h3 {
-    font-size: 28px;
-  }
-  .lead {
-    font-size: 20px;
-  }
-  .hero,
-  .heroContent {
-    min-height: 700px;
-  }
-  .heroContent {
-    display: block;
-    padding-top: 230px;
-    padding-bottom: 60px;
-  }
-  .heroIndex {
-    display: none;
-  }
-  .row {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-  .introGrid,
-  .sectionHead,
-  .disciplineGrid,
-  .oppsHead,
-  .learnGrid,
-  .eventGrid,
-  .membershipGrid,
-  .footerGrid {
-    grid-template-columns: 1fr;
-    gap: 44px;
-  }
-  .introText {
-    padding-top: 0;
-  }
-  .stats {
-    grid-template-columns: 1fr;
-    margin-top: 64px;
-  }
-  .stats > div {
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-    padding: 28px 0;
-  }
-  .statNote {
-    padding: 28px !important;
-  }
-  .feature {
-    grid-template-columns: 1fr;
-    margin-top: 50px;
-  }
-  .featureImage,
-  .featurePanel {
-    min-height: 420px;
-  }
-  .featurePanel {
-    padding: 30px;
-  }
-  .researchStrip {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .researchStrip .textlink {
-    justify-self: start;
-  }
-  .projectList {
-    margin-top: 55px;
-  }
-  .projectList article {
-    grid-template-columns: 55px 1fr;
-    gap: 20px;
-  }
-  .projectAction {
-    grid-column: 2;
-    gap: 12px;
-  }
-  .learnGrid {
-    margin-top: 50px;
-  }
-  .learnSecondary {
-    margin-top: 20px;
-  }
-  .studentStory,
-  .storyCopy {
-    min-height: 650px;
-  }
-  .storyCopy blockquote {
-    font-size: 38px;
-  }
-  .footerLinks {
-    grid-template-columns: 1fr;
-  }
-  .oppsHead > p {
-    font-size: 40px;
-  }
-  .eventList a {
-    grid-template-columns: 75px 1fr auto;
-  }
-  .date strong {
-    font-size: 40px;
-  }
-}
 
-/* Production Phase 1 navigation overrides */
-.menuButton {
-  display: none;
-  margin-left: auto;
-  border: 0;
-  background: none;
-  font: 600 13px var(--font-geist);
-  cursor: pointer;
-}
-.mobilePanel {
-  display: none;
-}
-.mobileSocietyName {
-  display: none;
-}
-@media (max-width: 900px) {
-      .institutionName,
+  .desktopNav,
+  .navright,
+  .mobileMenu {
+    display: none !important;
+  }
+
+  .menuButton {
+    display: block;
+  }
+
+  .institutionName,
   .desktopSocietyName {
     display: none;
   }
@@ -925,79 +1307,15 @@ footer {
     display: block;
 
     font-family: var(--font-geist), sans-serif;
+
     font-size: 15px;
     line-height: 18px;
+
     font-weight: 600;
+
     letter-spacing: -0.02em;
   }
-  .mobileMenu {
-    display: none !important;
-  }
-  .menuButton {
-    display: block;
-  }
-  .mobilePanel {
-    display: block;
-    position: fixed;
-    z-index: 49;
-    left: 0;
-    right: 0;
-    top: 88px;
-    bottom: 0;
-    background: var(--paper);
-    overflow-y: auto;
-    border-bottom: 4px solid var(--blue);
-  }
-  .mobileInner {
-    padding-top: 12px;
-    padding-bottom: 40px;
-  }
-  .mobileGroup {
-    border-top: 1px solid var(--line);
-  }
-  .mobileGroup:last-child {
-    border-bottom: 1px solid var(--line);
-  }
-  .mobileGroup > button {
-    width: 100%;
-    border: 0;
-    background: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0;
-    font: 500 20px var(--font-geist);
-    text-align: left;
-  }
-  .mobileLinks {
-    padding-bottom: 18px;
-  }
-  .mobileLinks a {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    font-size: 15px;
-    color: var(--muted);
-  }
-  .mobileJoin {
-    margin-top: 26px;
-  }
-  .stats {
-    grid-template-columns: 1fr 1fr;
-  }
-  .stats > div {
-    padding: 25px 18px !important;
-    border-right: 1px solid var(--line);
-  }
-  .stats > div:nth-child(2n) {
-    border-right: 0;
-  }
-  .statNote {
-    min-height: 150px;
-  }
-  .eyebrow {
-    font-size: 11px;
-  }
+
   .siteIdentity {
     gap: 10px;
   }
@@ -1011,30 +1329,364 @@ footer {
     gap: 1px;
   }
 
-  .institutionName {
-    display: none;
-  }
-
   .societyName {
     font-size: 14px;
     line-height: 16px;
   }
 
-  .societyName::after {
-    content: "";
+
+  /* -----------------------------------------
+     Mobile navigation panel
+     ----------------------------------------- */
+
+  .mobilePanel {
+    position: fixed;
+
+    z-index: 49;
+
+    display: block;
+
+    left: 0;
+    right: 0;
+
+    top: 88px;
+    bottom: 0;
+
+    overflow-y: auto;
+
+    background: var(--paper);
+
+    border-bottom: 4px solid var(--blue);
+  }
+
+  .mobileInner {
+    padding-top: 12px;
+    padding-bottom: 40px;
+  }
+
+  .mobileGroup {
+    border-top: 1px solid var(--line);
+  }
+
+  .mobileGroup:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .mobileGroup > button {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 20px 0;
+
+    border: 0;
+
+    background: none;
+
+    text-align: left;
+
+    font: 500 20px var(--font-geist);
+
+    cursor: pointer;
+  }
+
+  .mobileLinks {
+    padding-bottom: 18px;
+  }
+
+  .mobileLinks a {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 10px 0;
+
+    font-size: 15px;
+
+    color: var(--muted);
+  }
+
+  .mobileJoin {
+    margin-top: 26px;
+  }
+
+
+  /* -----------------------------------------
+     Typography
+     ----------------------------------------- */
+
+  h1 {
+    font-size: 50px;
+    line-height: 0.98;
+  }
+
+  h2 {
+    font-size: 38px;
+    line-height: 1.05;
+  }
+
+  h3 {
+    font-size: 28px;
+  }
+
+  .lead {
+    font-size: 20px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+  }
+
+
+  /* -----------------------------------------
+     Hero
+     ----------------------------------------- */
+
+  .hero,
+  .heroContent {
+    min-height: 700px;
+  }
+
+  .heroContent {
+    display: block;
+
+    padding-top: 230px;
+    padding-bottom: 60px;
+  }
+
+  .heroCopy {
+    max-width: 620px;
+  }
+
+  .heroIndex {
+    display: none;
+  }
+
+  .row {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+
+  /* -----------------------------------------
+     Shared grids
+     ----------------------------------------- */
+
+  .introGrid,
+  .sectionHead,
+  .disciplineGrid,
+  .oppsHead,
+  .learnGrid,
+  .eventGrid,
+  .membershipGrid,
+  .footerGrid {
+    grid-template-columns: 1fr;
+
+    gap: 44px;
+  }
+
+
+  /* -----------------------------------------
+     About
+     ----------------------------------------- */
+
+  .introText {
+    padding-top: 0;
+  }
+
+
+  /* -----------------------------------------
+     Stats
+     ----------------------------------------- */
+
+  .stats {
+    grid-template-columns: 1fr 1fr;
+
+    margin-top: 64px;
+  }
+
+  .stats > div {
+    padding: 25px 18px !important;
+
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .stats > div:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .statNote {
+    min-height: 150px;
+
+    padding: 28px !important;
+  }
+
+
+  /* -----------------------------------------
+     Featured Research
+     ----------------------------------------- */
+
+  .feature {
+    grid-template-columns: 1fr;
+
+    margin-top: 50px;
+  }
+
+  .featureImage,
+  .featurePanel {
+    min-height: 420px;
+  }
+
+  .featurePanel {
+    padding: 30px;
+  }
+
+  .researchStrip {
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+  }
+
+  .researchStrip .textlink {
+    justify-self: start;
+  }
+
+
+  /* -----------------------------------------
+     Projects
+     ----------------------------------------- */
+
+  .projectList {
+    margin-top: 55px;
+  }
+
+  .projectList article {
+    grid-template-columns: 55px 1fr;
+
+    gap: 20px;
+  }
+
+  .projectAction {
+    grid-column: 2;
+
+    gap: 12px;
+  }
+
+  .oppsHead > p {
+    font-size: 40px;
+  }
+
+
+  /* -----------------------------------------
+     Learn & Do
+     ----------------------------------------- */
+
+  .learnGrid {
+    grid-template-columns: 1fr;
+
+    gap: 56px;
+
+    margin-top: 50px;
+  }
+
+  .learnSecondary {
+    margin-top: 0;
+  }
+
+  .learnPrimary .learningImage,
+  .learnSecondary .learningImage {
+    aspect-ratio: 16 / 10;
+  }
+
+
+  /* -----------------------------------------
+     Student Story
+     ----------------------------------------- */
+
+  .studentStory,
+  .storyCopy {
+    min-height: 650px;
+  }
+
+  .storyCopy blockquote {
+    font-size: 38px;
+  }
+
+
+  /* -----------------------------------------
+     Events
+     ----------------------------------------- */
+
+  .eventList a {
+    grid-template-columns: 75px 1fr auto;
+  }
+
+  .date strong {
+    font-size: 40px;
+  }
+
+
+  /* -----------------------------------------
+     Footer
+     ----------------------------------------- */
+
+  .footerLinks {
+    grid-template-columns: 1fr;
   }
 }
+
+
+/* =========================================================
+   26. SMALL MOBILE
+   ========================================================= */
+
 @media (max-width: 480px) {
+
   .shell {
     padding-inline: 20px;
   }
+
+  h1 {
+    font-size: 44px;
+  }
+
   .heroContent {
     padding-top: 210px;
   }
+
+  .hero .lead {
+    font-size: 18px;
+  }
+
   .projectList article {
     grid-template-columns: 46px 1fr;
   }
+
   .stats strong {
     font-size: 52px;
+  }
+
+  .featureImage,
+  .featurePanel {
+    min-height: 340px;
+  }
+
+  .storyCopy blockquote {
+    font-size: 34px;
+  }
+
+  .eventList a {
+    grid-template-columns: 60px 1fr;
+
+    gap: 16px;
+  }
+
+  .eventList a > :last-child {
+    grid-column: 2;
   }
 }
