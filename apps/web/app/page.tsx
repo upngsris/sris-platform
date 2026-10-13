@@ -1,7 +1,5 @@
-import { SiteHeader } from "@/components/layout/site-header";
-import { SiteFooter } from "@/components/layout/site-footer";
-
 import { Hero } from "@/components/home/hero";
+import { Signposts } from "@/components/home/signposts";
 import { AboutIntro } from "@/components/home/about-intro";
 import { FeaturedResearch } from "@/components/home/featured-research";
 import { DisciplineExplorer } from "@/components/home/discipline-explorer";
@@ -9,42 +7,47 @@ import { ProjectsToJoin } from "@/components/home/projects-to-join";
 import { LearnAndDo } from "@/components/home/learn-and-do";
 import { StudentStory } from "@/components/home/student-story";
 import { Events } from "@/components/home/events";
-import { MembershipCTA } from "@/components/home/membership-cta";
+import { MembershipCta } from "@/components/home/membership-cta";
 
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { HOME_INTRO_QUERY } from "@/sanity/lib/queries";
+import { HOME_PAGE_QUERY } from "@/sanity/lib/queries";
 
-import type { HomeIntroData } from "@/sanity/lib/types";
+import type { HomePageData } from "@/sanity/lib/types";
+
+import { pageMetadata, site } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "UPNG SRIS | Science, Research & Innovation Society",
+  description: site.description,
+  path: "/",
+});
 
 export default async function Home() {
-  const data = await sanityFetch<HomeIntroData>({
-    query: HOME_INTRO_QUERY,
+  const data = await sanityFetch<HomePageData>({
+    query: HOME_PAGE_QUERY,
   });
 
   return (
-    <>
-      <SiteHeader />
+    <main className="lpi lpi-home">
+      <Hero data={data?.hero} />
 
-      <main>
-        <Hero data={data?.hero} />
+      <Signposts />
 
-        <AboutIntro data={data?.about} />
+      <MembershipCta data={data?.membershipCta} />
 
-        {/* Still static */}
-        <FeaturedResearch data={data?.featuredResearch} />
-        <DisciplineExplorer />
-        <ProjectsToJoin
-          data={data?.featuredOpportunities}
-        />
-        <LearnAndDo
-          data={data?.featuredLearning}
-        />
-        <StudentStory data={data?.featuredStory} />
-        <Events data={data?.featuredEvents} />
-        <MembershipCTA data={data?.membershipCta} />
-      </main>
+      <StudentStory data={data?.featuredStory} />
 
-      <SiteFooter />
-    </>
+      <AboutIntro data={data?.about} />
+
+      <FeaturedResearch data={data?.featuredResearch} />
+
+      <ProjectsToJoin data={data?.featuredOpportunities} />
+
+      <LearnAndDo data={data?.featuredLearning} />
+
+      <Events data={data?.featuredEvents} />
+
+      <DisciplineExplorer />
+    </main>
   );
 }

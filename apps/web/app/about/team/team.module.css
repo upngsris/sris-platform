@@ -1,0 +1,1512 @@
+/* =========================================================
+   TEAM
+   Hero, breadcrumb, headings, bands and empty states come
+   from the shared page chrome in globals.css.
+   ========================================================= */
+
+.personImageAsset {
+  object-fit: cover;
+  object-position: center;
+}
+
+.personPlaceholder {
+  min-height: 100%;
+}
+
+.personPosition {
+  color: var(--soft-ink);
+
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   PATRONAGE
+   ========================================================= */
+
+.patronage {
+  padding-block: 56px;
+}
+
+.patronageList {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 28px;
+
+  margin-top: 40px;
+}
+
+.patronProfile {
+  display: grid;
+
+  transition: background 0.25s var(--ease);
+
+  grid-template-columns: 4fr 8fr;
+
+  gap: 40px;
+
+  border: 1px solid var(--line);
+}
+
+.patronImage {
+  position: relative;
+
+  min-height: 400px;
+
+  overflow: hidden;
+
+  background: var(--pale-deep);
+}
+
+.patronContent {
+  padding: 30px 32px 34px 0;
+}
+
+.patronContent h3 {
+  margin-top: 10px;
+
+  font-size: 21px;
+}
+
+.patronContent blockquote {
+  max-width: 620px;
+
+  margin: 18px 0 0;
+
+  color: var(--muted);
+
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.patronContent :global(.textlink) {
+  margin-top: 22px;
+}
+
+/* =========================================================
+   EXECUTIVE & COMMITTEE CARDS
+   ========================================================= */
+
+.executives {
+  padding-block: 56px;
+
+  border-top: 1px solid var(--line);
+
+  background: var(--pale);
+}
+
+.executiveGrid,
+.committeeGrid {
+  display: grid;
+
+  /*
+   * Intrinsic rather than a fixed four: a person card needs ~240px for the
+   * name, role and programme to sit on sensible line lengths. At a tablet
+   * width four columns left 170px of content each. This yields 4 / 3 / 2 / 1
+   * across the range with no breakpoint to keep in sync.
+   */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+
+  gap: 24px;
+
+  margin-top: 40px;
+}
+
+.leaderCard {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  border: 1px solid var(--line);
+
+  background: var(--paper);
+
+  transition: background 0.25s var(--ease);
+}
+
+.leaderCard:hover {
+  background: var(--hover);
+}
+
+.leaderImage {
+  position: relative;
+
+  display: block;
+
+  width: 100%;
+
+  min-height: 300px;
+
+  overflow: hidden;
+
+  background: var(--pale-deep);
+}
+
+.leaderCard > :global(.eyebrow) {
+  padding: 20px 22px 0;
+}
+
+.leaderCard h3 {
+  padding: 8px 22px 0;
+
+  font-size: 17px;
+}
+
+.leaderCard h3 a {
+  transition: color 0.2s var(--ease);
+}
+
+.leaderCard h3 a:hover {
+  color: var(--color-text-link);
+}
+
+.leaderCard > :global(.body) {
+  padding: 8px 22px 22px;
+
+  color: var(--muted);
+
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.committees {
+  padding-block: 56px;
+}
+
+/* =========================================================
+   COORDINATORS
+   ========================================================= */
+
+.coordinators {
+  padding-block: 56px;
+
+  border-top: 1px solid var(--line);
+
+  background: var(--pale);
+}
+
+.coordinatorList {
+  margin-top: 40px;
+
+  border-top: 1px solid var(--ink);
+}
+
+:global(.pageHeading) + .coordinatorList {
+  border-top: 0;
+}
+
+.coordinator {
+  display: grid;
+
+  grid-template-columns: 56px minmax(0, 1fr) 18px;
+
+  align-items: start;
+
+  gap: 32px;
+
+  padding-block: 26px;
+
+  border-bottom: 1px solid var(--line);
+
+  transition: background 0.25s var(--ease);
+}
+
+.coordinator:hover {
+  background: var(--hover);
+}
+
+.coordinatorIndex {
+  color: var(--soft-ink);
+
+  font-family: var(--font-display), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.8;
+
+  letter-spacing: 0.1em;
+}
+
+.coordinator h3 {
+  margin-top: 8px;
+
+  font-size: 18px;
+
+  transition: color 0.2s var(--ease);
+}
+
+.coordinator :global(.body) {
+  max-width: 620px;
+
+  margin-top: 8px;
+
+  color: var(--muted);
+}
+
+.coordinatorArrow {
+  color: var(--color-text-link);
+
+  font-size: 14px;
+
+  opacity: 0;
+
+  transition:
+    opacity 0.25s var(--ease),
+    transform 0.25s var(--ease);
+}
+
+.coordinator:hover h3 {
+  color: var(--color-text-link);
+}
+
+.coordinator:hover .coordinatorArrow {
+  opacity: 1;
+
+  transform: translateX(3px);
+}
+
+/* =========================================================
+   ARCHIVE
+   ========================================================= */
+
+.archive {
+  padding-block: 56px;
+}
+
+/* =========================================================
+   PERSON PROFILE
+   ========================================================= */
+
+.profileHero {
+  padding-block: 44px 48px;
+
+  border-bottom: 1px solid var(--line);
+
+  background: var(--pale);
+}
+
+.profileHeroGrid {
+  display: grid;
+
+  grid-template-columns: 7fr 5fr;
+
+  align-items: center;
+
+  gap: 64px;
+}
+
+.profileHero h1 {
+  max-width: 620px;
+
+  margin-top: 16px;
+
+  text-wrap: balance;
+}
+
+.profileHero :global(.lead) {
+  max-width: 560px;
+
+  margin-top: 14px;
+
+  color: var(--muted);
+}
+
+.profilePortrait {
+  position: relative;
+
+  min-height: 300px;
+
+  overflow: hidden;
+
+  border: 1px solid var(--line);
+
+  background: var(--pale-deep);
+}
+
+.profileStory {
+  padding-block: 48px;
+}
+
+.profileStoryGrid {
+  display: grid;
+
+  grid-template-columns: 3fr 8fr;
+
+  gap: 64px;
+}
+
+.profileStory blockquote {
+  max-width: 720px;
+
+  margin: 0;
+
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(19px, 1.6vw, 24px);
+  font-weight: 500;
+  line-height: 1.42;
+
+  letter-spacing: -0.014em;
+}
+
+.profileStory blockquote + :global(.body) {
+  margin-top: 26px;
+}
+
+.profileStory :global(.body) {
+  max-width: 680px;
+
+  color: var(--muted);
+
+  line-height: 1.7;
+
+  white-space: pre-line;
+}
+
+/* =========================================================
+   ROLE HISTORY
+   ========================================================= */
+
+.roleHistory {
+  padding-block: 52px;
+
+  border-top: 1px solid var(--line);
+}
+
+.roleHistoryList {
+  margin-top: 36px;
+
+  border-top: 1px solid var(--ink);
+}
+
+:global(.pageHeading) + .roleHistoryList {
+  border-top: 0;
+}
+
+.roleHistoryItem {
+  display: grid;
+
+  grid-template-columns: 96px minmax(0, 1fr) 150px;
+
+  align-items: start;
+
+  gap: 28px;
+
+  padding-block: 22px;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.roleHistoryItem > strong {
+  font-family: var(--font-display), sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.roleHistoryItem h3 {
+  font-size: 17px;
+}
+
+.roleHistoryItem :global(.body) {
+  margin-top: 6px;
+
+  color: var(--muted);
+
+  font-size: 14px;
+}
+
+.roleHistoryItem > span {
+  color: var(--soft-ink);
+
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.roleContributions {
+  max-width: 680px;
+
+  margin-top: 14px;
+
+  color: var(--muted);
+
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+
+.roleContributions h3 {
+  margin-top: 18px;
+
+  color: var(--ink);
+
+  font-size: 15px;
+}
+
+/* =========================================================
+   PROFILE SOCIALS
+   ========================================================= */
+
+.profileSocials {
+  padding-block: 48px;
+}
+
+.profileSocialGrid {
+  display: grid;
+
+  grid-template-columns: 6fr 6fr;
+
+  align-items: center;
+
+  gap: 48px;
+}
+
+.profileSocialGrid h2 {
+  margin-top: 12px;
+
+  font-size: 22px;
+}
+
+.profileSocialLinks {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+.profileSocialLinks a {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  height: 40px;
+
+  padding-inline: 15px;
+
+  border: 1px solid var(--line-strong);
+
+  font-family: var(--font-display), sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+
+  transition:
+    border-color 0.2s var(--ease),
+    background 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+
+.profileSocialLinks a:hover {
+  background: var(--hover);
+  color: var(--color-text-link);
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+
+/* =========================================================
+   SURFACE SYSTEM
+   ========================================================= */
+
+.patronProfile,
+.leaderCard {
+  overflow: hidden;
+
+  border-radius: var(--r-card);
+}
+
+.patronImage,
+.leaderImage {
+  margin: 12px 12px 0;
+
+  overflow: hidden;
+
+  border-radius: var(--r-media);
+}
+
+/* White, so patron and founder cards stand off the tinted section canvas. */
+.patronProfile {
+  gap: 28px;
+
+  background: var(--white);
+}
+
+.patronContent {
+  padding: 20px 32px 30px 4px;
+}
+
+.leaderCard:hover,
+.patronProfile:hover {
+  background: var(--hover);
+}
+
+.executives,
+.coordinators {
+  border-top: 0;
+
+  background: var(--paper);
+}
+
+.coordinatorList,
+.roleHistoryList {
+  border-top: 1px solid var(--line);
+}
+
+.coordinatorIndex {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  background: var(--light);
+  color: var(--color-text-on-interactive);
+
+  line-height: 1;
+}
+
+.coordinator:hover {
+  background: var(--hover);
+
+}
+
+.profileHero {
+  padding-block: 28px 0;
+
+  border-bottom: 0;
+
+  background: var(--paper);
+}
+
+.profileHero > :global(.shell) {
+  width: min(100%, 1360px);
+
+  padding: 44px 56px 48px;
+
+  border-radius: var(--r-panel);
+
+  background: var(--panel);
+}
+
+.profilePortrait {
+  border: 0;
+  border-radius: var(--r-panel);
+}
+
+.roleHistory {
+  border-top: 0;
+}
+
+.profileSocialLinks a {
+  border-radius: var(--r-pill);
+}
+
+
+/* Chips carry their own background now, so card insets must be margin —
+   padding would inflate the pill and let it ride over the portrait. */
+.leaderCard > :global(.eyebrow) {
+  margin: 20px 22px 0;
+
+  padding: 0 14px;
+}
+
+.leaderImage {
+  width: auto;
+
+  align-self: stretch;
+}
+
+/* =========================================================
+   FOUNDERS & PIONEER EXECUTIVES
+   ========================================================= */
+
+.founders {
+  padding-block: 56px;
+
+  border-top: 1px solid var(--line);
+}
+
+
+.certificateLink {
+  display: inline-flex;
+
+  flex-shrink: 0;
+
+  align-items: center;
+
+  gap: 8px;
+
+  height: 36px;
+
+  margin-left: auto;
+
+  padding-inline: 14px;
+
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-pill);
+
+  background: var(--wash);
+  color: var(--color-text-link);
+
+  font-family: var(--font-display), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+
+  transition:
+    background 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+
+.certificateLink i {
+  font-style: normal;
+}
+
+.certificateLink:hover {
+  background: var(--hover);
+  color: var(--color-text-link);
+}
+
+
+/* =========================================================
+   PERSON CARD — single inset
+   Every text row used to carry its own padding-inline, so any
+   row that missed it (the role line) sat outdented against the
+   name. The inset now lives on one container, which keeps new
+   rows aligned by construction.
+   ========================================================= */
+
+.leaderBody {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  padding: 20px 22px 22px;
+}
+
+.leaderCard > .leaderBody > :global(.eyebrow) {
+  margin: 0;
+
+  padding: 0 14px;
+}
+
+.leaderCard .leaderBody h3 {
+  margin-top: 8px;
+
+  padding: 0;
+
+  font-size: 17px;
+}
+
+.leaderBody .personPosition {
+  margin-top: 4px;
+}
+
+.leaderCard .leaderBody > :global(.body) {
+  margin-top: 6px;
+
+  padding: 0;
+}
+
+/* =========================================================
+   ARCHIVE — TERM FILTER
+   The year is a query parameter, so every term has its own
+   shareable URL and the filter works without JavaScript.
+   ========================================================= */
+
+.termFilter {
+  padding-block: 56px 8px;
+
+  /* Clears the sticky header when the pager jumps back to #term. */
+  scroll-margin-top: 96px;
+}
+
+.termFilterBar {
+  display: flex;
+
+  align-items: center;
+
+  gap: 20px;
+
+  padding: 10px 10px 10px 22px;
+
+  border-radius: var(--r-panel);
+
+  background: var(--panel);
+}
+
+.termFilterLabel {
+  flex-shrink: 0;
+
+  color: var(--soft-ink);
+
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.termForm {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 12px 20px;
+}
+
+.termSelectWrap {
+  position: relative;
+}
+
+.termSelect {
+  min-width: 260px;
+  height: 48px;
+
+  padding: 0 48px 0 20px;
+
+  border: 1px solid var(--field-border);
+  border-radius: var(--r-pill);
+
+  background: var(--paper);
+  color: var(--ink);
+
+  font-family: var(--font-display), sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  appearance: none;
+
+  transition: border-color 0.2s var(--ease);
+}
+
+.termSelect:hover {
+  border-color: var(--blue);
+}
+
+.termSelect:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.termSelectChevron {
+  position: absolute;
+
+  top: 50%;
+  right: 20px;
+
+  color: var(--color-text-link);
+
+  font-size: 14px;
+
+  transform: translateY(-50%);
+
+  pointer-events: none;
+}
+
+.termSummary {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: flex-end;
+
+  gap: 20px 32px;
+
+  margin-top: 48px;
+
+  padding-bottom: 24px;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.termSummary h2 {
+  margin-top: 12px;
+}
+
+.termSummary :global(.body) {
+  margin-top: 8px;
+}
+
+/* The first group sits directly under the summary rule. */
+.termFilter + div > section:first-child {
+  padding-top: 56px;
+}
+
+/* =========================================================
+   ARCHIVE — TERM PAGER
+   ========================================================= */
+
+.termPager {
+  padding-block: 8px 56px;
+}
+
+.termPager > :global(.shell) {
+  display: flex;
+
+  gap: 16px;
+
+  padding-top: 32px;
+
+  border-top: 1px solid var(--line);
+}
+
+.termPagerLink {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 14px 20px;
+
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-card);
+
+  font-family: var(--font-display), sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+
+  transition:
+    background 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+
+.termPagerLink small {
+  display: block;
+
+  color: var(--soft-ink);
+
+  font-family: var(--font-body), sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.termPagerLink:hover {
+  background: var(--hover);
+  color: var(--color-text-link);
+}
+
+.termPagerNext {
+  margin-left: auto;
+
+  text-align: right;
+}
+
+/* =========================================================
+   PROFILE PORTRAIT
+   Same 6:7 crop as the Patronage and Founder portraits. The
+   box used to be a wide, 300px-tall strip that cut the head
+   and shoulders out of a portrait; a box with the image's own
+   proportions shows the whole frame.
+   ========================================================= */
+
+.profilePortrait {
+  justify-self: end;
+
+  width: 100%;
+  max-width: 420px;
+  min-height: 0;
+
+  aspect-ratio: 6 / 7;
+}
+
+.profileActions {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+
+  margin-top: 24px;
+}
+
+/* =========================================================
+   CERTIFICATE VIEWER
+   ========================================================= */
+
+.certificateTrigger {
+  border: 0;
+
+  cursor: pointer;
+}
+
+.certificateControls button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+/* Centred explicitly rather than trusting the UA's `margin: auto`. */
+.certificateDialog {
+  inset: 0;
+
+  width: min(1040px, calc(100vw - 48px));
+  max-width: none;
+  max-height: calc(100dvh - 48px);
+
+  margin: auto;
+  padding: 0;
+
+  border: 0;
+  border-radius: var(--r-panel);
+
+  background: var(--paper);
+  color: var(--ink);
+
+  box-shadow: 0 24px 80px rgba(14, 74, 99, 0.28);
+}
+
+.certificateDialog[data-kind="pdf"] {
+  height: calc(100dvh - 48px);
+}
+
+.certificateDialog[data-kind="image"] {
+  height: fit-content;
+}
+
+.certificateDialog::backdrop {
+  background: rgba(14, 74, 99, 0.62);
+}
+
+/* The page behind a certificate should not scroll. */
+:global(html):has(.certificateDialog[open]) {
+  overflow: hidden;
+}
+
+.certificateFrame {
+  display: flex;
+
+  flex-direction: column;
+
+  height: 100%;
+}
+
+.certificateHeader {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  padding: 18px 20px 16px 24px;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.certificateHeader > div:first-child {
+  min-width: 0;
+}
+
+.certificateHeader h2 {
+  margin-top: 8px;
+
+  overflow-wrap: anywhere;
+
+  font-size: 18px;
+}
+
+.certificateControls {
+  display: flex;
+
+  flex-shrink: 0;
+
+  gap: 8px;
+}
+
+.certificateControls button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+
+  background: var(--paper);
+  color: var(--ink);
+
+  font-size: 15px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+
+.certificateControls button:hover {
+  background: var(--hover);
+  color: var(--color-text-link);
+}
+
+.certificateBody {
+  display: flex;
+
+  flex: 1;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 0;
+
+  padding: 16px;
+
+  background: var(--panel);
+}
+
+.certificateBody img {
+  display: block;
+
+  max-width: 100%;
+  max-height: calc(100dvh - 48px - 120px);
+
+  margin: auto;
+
+  object-fit: contain;
+
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.certificateBody iframe {
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+  border-radius: var(--r-media);
+
+  background: var(--paper);
+}
+
+/* =========================================================
+   RESPONSIVE OVERRIDES
+   All max-width blocks live here, at the end of the file,
+   ordered widest to narrowest.
+
+   A media query carries no specificity, so a responsive rule
+   loses to any equally specific rule below it — including a
+   wider breakpoint. Keep new breakpoints in this section and
+   in this order.
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .patronage,
+  .executives,
+  .committees,
+  .coordinators,
+  .archive,
+  .profileStory,
+  .roleHistory,
+  .profileSocials {
+    padding-block: 44px;
+  }
+
+  .patronProfile {
+    grid-template-columns: 1fr;
+
+    gap: 0;
+  }
+
+  .patronImage {
+    min-height: 300px;
+  }
+
+  .patronContent {
+    padding: 26px 24px 30px;
+  }
+
+  .executiveGrid,
+  .committeeGrid {
+    gap: 20px;
+  }
+
+  .coordinator {
+    grid-template-columns: 44px minmax(0, 1fr);
+
+    gap: 20px;
+  }
+
+  .coordinatorArrow {
+    display: none;
+  }
+
+  .profileHeroGrid,
+  .profileStoryGrid,
+  .profileSocialGrid {
+    grid-template-columns: 1fr;
+
+    gap: 28px;
+  }
+
+  .profileHero {
+    padding-block: 32px 40px;
+  }
+
+  .profilePortrait {
+    justify-self: start;
+  }
+
+  .profilePortrait {
+    max-width: 380px;
+  }
+
+  /* Stacked patronage and founder cards keep the 6:7 portrait instead of
+     a 300px strip that crops the face on a narrow screen. */
+  .patronImage {
+    width: auto;
+    max-width: 420px;
+    min-height: 0;
+
+    aspect-ratio: 6 / 7;
+  }
+
+  .certificateDialog {
+    width: calc(100vw - 32px);
+    max-height: calc(100dvh - 32px);
+  }
+
+  .certificateDialog[data-kind="pdf"] {
+    height: calc(100dvh - 32px);
+  }
+
+  .certificateBody img {
+    max-height: calc(100dvh - 32px - 110px);
+  }
+
+  .certificateHeader {
+    padding: 14px 14px 12px 18px;
+  }
+
+  .certificateBody {
+    padding: 8px;
+  }
+
+  .termSummary {
+    align-items: flex-start;
+  }
+
+  .roleHistoryItem {
+    grid-template-columns: 72px minmax(0, 1fr);
+
+    gap: 18px;
+  }
+
+  .roleHistoryItem > span {
+    grid-column: 2;
+  }
+  .patronContent {
+    padding: 20px 24px 28px;
+  }
+
+  .profileHero > :global(.shell) {
+    padding: 28px 24px 32px;
+  }
+  .founders {
+    padding-block: 44px;
+  }
+
+  .termFilter {
+    padding-top: 40px;
+  }
+
+  .termFilterBar {
+    padding: 16px;
+  }
+
+  .termSummary {
+    margin-top: 36px;
+  }
+
+  .termFilter + div > section:first-child {
+    padding-top: 40px;
+  }
+
+  .termPager {
+    padding-bottom: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .patronage,
+  .executives,
+  .committees,
+  .coordinators,
+  .archive,
+  .profileStory,
+  .roleHistory,
+  .profileSocials {
+    padding-block: 48px;
+  }
+
+  .executiveGrid,
+  .committeeGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .coordinator,
+  .roleHistoryItem {
+    grid-template-columns: 1fr;
+
+    gap: 8px;
+  }
+
+  .roleHistoryItem > span {
+    grid-column: auto;
+  }
+
+  .profileSocialLinks a {
+    width: 100%;
+  }
+  .founders {
+    padding-block: 48px;
+  }
+  .certificateLink {
+    margin-left: 0;
+  }
+
+  .termPager > :global(.shell) {
+    flex-direction: column;
+  }
+
+  .termForm {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 8px;
+  }
+
+  .termSelectWrap,
+  .termSelect {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .termFilterBar {
+    padding: 14px;
+  }
+
+  .termSummary {
+    margin-top: 28px;
+  }
+
+  .termFilter + div > section:first-child {
+    padding-top: 32px;
+  }
+
+  .termPager {
+    padding-bottom: 48px;
+  }
+
+  .profilePortrait,
+  .patronImage {
+    max-width: none;
+  }
+
+  .profileActions :global(.button) {
+    justify-content: center;
+
+    width: 100%;
+  }
+
+  /* On a phone the window is the screen. */
+  .certificateDialog {
+    width: 100vw;
+    max-height: 100dvh;
+
+    border-radius: 0;
+  }
+
+  .certificateDialog[data-kind="pdf"] {
+    height: 100dvh;
+  }
+
+  .certificateBody img {
+    max-height: calc(100dvh - 100px);
+  }
+
+  .certificateHeader h2 {
+    font-size: 16px;
+  }
+
+  .certificateControls {
+    gap: 6px;
+  }
+
+  .certificateControls button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .termPagerLink {
+    justify-content: space-between;
+  }
+
+  .termPagerNext {
+    margin-left: 0;
+  }
+}
+
+/* =========================================================
+   COLOUR PASS
+   Leadership bands alternate with the page canvas, and the
+   profile hero takes the same navy panel as every other
+   page hero (see COLOUR & DENSITY PASS in globals.css).
+   ========================================================= */
+
+.executives,
+.coordinators {
+  background: var(--canvas-deep);
+}
+
+.profileHero {
+  padding-top: 20px;
+
+  background: transparent;
+}
+
+.profileHero > :global(.shell) {
+  position: relative;
+
+  overflow: hidden;
+
+  background: var(--deep);
+  color: var(--color-text-on-primary);
+}
+
+.profileHero > :global(.shell)::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 56px;
+
+  width: 96px;
+  height: 4px;
+
+  border-radius: 0 0 4px 4px;
+
+  background: var(--light);
+  color: var(--color-text-on-interactive);
+}
+
+.profileHero h1 {
+  color: var(--on-deep);
+}
+
+.profileHero :global(.lead) {
+  color: var(--on-deep-muted);
+}
+
+.profileHero :global(.eyebrow) {
+  border-color: transparent;
+
+  background: var(--chip-on-deep-bg);
+  color: var(--chip-on-deep-ink);
+}
+
+.profileHero :global(.breadcrumb) {
+  color: var(--on-deep-soft);
+}
+
+.profileHero :global(.breadcrumb a:hover),
+.profileHero :global(.breadcrumb span[aria-current]) {
+  color: var(--on-deep);
+}
+
+.profileHero :global(.breadcrumb i) {
+  color: var(--on-deep-line);
+}
+
+.profileHero .certificateTrigger {
+  border-color: var(--white);
+
+  background: var(--white);
+  color: var(--deep);
+}
+
+.profileHero .certificateTrigger:hover {
+  border-color: var(--wash);
+
+  background: var(--wash);
+  color: var(--deep);
+}
+
+.profilePortrait {
+  background: var(--blue);
+}
+
+/* Patronage, founder and pager cards lift off the canvas. */
+.patronProfile,
+.leaderCard,
+.termPagerLink {
+  box-shadow: var(--shadow-card);
+}
+
+/* The profile photograph gets a deeper shadow than a card: it is the
+   page's subject, not a container. */
+.profilePortrait {
+  box-shadow: var(--shadow-photo);
+}
+
+@media (max-width: 900px) {
+  .profileHero > :global(.shell)::before {
+    left: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profileHero > :global(.shell) {
+    width: calc(100% - 24px);
+  }
+
+  .profileHero > :global(.shell)::before {
+    left: 18px;
+
+    width: 64px;
+  }
+
+  .profileStory,
+  .roleHistory,
+  .profileSocials {
+    padding-block: 32px;
+  }
+}
+
+@media (max-width: 900px) {
+  .profileHero {
+    padding-bottom: 0;
+  }
+}

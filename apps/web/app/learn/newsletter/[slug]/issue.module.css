@@ -1,0 +1,517 @@
+/* =========================================================
+   NEWSLETTER ISSUE
+   Read like a long-form article: title and standfirst, a
+   rounded cover, numbered news briefs, and a quiet sidebar
+   of category, author and issue facts.
+   ========================================================= */
+
+.page {
+  background: var(--paper);
+}
+
+.coverAsset {
+  object-fit: cover;
+}
+
+.coverPlaceholder {
+  position: absolute;
+
+  inset: 0;
+}
+
+/* ---------------------------------------------------------
+   Header
+   --------------------------------------------------------- */
+
+.header {
+  padding-block: 28px 0;
+}
+
+.headerCopy {
+  max-width: 820px;
+
+  margin-top: 32px;
+}
+
+.headerCopy h1 {
+  font-size: clamp(30px, 3vw, 40px);
+  font-weight: 600;
+
+  text-wrap: balance;
+}
+
+.headerCopy p {
+  max-width: 680px;
+
+  margin-top: 14px;
+
+  color: var(--soft-ink);
+
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* ---------------------------------------------------------
+   Layout
+   --------------------------------------------------------- */
+
+.layout {
+  display: grid;
+
+  grid-template-columns: minmax(0, 820px) minmax(0, 260px);
+
+  justify-content: space-between;
+
+  gap: 64px;
+
+  padding-block: 36px 88px;
+}
+
+/* ---------------------------------------------------------
+   Main column
+   --------------------------------------------------------- */
+
+.cover {
+  position: relative;
+
+  aspect-ratio: 16 / 10;
+
+  overflow: hidden;
+
+  border-radius: var(--r-panel);
+
+  background: var(--pale-deep);
+}
+
+.briefs {
+  display: grid;
+
+  gap: 44px;
+
+  margin: 44px 0 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.brief {
+  scroll-margin-top: 120px;
+}
+
+.brief h2 {
+  display: flex;
+
+  gap: 12px;
+
+  font-size: clamp(20px, 1.8vw, 24px);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.brief h2 span {
+  flex: none;
+
+  color: var(--color-text-link);
+}
+
+.brief > * + * {
+  margin-top: 18px;
+}
+
+/* Article copy at reading size, tighter than the global rich text. */
+.prose {
+  max-width: none;
+
+  color: var(--muted);
+
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.figure {
+  margin: 0;
+}
+
+.figure figcaption {
+  margin-top: 8px;
+
+  color: var(--soft-ink);
+
+  font-size: 13px;
+}
+
+.briefImage {
+  position: relative;
+
+  aspect-ratio: 16 / 10;
+
+  overflow: hidden;
+
+  border-radius: var(--r-card);
+
+  background: var(--pale-deep);
+}
+
+.gallery {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 16px;
+}
+
+.galleryImage {
+  overflow: hidden;
+
+  border-radius: var(--r-media);
+}
+
+.galleryImage img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+}
+
+.noBriefs {
+  margin-top: 36px;
+
+  color: var(--muted);
+
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ---------------------------------------------------------
+   Sidebar
+   --------------------------------------------------------- */
+
+.side {
+  position: sticky;
+  top: 120px;
+
+  display: grid;
+
+  align-content: start;
+  align-self: start;
+
+  gap: 32px;
+}
+
+.side h2 {
+  color: var(--soft-ink);
+
+  font-family: var(--font-body), sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+
+  letter-spacing: 0;
+}
+
+.chips {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 6px;
+
+  margin: 12px 0 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.chips li {
+  padding: 4px 10px;
+
+  border-radius: var(--r-control);
+
+  background: var(--panel-deep);
+  color: var(--ink);
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.author {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  margin-top: 14px;
+
+  color: inherit;
+  text-decoration: none;
+}
+
+.avatar {
+  position: relative;
+
+  display: grid;
+
+  flex: none;
+
+  place-items: center;
+
+  width: 48px;
+  height: 48px;
+
+  overflow: hidden;
+
+  border-radius: 50%;
+
+  background: var(--wash);
+  color: var(--color-text-link);
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.author strong {
+  display: block;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.author small {
+  display: block;
+
+  margin-top: 2px;
+
+  color: var(--soft-ink);
+
+  font-size: 12.5px;
+}
+
+a.author:hover strong {
+  color: var(--color-text-link);
+}
+
+.facts {
+  display: grid;
+
+  gap: 8px;
+
+  margin: 12px 0 0;
+
+  font-size: 14px;
+}
+
+.facts div {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding-bottom: 8px;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.facts dt {
+  color: var(--soft-ink);
+}
+
+.facts dd {
+  margin: 0;
+
+  font-weight: 600;
+}
+
+.pdf {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  width: 100%;
+  min-height: 42px;
+
+  margin-top: 16px;
+
+  border-radius: var(--r-pill);
+
+  background: var(--deep);
+  color: var(--color-text-on-primary);
+
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+
+  transition: background 0.2s var(--ease);
+}
+
+.pdf:hover {
+  background: var(--blue);
+}
+
+.pdf:focus-visible {
+  box-shadow: var(--ring);
+  outline: none;
+}
+
+.contents {
+  display: grid;
+
+  gap: 10px;
+
+  margin: 12px 0 0;
+  padding-left: 18px;
+
+  color: var(--soft-ink);
+
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.contents a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.contents a:hover {
+  color: var(--color-text-link);
+  text-decoration: underline;
+}
+
+/* ---------------------------------------------------------
+   More from the newsletter
+   --------------------------------------------------------- */
+
+.more {
+  padding-block: 64px 80px;
+
+  background: var(--panel);
+}
+
+.kicker {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  color: var(--soft-ink);
+
+  font-size: 13px;
+}
+
+.kicker::before {
+  content: "";
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: var(--deep);
+}
+
+.more h2 {
+  margin-top: 14px;
+
+  font-size: clamp(32px, 3.6vw, 48px);
+  font-weight: 500;
+}
+
+.moreGrid {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: var(--home-gap);
+
+  margin-top: 36px;
+}
+
+.moreCard {
+  color: inherit;
+  text-decoration: none;
+}
+
+.moreImage {
+  position: relative;
+
+  aspect-ratio: 16 / 11;
+
+  overflow: hidden;
+
+  border-radius: var(--r-card);
+
+  background: var(--pale-deep);
+}
+
+.moreImage img {
+  transition: transform 0.5s var(--ease);
+}
+
+.moreCard:hover .moreImage img {
+  transform: scale(1.04);
+}
+
+.moreMeta {
+  margin-top: 14px;
+
+  color: var(--soft-ink);
+
+  font-size: 12.5px;
+}
+
+.moreCard h3 {
+  margin-top: 6px;
+
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.moreCard:hover h3 {
+  color: var(--color-text-link);
+}
+
+/* =========================================================
+   RESPONSIVE OVERRIDES — widest to narrowest
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .layout {
+    gap: 40px;
+  }
+
+  .moreGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+
+    padding-bottom: 56px;
+  }
+
+  /* The sidebar follows the article on narrow screens. */
+  .side {
+    position: static;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cover {
+    border-radius: var(--r-card);
+  }
+}
+
+@media (max-width: 480px) {
+  .side,
+  .gallery,
+  .moreGrid {
+    grid-template-columns: 1fr;
+  }
+}

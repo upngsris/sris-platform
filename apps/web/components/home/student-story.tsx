@@ -1,88 +1,53 @@
-import Image from "next/image";
+import Link from "next/link";
 
-import { ImagePlaceholder } from "@/components/ui/image-placeholder";
-import { TextLink } from "@/components/ui/text-link";
+import { SanityImage } from "@/components/sanity/sanity-image";
 
-import { urlFor } from "@/sanity/lib/image";
-import type { HomeIntroData } from "@/sanity/lib/types";
+import { routes } from "@/lib/route";
+
+import type { StudentStoryData } from "@/sanity/lib/types";
 
 type Props = {
-  data?: HomeIntroData["featuredStory"];
+  data?: StudentStoryData;
 };
 
 export function StudentStory({ data }: Props) {
-  const quote =
-    data?.quote ??
-    "Research changed how I think about science.";
-
-  const studentName =
-    data?.studentName ?? "Student Name";
-
-  const discipline =
-    data?.discipline ?? "Environmental Science";
-
-  const slug =
-    data?.slug ?? "#";
-
-  const storyHref =
-    slug === "#"
-      ? "/community/showcase"
-      : `/community/showcase/${slug}`;
-
-  const storyImageUrl = data?.image?.asset
-    ? urlFor(data.image)
-        .width(1920)
-        .height(1080)
-        .fit("crop")
-        .auto("format")
-        .url()
-    : null;
+  if (!data) {
+    return null;
+  }
 
   return (
-    <section className="studentStory">
+    <section className="lpi-section lpi-white">
+      <div className="lpi-container">
+        <div className="lpi-quote">
+          {data.image?.asset && (
+            <div className="lpi-quote-photo">
+              <SanityImage
+                image={data.image}
+                fallbackAlt={`${data.studentName ?? "SRIS student"} participating in an SRIS activity`}
+                sizes="(max-width: 767px) 100vw, 320px"
+                width={640}
+                height={800}
+              />
+            </div>
+          )}
 
-      {/* Background image */}
-      {storyImageUrl ? (
-        <Image
-          src={storyImageUrl}
-          alt={
-            data?.image?.alt ??
-            `${studentName} participating in an SRIS activity`
-          }
-          fill
-          sizes="100vw"
-          className="studentStoryImage"
-        />
-      ) : (
-        <ImagePlaceholder
-          label="Documentary student portrait"
-        />
-      )}
+          <div className="lpi-quote-text">
+            <blockquote>&ldquo;{data.quote}&rdquo;</blockquote>
 
-      {/* Readability overlay */}
-      <div className="overlay" />
+            {data.studentName && <p>- {data.studentName}</p>}
 
-      {/* Story content */}
-      <div className="shell storyCopy">
+            {data.discipline && <p>{data.discipline}</p>}
 
-        <p className="eyebrow">
-          Student stories · 01
-        </p>
-
-        <blockquote>
-          “{quote}”
-        </blockquote>
-
-        <div>
-          <p>{studentName}</p>
-
-          <span>{discipline}</span>
+            <p>
+              <Link
+                href={routes.community.showcase.detail(data.slug)}
+                className="lpi-link"
+              >
+                Read their story
+              </Link>
+            </p>
+          </div>
         </div>
-
-        <TextLink href={storyHref}>
-          Read their story
-        </TextLink>
-
       </div>
     </section>
   );

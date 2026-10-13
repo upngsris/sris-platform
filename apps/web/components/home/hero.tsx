@@ -1,101 +1,79 @@
-import Image from "next/image";
 import Link from "next/link";
 
-import { ImagePlaceholder } from "@/components/ui/image-placeholder";
-import { TextLink } from "@/components/ui/text-link";
+import { SanityImage } from "@/components/sanity/sanity-image";
 
-import { urlFor } from "@/sanity/lib/image";
-import type { HomeIntroData } from "@/sanity/lib/types";
+import type { HeroData } from "@/sanity/lib/types";
 
 type Props = {
-  data?: HomeIntroData["hero"];
+  data?: HeroData;
 };
 
 export function Hero({ data }: Props) {
-  const eyebrow =
-    data?.eyebrow ?? "Science · Research · Innovation";
+  if (!data?.heading) {
+    return null;
+  }
 
-  const heading =
-    data?.heading ?? "GO BEYOND THE CLASSROOM.";
-
-  const summary =
-    data?.summary ??
-    "Explore ideas. Test them. Build things. Share what you discover.";
-
-  const primaryLabel =
-    data?.primaryCta?.label ?? "Explore projects";
-
-  const primaryHref =
-    data?.primaryCta?.href ?? "/explore/research";
-
-  const secondaryLabel =
-    data?.secondaryCta?.label ?? "Become a member";
-
-  const secondaryHref =
-    data?.secondaryCta?.href ?? "/community/membership";
-
-  const heroImageUrl = data?.image?.asset
-    ? urlFor(data.image)
-        .width(1920)
-        .height(1080)
-        .fit("crop")
-        .auto("format")
-        .url()
-    : null;
+  const hasImage = Boolean(data.image?.asset);
 
   return (
-    <section className="hero">
-      {heroImageUrl ? (
-        <Image
-          src={heroImageUrl}
-          alt={
-            data?.image?.alt ||
-            "SRIS students participating in practical learning"
-          }
-          fill
-          priority
-          sizes="100vw"
-          className="heroImage"
-        />
-      ) : (
-        <ImagePlaceholder
-          label="Future SRIS documentary photography"
-        />
+    <section className={hasImage ? "lpi-hero has-image" : "lpi-hero"}>
+      {hasImage && (
+        <div className="lpi-hero-image">
+          <SanityImage
+            image={data.image}
+            fallbackAlt="SRIS students participating in practical learning"
+            sizes="100vw"
+            width={2000}
+            height={900}
+            priority
+          />
+        </div>
       )}
 
-      <div className="overlay" />
+      <div className="lpi-container">
+        <div className="lpi-hero-body">
+          <h1>{toSentenceCase(data.heading)}</h1>
 
-      <div className="shell heroContent">
-        <div className="heroCopy">
-          <p className="eyebrow">{eyebrow}</p>
+          {data.summary && <p className="lpi-lead">{data.summary}</p>}
 
-          <h1>{heading}</h1>
+          {(data.primaryCta?.label || data.secondaryCta?.label) && (
+            <div className="lpi-hero-actions">
+              {data.primaryCta?.label && data.primaryCta.href && (
+                <Link href={data.primaryCta.href} className="lpi-button">
+                  {data.primaryCta.label}
+                </Link>
+              )}
 
-          <p className="lead">{summary}</p>
-
-          <div className="row">
-            <Link className="button" href={primaryHref}>
-              {primaryLabel}
-              <span>→</span>
-            </Link>
-
-            <TextLink href={secondaryHref}>
-              {secondaryLabel}
-            </TextLink>
-          </div>
-        </div>
-
-        <div className="heroIndex">
-          <span>UPNG</span>
-          <b>01</b>
-
-          <small>
-            Student-led science
-            <br />
-            in practice
-          </small>
+              {data.secondaryCta?.label && data.secondaryCta.href && (
+                <Link
+                  href={data.secondaryCta.href}
+                  className="lpi-button is-ghost"
+                >
+                  {data.secondaryCta.label}
+                </Link>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </section>
   );
+}
+
+/**
+ * Headings are sometimes entered in caps in the studio. Normalise shouted
+ * copy to sentence case while leaving mixed-case headings as written.
+ */
+function toSentenceCase(value: string) {
+  const isShouted = value === value.toUpperCase();
+
+  if (!isShouted) {
+    return value;
+  }
+
+  return value
+    .toLowerCase()
+    .replace(/(^|[.!?]\s+)([a-z])/g, (_match, prefix: string, letter: string) =>
+      `${prefix}${letter.toUpperCase()}`,
+    );
 }

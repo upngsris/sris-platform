@@ -1,21 +1,14 @@
-import { TextLink } from "@/components/ui/text-link";
+import Link from "next/link";
 
-import type { HomeIntroData } from "@/sanity/lib/types";
+import type { AboutData } from "@/sanity/lib/types";
 
 type Props = {
-  data?: HomeIntroData["about"];
+  data?: AboutData;
 };
 
-
-
-
 export function AboutIntro({ data }: Props) {
-  const eyebrow =
-    data?.eyebrow ?? "About SRIS";
-
   const heading =
-    data?.heading ??
-    "Learning doesn't end when the lecture does.";
+    data?.heading ?? "Learning doesn't end when the lecture does.";
 
   const lead =
     data?.lead ??
@@ -25,54 +18,47 @@ export function AboutIntro({ data }: Props) {
     data?.body ??
     "Research. Laboratory practicals. Student projects. Peer teaching. New skills. Different disciplines working together.";
 
+  /*
+   * Statistics are code-owned for now. A stat with a null value is left out
+   * rather than shown as a placeholder: fill in the real number to publish it.
+   */
+  const stats = [
+    { value: "6", label: "Science disciplines represented" },
+    { value: null, label: "Student research projects" },
+    { value: null, label: "Members & contributors" },
+  ].filter(
+    (stat): stat is { value: string; label: string } => stat.value !== null,
+  );
+
   return (
-    <section className="intro section">
-      <div className="shell">
-        <div className="introGrid">
-          <div>
-            <p className="eyebrow blue">{eyebrow}</p>
+    <section className="lpi-section lpi-deep">
+      <div className="lpi-container">
+        <div className="lpi-head">
+          <h2>{heading}</h2>
 
-            <h2>{heading}</h2>
-          </div>
+          <p>{lead}</p>
 
-          <div className="introText">
-            <p className="lead">{lead}</p>
+          <p>{body}</p>
 
-            <p className="body muted">{body}</p>
+          <p>
+            Built around curiosity, practical learning and student initiative.
+          </p>
 
-            <TextLink href="/about">
+          <p>
+            <Link href="/about" className="lpi-link">
               Discover why SRIS exists
-            </TextLink>
-          </div>
+            </Link>
+          </p>
         </div>
 
-        {/* Keep statistics code-owned for now */}
-        <div className="stats">
-          <div>
-            <strong>6</strong>
-            <p>Science disciplines</p>
-          </div>
+        <div className={`lpi-icons is-n${stats.length}`}>
+          {stats.map((stat) => (
+            <div key={stat.label}>
+              <div className="lpi-icon-figure">{stat.value}</div>
 
-          <div>
-            <strong>XX</strong>
-            <p>Student projects</p>
-          </div>
-
-          <div>
-            <strong>XX</strong>
-            <p>Members & contributors</p>
-          </div>
-
-          <div className="statNote">
-            <p className="eyebrow blue">
-              One community
-            </p>
-
-            <p>
-              Built around curiosity, practical learning
-              and student initiative.
-            </p>
-          </div>
+              <p>{stat.label}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

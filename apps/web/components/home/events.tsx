@@ -1,106 +1,80 @@
-import type { HomeIntroData } from "@/sanity/lib/types";
+import { SRIS_TIME_ZONE } from "@/lib/dates";
+import { routes } from "@/lib/route";
+
+import { LpiCard, LpiGrid } from "./lpi-card";
+
+import type { EventData } from "@/sanity/lib/types";
 
 type Props = {
-  data?: HomeIntroData["featuredEvents"];
+  data?: EventData[];
 };
 
-const fallbackEvents = [
-  {
-    _id: "fallback-research-workshop",
-    title: "Research Skills Workshop",
-    slug: "research-skills-workshop",
-    startsAt: "2026-09-24T10:00:00",
-    venue: "MSCS Laboratory",
-  },
-  {
-    _id: "fallback-scientific-writing",
-    title: "Introduction to Scientific Writing",
-    slug: "introduction-to-scientific-writing",
-    startsAt: "2026-10-03T13:00:00",
-    venue: "Science Lecture Theatre",
-  },
-  {
-    _id: "fallback-project-showcase",
-    title: "SRIS Student Project Showcase",
-    slug: "sris-student-project-showcase",
-    startsAt: "2026-10-11T09:00:00",
-    venue: "UPNG",
-  },
+const eventKinds = [
+  "Workshops & training",
+  "Laboratory practicals",
+  "Student showcases",
+  "Talks & knowledge sharing",
 ];
 
 export function Events({ data }: Props) {
-  const events =
-    data && data.length > 0
-      ? data
-      : fallbackEvents;
+  if (!data?.length) {
+    return null;
+  }
 
   return (
-    <section className="events section">
-      <div className="shell eventGrid">
+    <section className="lpi-section lpi-tint">
+      <div className="lpi-container">
+        <div className="lpi-head">
+          <h2>What&apos;s happening at SRIS.</h2>
 
-        {/* Section introduction */}
-        <div>
-          <p className="eyebrow blue">
-            Upcoming events
-          </p>
-
-          <h2>
-            What&apos;s happening
-            <br />
-            at SRIS.
-          </h2>
-
-          <p className="body muted eventIntro">
-            Workshops, practical sessions, project
-            activities and opportunities to meet other
-            curious students.
+          <p>
+            Workshops, practical sessions, project activities and
+            opportunities to meet other curious students.
           </p>
         </div>
 
-        {/* Event list */}
-        <div className="eventList">
-          {events.map((event) => {
+        <LpiGrid count={data.length + 1}>
+          {data.map((event) => {
             const date = formatEventDate(event.startsAt);
 
+            const meta = [event.venue, date.time].filter(Boolean).join(" · ");
+
             return (
-              <a
+              <LpiCard
                 key={event._id}
-                href={`/community/events/${event.slug}`}
-              >
-                <div className="date">
-                  <strong>{date.day}</strong>
-                  <small>{date.month}</small>
-                </div>
-
-                <div>
-                  <b>{event.title}</b>
-
-                  {event.venue && (
-                    <p>
-                      {event.venue}
-                      {date.time && ` · ${date.time}`}
-                    </p>
-                  )}
-                </div>
-
-                <span aria-hidden="true">
-                  →
-                </span>
-              </a>
+                tone="interactive"
+                label="Events"
+                title={event.title}
+                summary={event.summary}
+                meta={meta}
+                image={event.image}
+                badge={{ primary: date.day, secondary: date.month }}
+                href={routes.community.events.detail(event.slug)}
+                linkLabel="View event"
+              />
             );
           })}
-        </div>
 
+          <LpiCard
+            tone="accent"
+            label="Event calendar"
+            title="Open to every UPNG science student."
+            summary="SRIS activities run through the academic year and most sessions are open to students from any discipline — no prior experience required."
+            href={routes.community.events.index}
+            linkLabel="View all events"
+          >
+            <ul className="lpi-card-list">
+              {eventKinds.map((kind) => (
+                <li key={kind}>{kind}</li>
+              ))}
+            </ul>
+          </LpiCard>
+        </LpiGrid>
       </div>
     </section>
   );
 }
 
-
-/**
- * Converts Sanity ISO datetime into the compact
- * homepage event presentation.
- */
 function formatEventDate(dateString: string) {
   const date = new Date(dateString);
 
@@ -114,10 +88,12 @@ function formatEventDate(dateString: string) {
 
   const day = new Intl.DateTimeFormat("en", {
     day: "2-digit",
+    timeZone: SRIS_TIME_ZONE,
   }).format(date);
 
   const month = new Intl.DateTimeFormat("en", {
     month: "short",
+    timeZone: SRIS_TIME_ZONE,
   })
     .format(date)
     .toUpperCase();
@@ -126,6 +102,7 @@ function formatEventDate(dateString: string) {
     hour: "numeric",
     minute: "2-digit",
     hour12: true,
+    timeZone: SRIS_TIME_ZONE,
   }).format(date);
 
   return {

@@ -1,24 +1,131 @@
-export type NavLink={title:string;description:string;href:string};
-export type NavGroup={name:string;intro:string;links:NavLink[]};
+import { routes } from "@/lib/route";
 
-export const navigation:NavGroup[]=[
-{name:"About",intro:"Who we are, why SRIS exists and the people behind it.",links:[
-{title:"About SRIS",description:"Our story and purpose",href:"/about"},
-{title:"Mission & Vision",description:"What we are working toward",href:"/about/mission-vision"},
-{title:"Our Team",description:"Meet SRIS leadership and coordinators",href:"/about/team"},
-{title:"Contact Us",description:"Connect with the society",href:"/about/contact"}]},
-{name:"Explore",intro:"Discover research, practical work and student-led opportunities.",links:[
-{title:"Research Projects",description:"Student research and investigation",href:"/explore/research"},
-{title:"Lab Practicals",description:"Hands-on scientific learning",href:"/explore/lab-practicals"},
-{title:"Projects to Join",description:"Open opportunities for students",href:"/explore/projects-to-join"},
-{title:"Student Showcase",description:"Projects built by students",href:"/community/showcase"}]},
-{name:"Learn & Do",intro:"Develop useful skills and put classroom knowledge into practice.",links:[
-{title:"Skills Tracks",description:"Structured practical learning",href:"/learn/skills"},
-{title:"Knowledge Sharing",description:"Students teaching students",href:"/learn/knowledge-sharing"},
-{title:"News & Articles",description:"Ideas, explainers and updates",href:"/learn/articles"}]},
-{name:"Community",intro:"Take part in SRIS activities and connect across disciplines.",links:[
-{title:"Events",description:"Workshops, talks and activities",href:"/community/events"},
-{title:"Membership",description:"Become part of SRIS",href:"/community/membership"},
-{title:"Collaborations",description:"Work with SRIS",href:"/community/collaborations"},
-{title:"Student Showcase",description:"See what students are building",href:"/community/showcase"}]}
+export type NavigationLink = {
+  title: string;
+  description: string;
+  href: string;
+};
+
+export type NavigationGroup = {
+  name: string;
+  intro: string;
+  links: NavigationLink[];
+};
+
+export const navigation: NavigationGroup[] = [
+  {
+    name: "About",
+    intro:
+      "Learn about SRIS, why it exists, the people behind it and how to get in touch.",
+    links: [
+      {
+        title: "About SRIS",
+        description:
+          "Discover why SRIS exists and how it supports learning beyond the classroom.",
+        href: routes.about.index,
+      },
+      {
+        title: "Mission & Vision",
+        description:
+          "Explore the purpose, principles and long-term direction of SRIS.",
+        href: routes.about.missionVision,
+      },
+      {
+        title: "Our Team",
+        description:
+          "Meet the students, staff and representatives supporting the society.",
+        href: routes.about.team,
+      },
+      {
+        title: "Contact Us",
+        description:
+          "Get in touch with SRIS for enquiries, participation and collaboration.",
+        href: routes.about.contact,
+      },
+    ],
+  },
+
+  {
+    name: "Explore",
+    intro:
+      "Discover student research, practical investigations and opportunities to turn ideas into real work.",
+    links: [
+      {
+        title: "Research Projects",
+        description:
+          "Explore student-led scientific research, investigations and practical work.",
+        href: routes.explore.research.index,
+      },
+      {
+        title: "Projects to Join",
+        description:
+          "Find active projects where students can contribute, learn and collaborate.",
+        href: routes.explore.projectsToJoin.index,
+      },
+    ],
+  },
+
+  {
+    name: "Learn & Do",
+    intro:
+      "Build useful skills, explore laboratory activities and put scientific ideas into practice.",
+    links: [
+      {
+        title: "Skills Track",
+        description:
+          "Develop practical scientific, technical and research skills.",
+        href: routes.learn.skills,
+      },
+      {
+        title: "Knowledge Sharing",
+        description:
+          "Learn from students and contributors sharing concepts through experience.",
+        href: routes.learn.knowledgeSharing,
+      },
+      {
+        title: "Laboratory Practicals",
+        description:
+          "Explore hands-on laboratory activities beyond formal coursework.",
+        href: routes.learn.laboratoryPracticals,
+      },
+      {
+        title: "News & Articles",
+        description:
+          "Read scientific articles, educational content and updates from SRIS.",
+        href: routes.learn.newsletter.index,
+      },
+    ],
+  },
+
+  {
+    name: "Community",
+    intro:
+      "Connect with students, participate in events and become part of the wider SRIS community.",
+    links: [
+      {
+        title: "Events",
+        description:
+          "Explore workshops, talks, practical sessions and upcoming SRIS activities.",
+        href: routes.community.events.index,
+      },
+      {
+        title: "Membership",
+        description:
+          "Learn how to become an SRIS member and participate in the society.",
+        href: routes.community.membership,
+      },
+      {
+        title: "Student Showcase",
+        description:
+          "Discover student projects, experiences, achievements and practical work.",
+        href: routes.community.showcase.index,
+      },
+      {
+        title: "Collaborations",
+        description:
+          "Explore opportunities for students, organisations and partners to work with SRIS.",
+        href: routes.community.collaborations,
+      },
+    ],
+  },
 ];

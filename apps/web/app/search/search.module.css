@@ -1,0 +1,160 @@
+/* =========================================================
+   SEARCH RESULTS
+   ========================================================= */
+
+.searchBar {
+  max-width: 640px;
+
+  margin-top: 32px;
+}
+
+.results {
+  padding-block: 48px;
+}
+
+.groups {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 48px;
+}
+
+.groupHeading {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding-bottom: 14px;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.groupHeading span {
+  color: var(--soft-ink);
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.resultList {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+
+  margin: 20px 0 0;
+
+  padding: 0;
+
+  list-style: none;
+}
+
+.result {
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr) 18px;
+
+  align-items: start;
+
+  gap: 6px 20px;
+
+  padding: 20px 24px;
+
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+
+  background: var(--white);
+
+  transition:
+    border-color 0.2s var(--ease),
+    background 0.2s var(--ease);
+}
+
+.result:hover {
+  background: var(--hover);
+}
+
+.resultTitle {
+  grid-column: 1;
+
+  color: var(--ink);
+
+  font-family: var(--font-display), sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+
+  letter-spacing: -0.014em;
+}
+
+.resultMeta {
+  grid-column: 1;
+
+  color: var(--soft-ink);
+
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.resultExcerpt {
+  grid-column: 1;
+
+  max-width: 760px;
+
+  color: var(--muted);
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.resultArrow {
+  grid-column: 2;
+  grid-row: 1 / -1;
+
+  align-self: center;
+
+  color: var(--color-text-link);
+
+  font-size: 14px;
+
+  opacity: 0;
+
+  transition:
+    opacity 0.2s var(--ease),
+    transform 0.2s var(--ease);
+}
+
+.result:hover .resultArrow {
+  opacity: 1;
+
+  transform: translateX(3px);
+}
+
+@media (max-width: 900px) {
+  .results {
+    padding-block: 56px;
+  }
+
+  .groups {
+    gap: 36px;
+  }
+
+  .result {
+    padding: 18px 20px;
+  }
+
+  .resultArrow {
+    display: none;
+  }
+}
+
+/* Search result cards lift off the light canvas (see ELEVATION in globals.css). */
+.result {
+  box-shadow: var(--shadow-card);
+}

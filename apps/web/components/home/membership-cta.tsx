@@ -1,51 +1,43 @@
+import Image from "next/image";
 import Link from "next/link";
 
-import type { HomeIntroData } from "@/sanity/lib/types";
+import type { MembershipCtaData } from "@/sanity/lib/types";
 
 type Props = {
-  data?: HomeIntroData["membershipCta"];
+  data?: MembershipCtaData;
 };
 
-export function MembershipCTA({ data }: Props) {
-  const eyebrow =
-    data?.eyebrow ?? "Membership";
-
-  const heading =
-    data?.heading ?? "Your next idea could start here.";
-
-  const body =
-    data?.body ??
-    "Join students who want to explore further, build practical skills and contribute to work beyond lectures.";
-
-  const ctaLabel =
-    data?.cta?.label ?? "Become an SRIS member";
-
-  const ctaHref =
-    data?.cta?.href ?? "/community/membership";
+export function MembershipCta({ data }: Props) {
+  if (!data?.heading) {
+    return null;
+  }
 
   return (
-    <section className="membership section">
-      <div className="shell membershipGrid">
-        <div>
-          <p className="eyebrow soft">
-            {eyebrow}
-          </p>
+    <section className="lpi-band">
+      <div className="lpi-container lpi-band-inner">
+        <div className="lpi-band-text">
+          {data.eyebrow && <p>{data.eyebrow}</p>}
 
-          <h2>{heading}</h2>
+          <h2>{data.heading}</h2>
+
+          {data.body && <p>{data.body}</p>}
+
+          {data.cta?.label && data.cta.href && (
+            <p>
+              <Link href={data.cta.href} className="lpi-button">
+                {data.cta.label}
+              </Link>
+            </p>
+          )}
         </div>
 
-        <div className="membershipCopy">
-          <p className="lead">
-            {body}
-          </p>
-
-          <Link
-            href={ctaHref}
-            className="button"
-          >
-            <span>{ctaLabel}</span>
-            <span aria-hidden="true">→</span>
-          </Link>
+        <div className="lpi-band-logo">
+          <Image
+            src="/images/brand/sris-lockup-reversed.png"
+            alt=""
+            width={240}
+            height={96}
+          />
         </div>
       </div>
     </section>

@@ -1,8 +1,11 @@
-import { TextLink } from "@/components/ui/text-link";
-import type { HomeIntroData } from "@/sanity/lib/types";
+import { routes } from "@/lib/route";
+
+import { LpiCard, LpiGrid } from "./lpi-card";
+
+import type { ProjectOpportunity } from "@/sanity/lib/types";
 
 type Props = {
-  data?: HomeIntroData["featuredOpportunities"];
+  data?: ProjectOpportunity[];
 };
 
 const fallbackProjects = [
@@ -29,78 +32,48 @@ const fallbackProjects = [
 ];
 
 export function ProjectsToJoin({ data }: Props) {
-  const projects =
-    data && data.length > 0
-      ? data
-      : fallbackProjects;
+  const projects = data && data.length > 0 ? data : fallbackProjects;
 
   return (
-    <section className="opps section">
-      <div className="shell">
+    <section className="lpi-section lpi-tint">
+      <div className="lpi-container">
+        <div className="lpi-head">
+          <h2>Don&apos;t just read about the work. Take part.</h2>
 
-        <div className="oppsHead">
-          <div>
-            <p className="eyebrow blue">
-              Projects to join
-            </p>
-
-            <h2>
-              Don&apos;t just read
-              <br />
-              about the work.
-            </h2>
-          </div>
-
-          <p>Take part.</p>
+          <p>
+            Open positions on student-led projects, with the support to learn
+            the methods as you go.
+          </p>
         </div>
 
-        <div className="projectList">
+        <LpiGrid count={projects.length}>
           {projects.map((project, index) => {
-            const number = String(index + 1).padStart(
-              2,
-              "0"
-            );
+            const isOpen = project.applicationStatus !== "Closed";
 
             return (
-              <article key={project._id}>
-                <div className="projectNum">
-                  {number}
-                </div>
-
-                <div className="projectMain">
-                  <div className="projectMeta">
-                    <span>
-                      {project.discipline}
-                    </span>
-
-                    <span>
-                      {project.level}
-                    </span>
-                  </div>
-
-                  <h3>{project.title}</h3>
-
-                  <p className="body muted">
-                    {project.summary}
-                  </p>
-                </div>
-
-                <div className="projectAction">
-                  <p>
+              <LpiCard
+                key={project._id}
+                tone="support"
+                label={project.discipline}
+                title={project.title}
+                summary={project.summary}
+                meta={project.level}
+                badge={{
+                  primary: String(index + 1).padStart(2, "0"),
+                  secondary: "Project",
+                }}
+                href={routes.explore.projectsToJoin.detail(project.slug)}
+                linkLabel="View opportunity"
+              >
+                <p>
+                  <span className={isOpen ? "lpi-status is-open" : "lpi-status"}>
                     {project.applicationStatus}
-                  </p>
-
-                  <TextLink
-                    href={`/explore/projects-to-join/${project.slug}`}
-                  >
-                    View opportunity
-                  </TextLink>
-                </div>
-              </article>
+                  </span>
+                </p>
+              </LpiCard>
             );
           })}
-        </div>
-
+        </LpiGrid>
       </div>
     </section>
   );

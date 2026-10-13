@@ -1,0 +1,576 @@
+/* =========================================================
+   PROJECTS TO JOIN
+   Hero, breadcrumb, headings, bands and empty states come
+   from the shared page chrome in globals.css.
+   ========================================================= */
+
+.heroAside {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 22px;
+}
+
+.availability {
+  display: flex;
+
+  align-items: baseline;
+
+  gap: 10px;
+
+  padding-top: 16px;
+
+  border-top: 1px solid var(--line-strong);
+}
+
+.availability strong {
+  font-family: var(--font-display), sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1;
+
+  letter-spacing: -0.03em;
+}
+
+.availability span {
+  color: var(--soft-ink);
+
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   LIST
+   ========================================================= */
+
+.projects {
+  padding-block: 56px;
+}
+
+.list {
+  border-top: 1px solid var(--ink);
+}
+
+.project {
+  display: grid;
+
+  grid-template-columns: 56px minmax(0, 1fr) 220px;
+
+  align-items: start;
+
+  gap: 32px;
+
+  padding-block: 34px;
+
+  border-bottom: 1px solid var(--line);
+
+  transition: background 0.25s var(--ease);
+}
+
+.project:hover {
+  background: var(--hover);
+}
+
+.number {
+  color: var(--soft-ink);
+
+  font-family: var(--font-display), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.8;
+
+  letter-spacing: 0.1em;
+}
+
+.content {
+  max-width: 720px;
+}
+
+.meta {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  color: var(--soft-ink);
+
+  font-family: var(--font-body), sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.meta span + span::before {
+  content: "·";
+
+  margin-right: 10px;
+
+  color: var(--line-strong);
+}
+
+.content h2 {
+  max-width: 620px;
+
+  margin-top: 12px;
+
+  font-size: clamp(19px, 1.35vw, 23px);
+}
+
+.content h2 a {
+  transition: color 0.2s var(--ease);
+}
+
+.content h2 a:hover {
+  color: var(--color-text-link);
+}
+
+.content > p {
+  max-width: 660px;
+
+  margin-top: 12px;
+}
+
+.action {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 18px;
+}
+
+/* =========================================================
+   STATUS CHIP
+   ========================================================= */
+
+.status {
+  display: inline-flex;
+
+  align-items: center;
+
+  height: 26px;
+
+  padding-inline: 10px;
+
+  border: 1px solid transparent;
+
+  /* label-sm */
+  font-family: var(--font-body), sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Status tags: open is a solid orange fill, closed an orange outline. */
+.statusOpen {
+  border: 1px solid var(--orange);
+
+  background: var(--orange);
+  color: var(--color-text-on-accent);
+}
+
+.statusClosed {
+  border: 1px solid var(--orange);
+
+  background: var(--white);
+  color: var(--orange-ink);
+}
+
+/* =========================================================
+   DETAIL
+   ========================================================= */
+
+.detailHero {
+  padding-block: 44px 48px;
+
+  border-bottom: 1px solid var(--line);
+
+  background: var(--pale);
+}
+
+.detailHeroGrid {
+  display: grid;
+
+  grid-template-columns: 7fr 5fr;
+
+  align-items: end;
+
+  gap: 72px;
+}
+
+.detailHero h1 {
+  max-width: 720px;
+
+  margin-top: 16px;
+
+  text-wrap: balance;
+}
+
+.detailMeta {
+  border-top: 1px solid var(--line-strong);
+}
+
+.detailMeta > div {
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+
+  gap: 20px;
+
+  padding-block: 13px;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.detailMeta span {
+  color: var(--soft-ink);
+
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.detailMeta strong {
+  font-family: var(--font-display), sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.detailOverview {
+  padding-block: 52px;
+}
+
+.detailOverviewGrid {
+  display: grid;
+
+  grid-template-columns: 3fr 8fr;
+
+  gap: 64px;
+}
+
+.detailLead {
+  max-width: 720px;
+
+  margin: 0;
+
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(19px, 1.6vw, 24px);
+  font-weight: 500;
+  line-height: 1.42;
+
+  letter-spacing: -0.014em;
+}
+
+/* =========================================================
+   PARTICIPATION PANEL
+   ========================================================= */
+
+.participationPanel {
+  background: var(--blue);
+  color: var(--color-text-on-primary);
+}
+
+.closedPanel {
+  border-top: 1px solid var(--line);
+
+  background: var(--pale);
+  color: var(--ink);
+}
+
+.participationGrid {
+  display: grid;
+
+  grid-template-columns: 6fr 6fr;
+
+  align-items: end;
+
+  gap: 64px;
+
+  padding-block: 48px;
+}
+
+.participationGrid h2 {
+  max-width: 520px;
+
+  margin-top: 16px;
+
+  text-wrap: balance;
+}
+
+.participationCopy {
+  max-width: 520px;
+}
+
+.participationPanel .participationCopy > p {
+  color: var(--on-deep-muted);
+}
+
+.closedPanel .participationCopy > p {
+  color: var(--muted);
+}
+
+.participationActions {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 24px;
+
+  margin-top: 26px;
+}
+
+.secondaryAction {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  color: inherit;
+
+  font-family: var(--font-display), sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.secondaryAction span {
+  transition: transform 0.25s var(--ease);
+}
+
+.secondaryAction:hover span {
+  transform: translateX(3px);
+}
+
+.closedPanel :global(.button) {
+  margin-top: 26px;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+
+/* =========================================================
+   SURFACE SYSTEM
+   ========================================================= */
+
+.list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+
+  border-top: 0;
+}
+
+.project {
+  padding: 28px 30px;
+
+  border-bottom: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+
+  background: var(--white);
+}
+
+.project:hover {
+  background: var(--hover);
+}
+
+.number {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  background: var(--light);
+  color: var(--color-text-on-interactive);
+
+  line-height: 1;
+}
+
+.status {
+  border-radius: var(--r-pill);
+}
+
+.availability {
+  border-top: 0;
+}
+
+.detailHero {
+  padding-block: 28px 0;
+
+  border-bottom: 0;
+
+  background: var(--paper);
+}
+
+.detailHero > :global(.shell) {
+  width: min(100%, 1360px);
+
+  padding: 44px 56px 48px;
+
+  border-radius: var(--r-panel);
+
+  background: var(--panel);
+}
+
+.participationPanel,
+.closedPanel {
+  width: min(100%, 1360px);
+
+  margin-inline: auto;
+  margin-bottom: 72px;
+
+  border-top: 0;
+  border-radius: var(--r-panel);
+}
+
+.participationPanel :global(.button) {
+  border-color: var(--white);
+
+  background: var(--white);
+  color: var(--color-text-link);
+}
+
+/* =========================================================
+   RESPONSIVE OVERRIDES
+   All max-width blocks live here, at the end of the file,
+   ordered widest to narrowest.
+
+   A media query carries no specificity, so a responsive rule
+   loses to any equally specific rule below it — including a
+   wider breakpoint. Keep new breakpoints in this section and
+   in this order.
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .detailHeroGrid,
+  .detailOverviewGrid,
+  .participationGrid {
+    grid-template-columns: 1fr;
+
+    gap: 28px;
+  }
+
+  .participationGrid {
+    align-items: start;
+
+    padding-block: 60px;
+  }
+
+  .projects,
+  .detailOverview {
+    padding-block: 44px;
+  }
+
+  .project {
+    grid-template-columns: 44px minmax(0, 1fr);
+
+    gap: 20px;
+
+    padding-block: 26px;
+  }
+
+  .project:hover {
+    background: var(--hover);
+  }
+
+  .action {
+    grid-column: 2;
+
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 16px;
+  }
+
+  .detailHero {
+    padding-block: 32px 40px;
+  }
+  .detailHero > :global(.shell) {
+    padding: 28px 24px 32px;
+  }
+
+  .participationPanel,
+  .closedPanel {
+    width: auto;
+
+    margin-inline: 24px;
+    margin-bottom: 56px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects,
+  .detailOverview {
+    padding-block: 48px;
+  }
+
+  .project {
+    grid-template-columns: 28px minmax(0, 1fr);
+
+    /* Index column, gap and card inset together were taking 116px of a
+       320px screen, squeezing the summary to ~18 characters a line. */
+    gap: 14px;
+
+    padding: 22px 18px;
+  }
+
+  .action {
+    grid-column: auto;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .detailMeta > div {
+    grid-template-columns: 1fr 1.3fr;
+  }
+
+  .participationActions {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+  .participationPanel,
+  .closedPanel {
+    margin-inline: 16px;
+  }
+}
+
+/* Project cards lift off the light canvas (see ELEVATION in globals.css). */
+.project {
+  box-shadow: var(--shadow-card);
+}

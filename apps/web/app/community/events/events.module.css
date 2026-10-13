@@ -1,0 +1,528 @@
+/* =========================================================
+   EVENTS CALENDAR
+   Styles for components/events/events-calendar.tsx. The
+   events index and detail pages have their own modules.
+   ========================================================= */
+
+/* =========================================================
+   FULL-YEAR CALENDAR
+   Year → month → programme. Structural rules and flat
+   surfaces only: no cards, shadows or floating panels.
+   ========================================================= */
+
+.calendar {
+  margin-top: 44px;
+}
+
+/* Year navigator ---------------------------------------- */
+
+.yearNav {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 0;
+
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.yearButton {
+  position: relative;
+
+  padding: 0 26px 14px 0;
+
+  border: 0;
+
+  background: none;
+
+  color: var(--soft-ink);
+
+  font-family: var(--font-display), sans-serif;
+  font-size: 21px;
+  font-weight: 600;
+
+  letter-spacing: -0.02em;
+
+  cursor: pointer;
+
+  transition: color 0.2s var(--ease);
+}
+
+.yearButton:hover {
+  color: var(--ink);
+}
+
+/* The active year is underlined by a rule, not a pill. */
+.yearButton[aria-current]::after {
+  content: "";
+
+  position: absolute;
+
+  right: 26px;
+  bottom: -1px;
+  left: 0;
+
+  height: 2px;
+
+  background: var(--blue);
+}
+
+.yearButton[aria-current] {
+  color: var(--color-text-link);
+}
+
+/* Month navigator --------------------------------------- */
+
+.monthGrid {
+  display: grid;
+
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+
+  margin-top: 40px;
+
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.monthButton {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 8px;
+
+  padding: 18px 16px 20px;
+
+  border: 0;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+
+  background: var(--paper);
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+
+.monthButton:hover {
+  background: var(--hover);
+}
+
+/* The selected month is navy with white text; it dims rather than washing. */
+.monthButton[aria-pressed="true"]:hover {
+  background: var(--deep);
+}
+
+.monthLabel {
+  color: var(--ink);
+
+  font-family: var(--font-display), sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+
+  letter-spacing: 0.14em;
+}
+
+.monthCount {
+  color: var(--soft-ink);
+
+  font-size: 11.5px;
+  font-weight: 500;
+
+  letter-spacing: 0.04em;
+}
+
+.monthButton[aria-pressed="true"] {
+  background: var(--blue);
+}
+
+.monthButton[aria-pressed="true"] .monthLabel,
+.monthButton[aria-pressed="true"] .monthCount {
+  color: var(--white);
+}
+
+.monthButton[aria-pressed="true"] .monthCount {
+  color: var(--on-deep-muted);
+}
+
+/* Selected month programme ------------------------------ */
+
+.monthProgramme {
+  margin-top: 48px;
+}
+
+.monthHeading {
+  padding-bottom: 14px;
+
+  border-bottom: 1px solid var(--ink);
+
+  font-size: 20px;
+
+  letter-spacing: -0.016em;
+}
+
+.monthList {
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
+}
+
+.monthItem {
+  border-bottom: 1px solid var(--line);
+}
+
+.monthItemLink {
+  display: grid;
+
+  grid-template-columns: 76px minmax(0, 1fr) 18px;
+
+  align-items: start;
+
+  gap: 28px;
+
+  padding-block: 26px;
+
+  transition: background 0.2s var(--ease);
+}
+
+.monthItemLink:hover {
+  background: var(--hover);
+}
+
+.monthItemDate {
+  display: flex;
+
+  flex-direction: column;
+
+  padding-top: 2px;
+}
+
+.monthItemDate strong {
+  color: var(--ink);
+
+  font-family: var(--font-display), sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1;
+
+  letter-spacing: -0.03em;
+}
+
+.monthItemDate > span {
+  margin-top: 6px;
+
+  color: var(--soft-ink);
+
+  font-size: 10.5px;
+  font-weight: 600;
+
+  letter-spacing: 0.14em;
+}
+
+.monthItemBody {
+  display: block;
+
+  max-width: 640px;
+}
+
+.monthItemMeta {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  color: var(--soft-ink);
+
+  font-family: var(--font-body), sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.monthItemMeta span + span::before {
+  content: "·";
+
+  margin-right: 10px;
+
+  color: var(--line-strong);
+}
+
+.monthItemTitle {
+  display: block;
+
+  margin-top: 10px;
+
+  color: var(--ink);
+
+  font-family: var(--font-display), sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+
+  letter-spacing: -0.014em;
+
+  transition: color 0.2s var(--ease);
+}
+
+.monthItemLink:hover .monthItemTitle {
+  color: var(--color-text-link);
+}
+
+.monthItemSummary {
+  /*
+   * Clamped rather than trusted. The summary is meant to be one or two
+   * sentences, but rows sit in a dense list and a single long entry used to
+   * push the whole month out of shape. Two lines here means no future entry
+   * can do that again, whatever an editor pastes in.
+   */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+
+  overflow: hidden;
+
+  margin-top: 8px;
+
+  color: var(--muted);
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.monthItemArrow {
+  align-self: center;
+
+  color: var(--color-text-link);
+
+  font-size: 14px;
+
+  opacity: 0;
+
+  transition:
+    opacity 0.2s var(--ease),
+    transform 0.2s var(--ease);
+}
+
+.monthItemLink:hover .monthItemArrow {
+  opacity: 1;
+
+  transform: translateX(3px);
+}
+
+/* Empty month ------------------------------------------- */
+
+.monthEmpty {
+  padding: 40px 32px 44px;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.monthEmpty > p:first-child {
+  max-width: 560px;
+
+  color: var(--ink);
+
+  font-family: var(--font-display), sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+
+  letter-spacing: -0.012em;
+}
+
+.monthEmpty > p + p {
+  max-width: 520px;
+
+  margin-top: 10px;
+}
+
+/* =========================================================
+   SURFACE SYSTEM
+   ========================================================= */
+
+/* Calendar */
+
+.calendar {
+  padding: 40px 44px 44px;
+
+  border-radius: var(--r-panel);
+
+  background: var(--panel);
+}
+
+.yearButton[aria-current]::after {
+  border-radius: var(--r-pill);
+}
+
+.monthGrid {
+  overflow: hidden;
+
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+}
+
+.monthButton {
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.monthGrid > .monthButton:nth-child(6n) {
+  border-right: 0;
+}
+
+.monthGrid > .monthButton:nth-last-child(-n + 6) {
+  border-bottom: 0;
+}
+
+.monthItemLink {
+  padding: 22px 24px;
+
+  border-radius: var(--r-card);
+}
+
+.monthItem {
+  border-bottom: 0;
+}
+
+.monthList {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.monthEmpty {
+  border-bottom: 0;
+  border-radius: var(--r-card);
+
+  background: var(--white);
+}
+
+/* =========================================================
+   RESPONSIVE OVERRIDES
+   All max-width blocks live here, at the end of the file,
+   ordered widest to narrowest.
+
+   A media query carries no specificity, so a responsive rule
+   loses to any equally specific rule below it — including a
+   wider breakpoint. Keep new breakpoints in this section and
+   in this order.
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .calendar {
+    margin-top: 32px;
+  }
+
+  .monthGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    margin-top: 32px;
+  }
+
+  .monthProgramme {
+    margin-top: 36px;
+  }
+
+  .monthItemLink {
+    grid-template-columns: 62px minmax(0, 1fr);
+
+    gap: 18px;
+
+    padding-block: 22px;
+  }
+
+  .monthItemLink:hover {
+    background: var(--hover);
+  }
+
+  .monthItemArrow {
+    display: none;
+  }
+  .calendar {
+    padding: 26px 22px 30px;
+  }
+
+  .monthGrid > .monthButton:nth-child(6n) {
+    border-right: 1px solid var(--line);
+  }
+
+  .monthGrid > .monthButton:nth-child(3n) {
+    border-right: 0;
+  }
+
+  .monthGrid > .monthButton:nth-last-child(-n + 6) {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .monthGrid > .monthButton:nth-last-child(-n + 3) {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .yearButton {
+    padding-right: 20px;
+
+    font-size: 18px;
+  }
+
+  .yearButton[aria-current]::after {
+    right: 20px;
+  }
+
+  .monthGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .monthButton {
+    padding: 14px 14px 16px;
+  }
+
+  .monthItemLink {
+    grid-template-columns: 52px minmax(0, 1fr);
+
+    gap: 14px;
+  }
+
+  .monthItemDate strong {
+    font-size: 24px;
+  }
+
+  .monthEmpty {
+    padding: 28px 20px 32px;
+  }
+  .monthGrid > .monthButton:nth-child(3n) {
+    border-right: 1px solid var(--line);
+  }
+
+  .monthGrid > .monthButton:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .monthGrid > .monthButton:nth-last-child(-n + 3) {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .monthGrid > .monthButton:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+}
+
+/* Event cards lift off the light canvas (see ELEVATION in globals.css). */
+.monthItemLink {
+  box-shadow: var(--shadow-card);
+}

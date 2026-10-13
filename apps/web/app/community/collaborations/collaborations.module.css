@@ -1,0 +1,130 @@
+/* =========================================================
+   COLLABORATIONS
+   Hero, breadcrumb, headings and bands come from the shared
+   page chrome in globals.css.
+   ========================================================= */
+
+.opportunities {
+  padding-block: 56px;
+}
+
+.opportunityList {
+  border-top: 1px solid var(--ink);
+}
+
+:global(.pageHeading) + .opportunityList {
+  border-top: 0;
+}
+
+.opportunity {
+  display: grid;
+
+  grid-template-columns: 56px minmax(200px, 3fr) 6fr;
+
+  align-items: start;
+
+  gap: 32px;
+
+  padding-block: 28px;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.opportunity > span {
+  color: var(--soft-ink);
+
+  font-family: var(--font-display), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.8;
+
+  letter-spacing: 0.1em;
+}
+
+.opportunity h3 {
+  font-size: 19px;
+}
+
+.opportunity > p {
+  max-width: 620px;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+
+/* =========================================================
+   SURFACE SYSTEM
+   ========================================================= */
+
+.opportunityList {
+  border-top: 1px solid var(--line);
+}
+
+.opportunity > span {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  background: var(--light);
+  color: var(--color-text-on-interactive);
+
+  line-height: 1;
+}
+
+/* =========================================================
+   RESPONSIVE OVERRIDES
+   All max-width blocks live here, at the end of the file,
+   ordered widest to narrowest.
+
+   A media query carries no specificity, so a responsive rule
+   loses to any equally specific rule below it — including a
+   wider breakpoint. Keep new breakpoints in this section and
+   in this order.
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .opportunities {
+    padding-block: 44px;
+  }
+
+  .opportunity {
+    grid-template-columns: 44px minmax(0, 1fr);
+
+    gap: 20px;
+
+    padding-block: 24px;
+  }
+
+  .opportunity > p {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .opportunities {
+    padding-block: 48px;
+  }
+
+  .opportunity {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+  .opportunity > p {
+    grid-column: auto;
+  }
+}

@@ -1,0 +1,830 @@
+/* =========================================================
+   LEARN & DO
+   Hero, breadcrumb, headings, bands, cards and empty states
+   come from the shared page chrome in globals.css.
+   ========================================================= */
+
+.heroCopy {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+.heroCopy > p:last-child {
+  color: var(--muted);
+
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+
+/* =========================================================
+   LEARNING AREAS
+   ========================================================= */
+
+.areas {
+  padding-block: 56px;
+}
+
+.areaList {
+  border-top: 1px solid var(--ink);
+}
+
+/* A pointer past the three areas, to the newsletter's write-ups. */
+.areasMore {
+  margin-top: 28px;
+}
+
+:global(.pageHeading) + .areaList {
+  border-top: 0;
+}
+
+.area {
+  display: grid;
+
+  grid-template-columns: 56px minmax(0, 1fr) 18px;
+
+  align-items: start;
+
+  gap: 32px;
+
+  padding-block: 28px;
+
+  border-bottom: 1px solid var(--line);
+
+  transition: background 0.25s var(--ease);
+}
+
+.area:hover {
+  background: var(--hover);
+}
+
+.areaIndex {
+  color: var(--soft-ink);
+
+  font-family: var(--font-display), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.8;
+
+  letter-spacing: 0.1em;
+}
+
+.area h3 {
+  margin-top: 10px;
+
+  font-size: 19px;
+
+  transition: color 0.2s var(--ease);
+}
+
+.area > div > p:last-child {
+  max-width: 620px;
+
+  margin-top: 10px;
+}
+
+.areaArrow {
+  color: var(--color-text-link);
+
+  font-size: 14px;
+
+  opacity: 0;
+
+  transition:
+    opacity 0.25s var(--ease),
+    transform 0.25s var(--ease);
+}
+
+.area:hover h3 {
+  color: var(--color-text-link);
+}
+
+.area:hover .areaArrow {
+  opacity: 1;
+
+  transform: translateX(3px);
+}
+
+/* =========================================================
+   FEATURED ACTIVITIES
+   ========================================================= */
+
+.featured {
+  padding-block: 56px;
+
+  border-top: 1px solid var(--line);
+
+  background: var(--pale);
+}
+
+.featuredGrid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 28px;
+
+  margin-top: 40px;
+}
+
+.featuredCard {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  border: 1px solid var(--line);
+
+  background: var(--paper);
+
+  transition: background 0.25s var(--ease);
+}
+
+.featuredCard:hover {
+  background: var(--hover);
+}
+
+.featuredImage {
+  position: relative;
+
+  display: block;
+
+  width: 100%;
+
+  min-height: 190px;
+
+  overflow: hidden;
+
+  background: var(--pale-deep);
+}
+
+.featuredImageAsset {
+  object-fit: cover;
+  object-position: center;
+
+  transition: transform 0.5s var(--ease);
+}
+
+.featuredCard:hover .featuredImageAsset {
+  transform: scale(1.02);
+}
+
+.featuredImagePlaceholder {
+  min-height: 190px;
+}
+
+.featuredCard > :global(.eyebrow) {
+  padding: 22px 24px 0;
+}
+
+.featuredCard h3 {
+  padding: 10px 24px 0;
+
+  font-size: 17px;
+}
+
+.featuredCard h3 a {
+  transition: color 0.2s var(--ease);
+}
+
+.featuredCard h3 a:hover {
+  color: var(--color-text-link);
+}
+
+.featuredCard > p:not(:global(.eyebrow)) {
+  padding: 10px 24px 0;
+
+  color: var(--muted);
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.featuredCard :global(.textlink) {
+  margin: 18px 24px 26px;
+}
+
+/* =========================================================
+   CATEGORY PAGES
+   ========================================================= */
+
+.categoryItems {
+  padding-block: 56px;
+}
+
+.categoryGrid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 28px;
+}
+
+.card {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  border: 1px solid var(--line);
+
+  background: var(--paper);
+
+  transition: background 0.25s var(--ease);
+}
+
+.card:hover {
+  background: var(--hover);
+}
+
+.cardImage {
+  position: relative;
+
+  display: block;
+
+  width: 100%;
+
+  min-height: 200px;
+
+  overflow: hidden;
+
+  background: var(--pale-deep);
+}
+
+.cardImageAsset {
+  object-fit: cover;
+  object-position: center;
+
+  transition: transform 0.5s var(--ease);
+}
+
+.card:hover .cardImageAsset {
+  transform: scale(1.02);
+}
+
+.cardImagePlaceholder {
+  min-height: 200px;
+}
+
+.cardIndex {
+  position: absolute;
+  z-index: 2;
+
+  top: 0;
+  left: 0;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  height: 26px;
+
+  padding-inline: 11px;
+
+  background: var(--paper);
+  color: var(--color-text-link);
+
+  font-family: var(--font-display), sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.12em;
+}
+
+.card > :global(.eyebrow) {
+  padding: 22px 24px 0;
+}
+
+.card h2 {
+  padding: 10px 24px 0;
+
+  font-size: 18px;
+}
+
+.card h2 a {
+  transition: color 0.2s var(--ease);
+}
+
+.card h2 a:hover {
+  color: var(--color-text-link);
+}
+
+.card > p:not(:global(.eyebrow)) {
+  padding: 10px 24px 0;
+
+  color: var(--muted);
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.card :global(.textlink) {
+  margin: 18px 24px 26px;
+}
+
+/* =========================================================
+   LEARNING ITEM DETAIL
+   ========================================================= */
+
+.detailHero {
+  padding-block: 44px 48px;
+
+  border-bottom: 1px solid var(--line);
+
+  background: var(--pale);
+}
+
+.detailHeroGrid {
+  display: grid;
+
+  grid-template-columns: 7fr 5fr;
+
+  align-items: end;
+
+  gap: 72px;
+}
+
+.detailHero h1 {
+  max-width: 720px;
+
+  margin-top: 16px;
+
+  text-wrap: balance;
+}
+
+.detailMeta {
+  border-top: 1px solid var(--line-strong);
+}
+
+.detailMeta > div {
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+
+  gap: 20px;
+
+  padding-block: 13px;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.detailMeta span {
+  color: var(--soft-ink);
+
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.detailMeta strong {
+  font-family: var(--font-display), sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.detailMedia {
+  padding-top: 56px;
+}
+
+.detailImage {
+  position: relative;
+
+  min-height: 420px;
+
+  overflow: hidden;
+
+  border: 1px solid var(--line);
+
+  background: var(--pale);
+}
+
+.detailImageAsset {
+  object-fit: cover;
+  object-position: center;
+}
+
+.detailOverview {
+  padding-block: 44px 52px;
+}
+
+.detailOverviewGrid {
+  display: grid;
+
+  grid-template-columns: 3fr 8fr;
+
+  gap: 64px;
+}
+
+.detailLead {
+  max-width: 720px;
+
+  margin: 0;
+
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(19px, 1.6vw, 24px);
+  font-weight: 500;
+  line-height: 1.42;
+
+  letter-spacing: -0.014em;
+}
+
+.detailCtaActions {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 24px;
+
+  margin-top: 26px;
+}
+
+.secondaryAction {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  color: inherit;
+
+  font-family: var(--font-display), sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.secondaryAction span {
+  transition: transform 0.25s var(--ease);
+}
+
+.secondaryAction:hover span {
+  transform: translateX(3px);
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+
+/* =========================================================
+   SURFACE SYSTEM
+   ========================================================= */
+
+.areaList {
+  border-top: 1px solid var(--line);
+}
+
+.areaIndex {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  background: var(--light);
+  color: var(--color-text-on-interactive);
+
+  line-height: 1;
+}
+
+.area:hover {
+  background: var(--hover);
+}
+
+.featured {
+  border-top: 0;
+
+  background: var(--paper);
+}
+
+.featuredGrid,
+.categoryGrid {
+  gap: var(--home-gap);
+}
+
+.featuredCard,
+.card {
+  overflow: hidden;
+
+  border-radius: var(--r-card);
+}
+
+.featuredCard:hover,
+.card:hover {
+  background: var(--hover);
+}
+
+.featuredImage,
+.cardImage {
+  margin: 12px 12px 0;
+
+  overflow: hidden;
+
+  border-radius: var(--r-media);
+}
+
+.cardIndex {
+  top: 12px;
+  left: 12px;
+
+  border-radius: var(--r-pill);
+
+  background: var(--light);
+  color: var(--color-text-on-interactive);
+}
+
+.detailHero {
+  padding-block: 28px 0;
+
+  border-bottom: 0;
+
+  background: var(--paper);
+}
+
+.detailHero > :global(.shell) {
+  width: min(100%, 1360px);
+
+  padding: 44px 56px 48px;
+
+  border-radius: var(--r-panel);
+
+  background: var(--panel);
+}
+
+.detailImage {
+  border: 0;
+  border-radius: var(--r-panel);
+}
+
+
+/* Chips carry their own background now, so card insets must be margin. */
+.featuredCard > :global(.eyebrow),
+.card > :global(.eyebrow) {
+  margin: 22px 24px 0;
+
+  padding: 0 14px;
+}
+
+.featuredImage,
+.cardImage {
+  width: auto;
+
+  align-self: stretch;
+}
+
+/* =========================================================
+   RESPONSIVE OVERRIDES
+   All max-width blocks live here, at the end of the file,
+   ordered widest to narrowest.
+
+   A media query carries no specificity, so a responsive rule
+   loses to any equally specific rule below it — including a
+   wider breakpoint. Keep new breakpoints in this section and
+   in this order.
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .areas,
+  .featured,
+  .categoryItems {
+    padding-block: 44px;
+  }
+
+  .area {
+    grid-template-columns: 44px minmax(0, 1fr);
+
+    gap: 20px;
+
+    padding-block: 24px;
+  }
+
+  .area:hover {
+    background: var(--hover);
+  }
+
+  .areaArrow {
+    display: none;
+  }
+
+  .featuredGrid,
+  .categoryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+  }
+
+  .detailHeroGrid,
+  .detailOverviewGrid {
+    grid-template-columns: 1fr;
+
+    gap: 28px;
+  }
+
+  .detailHero {
+    padding-block: 32px 40px;
+  }
+
+  .detailMedia {
+    padding-top: 40px;
+  }
+
+  .detailImage {
+    min-height: 260px;
+  }
+
+  .detailOverview {
+    padding-block: 48px 44px;
+  }
+  .detailHero > :global(.shell) {
+    padding: 28px 24px 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .areas,
+  .featured,
+  .categoryItems {
+    padding-block: 48px;
+  }
+
+  .area {
+    grid-template-columns: 34px minmax(0, 1fr);
+  }
+
+  .featuredGrid,
+  .categoryGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .detailImage {
+    min-height: 200px;
+  }
+
+  .detailCtaActions {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+}
+
+/* =========================================================
+   COLOUR PASS — featured learning is a canvas band
+   ========================================================= */
+
+.featured {
+  background: var(--canvas-deep);
+}
+
+/* =========================================================
+   DISCIPLINE FILTER — laboratory practicals
+   Plain links, so filtering works without JavaScript and every
+   filtered view has its own shareable URL.
+   ========================================================= */
+
+.disciplineFilter {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-bottom: 36px;
+}
+
+.disciplineFilter a {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  height: 42px;
+
+  padding-inline: 18px;
+
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-pill);
+
+  background: var(--white);
+  color: var(--ink);
+
+  font-family: var(--font-display), sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+
+  transition:
+    background 0.2s var(--ease),
+    border-color 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+
+.disciplineFilter a:hover {
+  border-color: var(--blue);
+
+  color: var(--color-text-link);
+}
+
+.disciplineFilter a:focus-visible {
+  outline: none;
+
+  box-shadow: var(--ring);
+}
+
+.disciplineFilter a[aria-current="page"] {
+  border-color: var(--blue);
+
+  background: var(--blue);
+  color: var(--color-text-on-primary);
+}
+
+.disciplineFilter small {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 22px;
+  height: 22px;
+
+  padding-inline: 6px;
+
+  border-radius: var(--r-pill);
+
+  background: var(--pale-deep);
+  color: var(--muted);
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.disciplineFilter a[aria-current="page"] small {
+  background: var(--white);
+  color: var(--color-text-link);
+}
+
+.cardTags {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 6px;
+
+  margin: 0;
+  padding: 16px 24px 0;
+
+  list-style: none;
+}
+
+.cardTags :global(.tag) {
+  border-radius: var(--r-pill);
+}
+
+@media (max-width: 640px) {
+  /* A single scrolling row keeps six chips from pushing the list off-screen. */
+  .disciplineFilter {
+    flex-wrap: nowrap;
+
+    margin-inline: calc(var(--shell-pad) * -1);
+    padding-inline: var(--shell-pad);
+
+    overflow-x: auto;
+
+    scrollbar-width: none;
+  }
+
+  .disciplineFilter a {
+    flex-shrink: 0;
+  }
+}
+
+/* Learning cards lift off the light canvas (see ELEVATION in globals.css). */
+.featuredCard,
+.card {
+  box-shadow: var(--shadow-card);
+}
+
+/* Discipline filter pills are buttons, so they share the button shadow. */
+.disciplineFilter a {
+  box-shadow: var(--shadow-button);
+}
+
+.disciplineFilter a:focus-visible {
+  box-shadow: var(--ring);
+}
