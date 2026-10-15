@@ -28,7 +28,7 @@
     "groq-js": "^2.0.0",
     "tailwindcss": "^4",
     "tsx": "^4.23.15",
-    "typescript": "^5"
+    "typescript": "^6"
   },
   "packageManager": "pnpm@11.20.0"
 }
