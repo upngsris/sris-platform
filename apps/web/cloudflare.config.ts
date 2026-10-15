@@ -8,6 +8,7 @@ export default defineConfig({
     compatibilityFlags: ["nodejs_compat"],
     workersDev: false,
     previewUrls: false,
+    domains: ["staging.upngsris.com"],
     assets: {
       htmlHandling: "none",
       notFoundHandling: "none",
@@ -15,7 +16,7 @@ export default defineConfig({
     },
     env: {
       ASSETS: bindings.assets(),
-            VINEXT_KV_CACHE: bindings.kv(),
+                    VINEXT_KV_CACHE: bindings.kv({ id: "ff91044f28184903a088c581305ebd80" }),
     },
   }),
 });
