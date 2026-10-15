@@ -3,6 +3,8 @@
 import { useEffect } from "react";
 
 import "./globals.css";
+import "./lpi.css";
+import "./states.css";
 
 import { STATUS_CONTENT, statusTitle } from "@/lib/status";
 
