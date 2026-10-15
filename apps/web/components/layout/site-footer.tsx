@@ -68,7 +68,7 @@ export function SiteFooter() {
             <Image
               src="/images/brand/sris-lockup-reversed.png"
               alt="Science, Research & Innovation Society"
-              width={220}
+              width={219}
               height={88}
               className="footerLogo"
               quality={70}
