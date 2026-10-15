@@ -85,7 +85,7 @@ export function SiteHeader() {
             <Image
               src="/images/brand/sris-lockup.png"
               alt="Science, Research & Innovation Society"
-              width={176}
+              width={174}
               height={70}
               priority
               quality={70}

@@ -35,7 +35,7 @@ export function MembershipCta({ data }: Props) {
           <Image
             src="/images/brand/sris-lockup-reversed.png"
             alt=""
-            width={240}
+            width={239}
             height={96}
             quality={70}
           />
