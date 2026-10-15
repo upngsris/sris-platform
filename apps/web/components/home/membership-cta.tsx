@@ -37,6 +37,7 @@ export function MembershipCta({ data }: Props) {
             alt=""
             width={240}
             height={96}
+            quality={70}
           />
         </div>
       </div>

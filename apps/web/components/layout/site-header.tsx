@@ -88,6 +88,7 @@ export function SiteHeader() {
               width={176}
               height={70}
               priority
+              quality={70}
             />
           </Link>
 

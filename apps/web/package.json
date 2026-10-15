@@ -7,28 +7,43 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit",
-    "test": "tsx --test \"tests/**/*.test.ts\""
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "tsx --test \"tests/**/*.test.ts\"",
+    "dev:vinext": "vite dev --port 3001",
+    "build:vinext": "vite build",
+    "start:vinext": "vite preview",
+    "deploy:vinext": "vinext-cloudflare deploy"
   },
   "dependencies": {
     "@sanity/image-url": "^2.1.1",
+    "@vinext/cloudflare": "^1.1.1",
     "next": "16.3.8",
     "next-sanity": "^13.3.3",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "sharp": "^0.35.5"
+    "react-server-dom-webpack": "^19.3.0",
+    "sharp": "^0.35.5",
+    "vinext": "^1.2.0"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "2.0.0-beta.sha-c82c3efb3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^6.1.2",
+    "@vitejs/plugin-rsc": "^0.5.37",
+    "cf": "1.0.0-beta.17",
     "eslint": "^9",
     "eslint-config-next": "16.3.8",
     "groq-js": "^2.0.0",
+    "postcss": "^8.5.30",
     "tailwindcss": "^4",
     "tsx": "^4.23.15",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vite": "8.3.0",
+    "vite-css-modules": "^1.16.0"
   },
-  "packageManager": "pnpm@11.20.0"
+  "packageManager": "pnpm@11.20.0",
+  "type": "module"
 }

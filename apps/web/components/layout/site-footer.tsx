@@ -71,6 +71,7 @@ export function SiteFooter() {
               width={220}
               height={88}
               className="footerLogo"
+              quality={70}
             />
           </h2>
 
