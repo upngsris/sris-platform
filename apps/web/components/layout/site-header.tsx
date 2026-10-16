@@ -2,11 +2,11 @@
 
 import type { SVGProps } from "react";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import { BrandLockup } from "@/components/layout/brand-lockup";
 import { navigation } from "@/data/navigation";
 import { routes } from "@/lib/route";
 
@@ -82,14 +82,7 @@ export function SiteHeader() {
             className="lpi-logo"
             aria-label="UPNG SRIS Home"
           >
-            <Image
-              src="/images/brand/sris-lockup.png"
-              alt="Science, Research & Innovation Society"
-              width={174}
-              height={70}
-              priority
-              quality={70}
-            />
+            <BrandLockup priority />
           </Link>
 
           <ul className="lpi-menu">

@@ -202,10 +202,57 @@
   margin-right: clamp(10px, 2vw, 40px);
 }
 
-.lpi-logo img {
+.lpi-logo .brand-lockup {
+  font-size: clamp(9.5px, 0.82vw, 12.5px);
+}
+
+/* =========================================================
+   SRIS LOCKUP (components/layout/brand-lockup.tsx)
+   Mark image + live text. Everything is sized in em, so one
+   font-size per placement scales the whole lockup.
+   ========================================================= */
+
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ink);
+  font-family: var(--font-lpi), "Open Sans", sans-serif;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.brand-lockup--reversed {
+  color: var(--white);
+}
+
+.brand-lockup-mark {
   display: block;
-  width: clamp(120px, 11.4vw, 175px);
-  height: auto;
+  flex: 0 0 auto;
+  width: auto;
+  height: 5.4em;
+  margin-right: 1.15em;
+}
+
+.brand-lockup-upng,
+.brand-lockup-name {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-lockup-upng {
+  align-items: center;
+  min-width: 0.9em;
+}
+
+.brand-lockup-rule {
+  align-self: center;
+  width: 2px;
+  height: 4.6em;
+  margin: 0 0.75em;
+  background: currentColor;
 }
 
 .lpi-menu {

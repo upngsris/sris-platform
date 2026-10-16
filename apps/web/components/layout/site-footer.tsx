@@ -1,7 +1,7 @@
 import type { CSSProperties, SVGProps } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
+import { BrandLockup } from "@/components/layout/brand-lockup";
 import { navigation } from "@/data/navigation";
 import { routes } from "@/lib/route";
 import { socials } from "@/lib/socials";
@@ -65,14 +65,7 @@ export function SiteFooter() {
           </p>
 
           <h2>
-            <Image
-              src="/images/brand/sris-lockup-reversed.png"
-              alt="Science, Research & Innovation Society"
-              width={219}
-              height={88}
-              className="footerLogo"
-              quality={70}
-            />
+            <BrandLockup variant="reversed" />
           </h2>
 
           <p className="body">
