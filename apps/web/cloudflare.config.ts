@@ -13,7 +13,7 @@ const targets = {
   production: {
     name: "sris-production",
     domains: ["upngsris.com"],
-    kvId: undefined as string | undefined,
+    kvId: "bc5d41c7ee3246539f09c97b692b7dd2" as string | undefined,
   },
 };
 
