@@ -1,0 +1,679 @@
+/* =========================================================
+   MEMBERSHIP
+   Registration, renewal and status screens. Colour, focus and
+   error treatment come from the shared state tokens in
+   globals.css; nothing here sets its own palette.
+   ========================================================= */
+
+.stack {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 28px;
+}
+
+.narrow {
+  max-width: 720px;
+}
+
+/* Inline links inside running text. */
+.link {
+  color: var(--color-text-link);
+
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.link:hover {
+  color: var(--color-text-link-hover);
+}
+
+/* ---- Notices -------------------------------------------------------- */
+
+.notice {
+  padding: 18px 22px;
+
+  border-left: 4px solid var(--state-info-line);
+
+  background: var(--state-info-bg);
+  color: var(--ink);
+}
+
+.notice h2,
+.notice h3 {
+  margin-bottom: 8px;
+
+  font-size: 1.15rem;
+}
+
+.notice p + p {
+  margin-top: 10px;
+}
+
+.noticeClosed {
+  border-left-color: var(--state-warning-line);
+
+  background: var(--state-warning-bg);
+}
+
+.noticeSuccess {
+  border-left-color: var(--state-success-line);
+
+  background: var(--state-success-bg);
+}
+
+.noticeError {
+  border-left-color: var(--state-error-line);
+
+  background: var(--state-error-bg);
+}
+
+.noticeActions {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+
+  margin-top: 16px;
+}
+
+/* ---- Category chooser (links, so it works without JavaScript) --------- */
+
+.categories {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 16px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.categoryCard {
+  display: flex;
+
+  height: 100%;
+
+  flex-direction: column;
+
+  gap: 6px;
+
+  padding: 20px;
+
+  border: 2px solid var(--field-border);
+
+  background: var(--white);
+  color: var(--ink);
+
+  text-decoration: none;
+
+  transition:
+    border-color 0.2s var(--ease),
+    background 0.2s var(--ease);
+}
+
+.categoryCard:hover {
+  border-color: var(--state-support);
+
+  background: var(--state-support-wash);
+}
+
+.categoryCard[aria-current="true"] {
+  border-color: var(--state-primary);
+
+  background: var(--state-support-wash);
+}
+
+.categoryName {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.categoryFee {
+  color: var(--color-text-link-hover);
+
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.categorySummary {
+  color: var(--muted);
+
+  font-size: 0.9rem;
+}
+
+.chosen {
+  margin-top: auto;
+
+  color: var(--color-text-link-hover);
+
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ---- Form ------------------------------------------------------------- */
+
+.form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 22px;
+
+  max-width: 680px;
+}
+
+.fieldset {
+  display: flex;
+
+  min-width: 0;
+
+  flex-direction: column;
+
+  gap: 18px;
+
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+}
+
+.legend {
+  margin-bottom: 4px;
+  padding: 0;
+
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.row {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.field label,
+.checkLabel {
+  color: var(--ink);
+
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.field input[type="file"] {
+  padding: 8px 10px;
+}
+
+.field input[type="file"]::file-selector-button {
+  margin-right: 12px;
+  padding: 8px 14px;
+
+  border: 2px solid var(--state-support);
+  border-radius: var(--r-control);
+
+  background: transparent;
+  color: var(--state-support-ink-hover);
+
+  font: inherit;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.field input[type="file"]::file-selector-button:hover {
+  background: var(--state-support-wash);
+}
+
+.fileChosen {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 8px 16px;
+
+  margin: 0;
+}
+
+.linkButton {
+  padding: 0;
+
+  border: 0;
+
+  background: none;
+  color: var(--color-text-link);
+
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+
+  cursor: pointer;
+}
+
+.linkButton:hover {
+  color: var(--color-text-link-hover);
+}
+
+.field input,
+.field select {
+  width: 100%;
+  min-height: 46px;
+
+  padding: 10px 14px;
+
+  border: 1px solid var(--field-border);
+  border-radius: var(--r-control);
+
+  background: var(--white);
+  color: var(--ink);
+
+  font: inherit;
+  font-size: 1rem;
+}
+
+.field input:hover:not(:disabled),
+.field select:hover:not(:disabled) {
+  border-color: var(--field-border-hover);
+}
+
+.field input:focus-visible,
+.field select:focus-visible {
+  border-color: var(--focus-ring);
+
+  outline: none;
+
+  box-shadow: var(--ring);
+}
+
+.field input[aria-invalid="true"],
+.field select[aria-invalid="true"] {
+  border-color: var(--state-error-line);
+
+  box-shadow: inset 0 0 0 1px var(--state-error-line);
+}
+
+.field input[aria-invalid="true"]:focus-visible,
+.field select[aria-invalid="true"]:focus-visible {
+  box-shadow:
+    inset 0 0 0 1px var(--state-error-line),
+    var(--ring);
+}
+
+.field input:disabled,
+.field select:disabled {
+  border-color: var(--state-disabled-line);
+
+  background: var(--state-disabled-bg);
+  color: var(--state-disabled-ink);
+
+  cursor: not-allowed;
+}
+
+.field input::placeholder {
+  color: var(--field-placeholder);
+
+  opacity: 1;
+}
+
+.hint {
+  color: var(--muted);
+
+  font-size: 0.85rem;
+}
+
+.error {
+  color: var(--state-error-ink);
+
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.required {
+  color: var(--state-error-ink);
+}
+
+.readonly {
+  padding: 10px 14px;
+
+  border: 1px solid var(--line);
+
+  background: var(--pale);
+  color: var(--ink);
+}
+
+.check {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 12px;
+}
+
+.check input {
+  width: 22px;
+  height: 22px;
+
+  flex: none;
+
+  margin-top: 2px;
+
+  accent-color: var(--state-primary);
+}
+
+.check input:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.check input[aria-invalid="true"] {
+  outline: 2px solid var(--state-error-line);
+}
+
+.actions {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 16px;
+}
+
+/* Hidden from people, tempting to bots. */
+.trap {
+  position: absolute;
+
+  left: -10000px;
+
+  width: 1px;
+  height: 1px;
+
+  overflow: hidden;
+}
+
+/* ---- Fee and payment ------------------------------------------------- */
+
+.feeBox {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: baseline;
+
+  gap: 8px 20px;
+
+  padding: 18px 22px;
+
+  border: 2px solid var(--state-primary);
+
+  background: var(--state-support-wash);
+}
+
+.feeAmount {
+  color: var(--color-text-link-hover);
+
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.feeNote {
+  color: var(--ink);
+
+  font-size: 0.95rem;
+}
+
+.accounts {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+  gap: 14px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.account {
+  padding: 16px 18px;
+
+  border: 1px solid var(--line);
+
+  background: var(--white);
+}
+
+.account h3 {
+  margin-bottom: 8px;
+
+  font-size: 1rem;
+}
+
+.dl {
+  display: grid;
+
+  grid-template-columns: max-content 1fr;
+
+  gap: 4px 16px;
+
+  margin: 0;
+}
+
+/* In the payment boxes the labels share one width, so the values line up
+   from card to card instead of starting wherever each card's longest label
+   happens to end. */
+.accountDl {
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+}
+
+.howTo {
+  margin-top: 12px;
+  padding-top: 12px;
+
+  border-top: 1px solid var(--line);
+}
+
+.howToLabel {
+  margin: 0 0 4px;
+
+  color: var(--muted);
+
+  font-weight: 600;
+}
+
+.howToText {
+  margin: 0;
+
+  overflow-wrap: anywhere;
+}
+
+.dl dt {
+  color: var(--muted);
+
+  font-weight: 600;
+}
+
+.dl dd {
+  margin: 0;
+
+  overflow-wrap: anywhere;
+}
+
+/* ---- Receipt and status ----------------------------------------------- */
+
+.reference {
+  display: inline-block;
+
+  padding: 6px 14px;
+
+  border: 2px solid var(--ink);
+
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.badge {
+  display: inline-block;
+
+  padding: 4px 12px;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badgePending {
+  background: var(--state-warning-bg);
+  color: var(--state-warning-ink);
+
+  box-shadow: inset 0 0 0 2px var(--state-warning-line);
+}
+
+.badgeApproved {
+  background: var(--state-success-bg);
+  color: var(--state-success-ink);
+
+  box-shadow: inset 0 0 0 2px var(--state-success-line);
+}
+
+.badgeRejected {
+  background: var(--state-error-bg);
+  color: var(--state-error-ink);
+
+  box-shadow: inset 0 0 0 2px var(--state-error-line);
+}
+
+.steps {
+  margin: 0;
+  padding-left: 1.3em;
+}
+
+.steps li + li {
+  margin-top: 8px;
+}
+
+/* ---- Fees table and terms --------------------------------------------- */
+
+.table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 12px 14px;
+
+  border-bottom: 1px solid var(--line);
+
+  text-align: left;
+}
+
+.table th {
+  color: var(--muted);
+
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.terms {
+  margin: 0;
+  padding-left: 1.3em;
+}
+
+.terms li + li {
+  margin-top: 10px;
+}
+
+.cta {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 16px;
+}
+
+.ctaCard {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  padding: 22px;
+
+  background: var(--white);
+}
+
+.ctaCard h3 {
+  font-size: 1.15rem;
+}
+
+.ctaCard p {
+  color: var(--muted);
+}
+
+.ctaCard :global(.button) {
+  margin-top: auto;
+
+  align-self: flex-start;
+}
+
+@media (max-width: 991px) {
+  .categories {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cta {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 575px) {
+  .categories,
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .dl,
+  .accountDl {
+    grid-template-columns: 1fr;
+
+    gap: 0;
+  }
+
+  .dl dd {
+    margin-bottom: 10px;
+  }
+
+  .table th,
+  .table td {
+    padding: 10px 8px;
+  }
+
+  .reference {
+    font-size: 1.15rem;
+  }
+}

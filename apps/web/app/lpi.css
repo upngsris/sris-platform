@@ -1,0 +1,1900 @@
+/* =========================================================
+   LPI-STYLE LAYOUT
+   Header and homepage sections follow the layout of
+   lpi.org, painted in the SRIS brand palette: an orange utility
+   bar and hero, white navigation bar with a pale mega-dropdown,
+   white cards on a pale ground and a blue call-to-action band.
+   Every class is prefixed `lpi` so the rest of the site is
+   untouched until those pages are redesigned.
+   ========================================================= */
+
+:root {
+  /* Roles: primary = navigation, headers and main actions; accent (orange)
+     = secondary actions and highlights; red = priority actions only. */
+  --lpi-primary: var(--blue);
+  --lpi-primary-hover: var(--blue-hover);
+  --lpi-yellow: var(--orange);
+  --lpi-yellow-hover: var(--state-accent-hover);
+  --lpi-blue: var(--color-text-link);
+  --lpi-band: var(--teal);
+  --lpi-red: var(--crimson);
+  --lpi-ground: var(--pale-deep);
+  --lpi-text: var(--ink);
+  --lpi-nav-text: var(--ink);
+  --lpi-pad: clamp(25px, 2.34375vw, 45px);
+  --lpi-section: clamp(35px, 3.6458333vw, 70px);
+}
+
+.lpi {
+  font-family: var(--font-lpi), "Open Sans", sans-serif;
+  font-size: clamp(14px, 0.9375vw, 18px);
+  line-height: 1.5;
+  color: var(--lpi-text);
+}
+
+.lpi *,
+.lpi *::before,
+.lpi *::after {
+  box-sizing: border-box;
+}
+
+.lpi a {
+  color: var(--lpi-blue);
+  transition:
+    color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
+}
+
+.lpi a:hover {
+  text-decoration: underline;
+}
+
+.lpi h1,
+.lpi h2,
+.lpi h3,
+.lpi h4 {
+  font-family: var(--font-lpi), "Open Sans", sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: 0;
+  color: var(--lpi-text);
+  margin: 0 0 0.75em;
+}
+
+.lpi p {
+  margin: 0 0 1em;
+  max-width: none;
+}
+
+.lpi-container {
+  width: 100%;
+  max-width: 1324px;
+  margin-inline: auto;
+  padding-inline: var(--lpi-pad);
+}
+
+/* ---------- Buttons ---------- */
+
+.lpi a.lpi-button,
+.lpi button.lpi-button {
+  display: inline-block;
+  padding: 15px 25px;
+  border: 0;
+  background: var(--lpi-primary);
+  color: var(--color-text-on-primary);
+  font: inherit;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.lpi a.lpi-button::after {
+  content: "\203A";
+  margin-left: 10px;
+  font-weight: 700;
+}
+
+.lpi a.lpi-button:hover {
+  background: var(--lpi-primary-hover);
+  color: var(--color-text-on-primary);
+  text-decoration: none;
+}
+
+.lpi a.lpi-link {
+  font-weight: 500;
+}
+
+.lpi a.lpi-link::after {
+  content: "\203A";
+  margin-left: 10px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+/* The utility strip and navigation bar stick together as one header. */
+.lpi-header {
+  position: sticky;
+  top: 0;
+  z-index: 98;
+  display: block;
+}
+
+.lpi-top {
+  display: none;
+  position: relative;
+  z-index: 99;
+  background: var(--lpi-primary);
+  color: var(--color-text-on-primary);
+  font-size: 12px;
+}
+
+.lpi-top-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lpi-top p {
+  margin: 0;
+  padding: 5px 0;
+  line-height: 18px;
+}
+
+.lpi-top ul {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lpi .lpi-top a {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px clamp(12px, 1.04vw, 20px);
+  color: #fff;
+  line-height: 18px;
+}
+
+.lpi .lpi-top a:hover {
+  text-decoration: underline;
+}
+
+.lpi .lpi-top li.alt a {
+  background: var(--deep);
+  color: var(--color-text-on-primary);
+  font-weight: 700;
+  margin-left: clamp(12px, 1.04vw, 20px);
+}
+
+.lpi .lpi-top li.alt + li.alt a {
+  margin-left: 0;
+}
+
+.lpi .lpi-top li.altred a {
+  background: var(--lpi-red);
+  color: var(--color-text-on-danger);
+  font-weight: 700;
+  margin-left: clamp(12px, 1.04vw, 20px);
+}
+
+.lpi-bar {
+  position: relative;
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+}
+
+.lpi-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 72px;
+}
+
+.lpi-logo {
+  display: block;
+  flex: 0 0 auto;
+  margin-right: clamp(10px, 2vw, 40px);
+}
+
+.lpi-logo .brand-lockup {
+  font-size: clamp(9.5px, 0.82vw, 12.5px);
+}
+
+/* =========================================================
+   SRIS LOCKUP (components/layout/brand-lockup.tsx)
+   Mark image + live text. Everything is sized in em, so one
+   font-size per placement scales the whole lockup.
+   ========================================================= */
+
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ink);
+  font-family: var(--font-lpi), "Open Sans", sans-serif;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.brand-lockup--reversed {
+  color: var(--white);
+}
+
+.brand-lockup-mark {
+  display: block;
+  flex: 0 0 auto;
+  width: auto;
+  height: 5.4em;
+  margin-right: 1.15em;
+}
+
+.brand-lockup-upng,
+.brand-lockup-name {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-lockup-upng {
+  align-items: center;
+  min-width: 0.9em;
+}
+
+.brand-lockup-rule {
+  align-self: center;
+  width: 2px;
+  height: 4.6em;
+  margin: 0 0.75em;
+  background: currentColor;
+}
+
+.lpi-menu {
+  display: none;
+}
+
+.lpi-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--lpi-nav-text);
+  cursor: pointer;
+}
+
+.lpi-toggle svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Mobile panel */
+
+.lpi-icon {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+}
+
+.lpi-drop-intro .lpi-icon {
+  display: none;
+}
+
+.lpi-mobile {
+  background: #fff;
+  max-height: calc(100dvh - 72px);
+  overflow-y: auto;
+}
+
+.lpi-mobile-group {
+  border-bottom: 1px solid var(--soft-ink);
+  background: var(--lpi-ground);
+}
+
+.lpi-mobile-group > button {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--lpi-nav-text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.lpi-mobile-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 22px var(--lpi-pad);
+}
+
+.lpi-mobile-chevron {
+  display: grid;
+  place-items: center;
+  width: 70px;
+  background: var(--deep);
+  color: var(--lpi-yellow);
+}
+
+.lpi-mobile-chevron svg {
+  width: 22px;
+  height: 22px;
+  transition: transform 0.2s ease;
+}
+
+.lpi-mobile-chevron svg[data-open="true"] {
+  transform: rotate(180deg);
+}
+
+.lpi-mobile-links {
+  display: grid;
+  padding: 0 var(--lpi-pad) 14px calc(var(--lpi-pad) + 36px);
+}
+
+.lpi .lpi-mobile-links a {
+  padding: 8px 0;
+  color: var(--lpi-text);
+}
+
+.lpi .lpi-mobile-links a[aria-current="page"] {
+  font-weight: 700;
+}
+
+.lpi-mobile-extra {
+  display: grid;
+  gap: 4px;
+  padding: 24px var(--lpi-pad) 40px;
+  background: var(--lpi-yellow);
+}
+
+.lpi .lpi-mobile-extra a {
+  padding: 8px 0;
+  color: var(--ink);
+}
+
+.lpi .lpi-mobile-extra a.lpi-mobile-join {
+  margin-top: 10px;
+  padding: 12px 16px;
+  background: var(--lpi-red);
+  color: var(--color-text-on-danger);
+  font-weight: 700;
+  text-align: center;
+}
+
+@media (min-width: 992px) {
+  .lpi-top {
+    display: block;
+  }
+
+  .lpi-toggle,
+  .lpi-mobile {
+    display: none;
+  }
+
+  .lpi-bar-inner {
+    min-height: 0;
+  }
+
+  .lpi-menu {
+    display: flex;
+    flex: 1 1 auto;
+    align-self: stretch;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .lpi-menu > li {
+    flex: 1 0 auto;
+    display: flex;
+  }
+
+  .lpi-menu > li > button {
+    display: block;
+    width: 100%;
+    padding: clamp(21px, 2.19vw, 36px) 12px;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-size: clamp(15px, 0.89vw, 17px);
+    color: var(--lpi-nav-text);
+    text-align: center;
+    cursor: pointer;
+    transition:
+      background-color 0.3s ease-in-out,
+      color 0.3s ease-in-out;
+  }
+
+  .lpi-menu > li > button span {
+    margin-left: 6px;
+    font-size: 0.7em;
+  }
+
+  .lpi-menu > li:hover > button,
+  .lpi-menu > li:focus-within > button {
+    background: var(--lpi-ground);
+    color: var(--lpi-text);
+  }
+
+  .lpi-drop {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    visibility: hidden;
+    opacity: 0;
+    background: var(--lpi-ground);
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.16);
+    transition:
+      opacity 0.3s ease-in-out,
+      visibility 0s linear 0.3s;
+    font-size: 14px;
+  }
+
+  .lpi-menu > li:hover > .lpi-drop,
+  .lpi-menu > li:focus-within > .lpi-drop {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s, 0s;
+  }
+
+  .lpi-drop-inner {
+    display: flex;
+    gap: 30px;
+    padding-block: 30px;
+  }
+
+  .lpi-drop-intro {
+    flex: 1.2;
+    color: var(--soft-ink);
+  }
+
+  .lpi-drop-intro p {
+    margin: 0;
+  }
+
+  .lpi-drop-intro .lpi-icon {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 14px;
+    color: var(--lpi-text);
+  }
+
+  .lpi .lpi-drop-inner a {
+    flex: 1;
+    display: block;
+    padding: 4px 0;
+    color: var(--lpi-text);
+  }
+
+  .lpi .lpi-drop-inner a:hover {
+    color: var(--lpi-blue);
+    text-decoration: none;
+  }
+
+  .lpi-drop-inner a b {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 17px;
+    font-weight: 700;
+  }
+
+  .lpi-drop-inner a span {
+    display: block;
+    color: var(--soft-ink);
+  }
+}
+
+/* =========================================================
+   HOMEPAGE SECTIONS
+   ========================================================= */
+
+.lpi-home {
+  background: var(--lpi-ground);
+}
+
+.lpi-section {
+  padding-block: var(--lpi-section);
+}
+
+.lpi-section + .lpi-section.lpi-tight,
+.lpi-cp + .lpi-cp {
+  padding-top: 0;
+}
+
+.lpi-section.lpi-white {
+  background: #fff;
+}
+
+.lpi-head {
+  max-width: clamp(720px, 47.9vw, 920px);
+  margin: 0 auto clamp(20px, 2vw, 35px);
+  text-align: center;
+}
+
+.lpi-head h2 {
+  font-size: clamp(24px, 1.5625vw, 30px);
+  margin-bottom: 0.5em;
+}
+
+.lpi-head p:last-child {
+  margin-bottom: 0;
+}
+
+/* Hero: coloured panel with the text on the left, photo on the right */
+
+.lpi-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: clamp(350px, 26vw, 500px);
+  background: var(--lpi-primary);
+  color: var(--color-text-on-primary);
+  overflow: hidden;
+}
+
+.lpi-hero-image {
+  position: relative;
+  order: 2;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.lpi-hero-image img {
+  object-fit: cover;
+}
+
+.lpi-hero > .lpi-container {
+  order: 1;
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(35px, 5.2vw, 100px);
+}
+
+.lpi-hero-body {
+  max-width: 100%;
+  font-size: clamp(20px, 2.34vw, 45px);
+  line-height: 1.3;
+}
+
+.lpi .lpi-hero-body h1 {
+  font-size: clamp(32px, 2.92vw, 56px);
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 0.5em;
+}
+
+.lpi-hero-body .lpi-lead {
+  max-width: 28em;
+  font-size: clamp(16px, 1.25vw, 24px);
+  line-height: 1.4;
+  color: #fff;
+}
+
+.lpi-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* Actions on the primary panel: orange fill (secondary / highlight) with
+   dark text, and a white outline for the second action. */
+.lpi .lpi-hero a.lpi-button {
+  background: var(--lpi-yellow);
+  color: var(--color-text-on-accent);
+}
+
+.lpi .lpi-hero a.lpi-button:hover {
+  background: var(--lpi-yellow-hover);
+  color: var(--color-text-on-accent);
+}
+
+.lpi .lpi-hero a.lpi-button.is-ghost {
+  background: transparent;
+  box-shadow: inset 0 0 0 2px #fff;
+  color: #fff;
+}
+
+.lpi .lpi-hero a.lpi-button.is-ghost:hover {
+  background: #fff;
+  color: var(--color-text-link);
+}
+
+@media (min-width: 992px) {
+  .lpi-hero-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    order: 0;
+    width: 55%;
+    aspect-ratio: auto;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 10% 100%);
+  }
+
+  .lpi-hero.has-image .lpi-hero-body {
+    max-width: 42%;
+  }
+}
+
+/* Text blocks (two or three white panels under the hero) */
+
+.lpi-blocks {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+}
+
+.lpi-block {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(15px, 1.82vw, 35px);
+  background: #fff;
+  text-align: center;
+}
+
+.lpi .lpi-block h3 {
+  font-size: clamp(24px, 1.5625vw, 30px);
+}
+
+.lpi-block p:last-child {
+  margin: auto 0 0;
+}
+
+@media (min-width: 768px) {
+  .lpi-blocks {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Blue call-to-action band */
+
+.lpi-band {
+  padding-block: 20px;
+  background: var(--lpi-band);
+  color: var(--color-text-on-primary);
+}
+
+.lpi-band-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-block: 20px;
+  text-align: center;
+}
+
+.lpi .lpi-band h2 {
+  color: #fff;
+  font-size: clamp(24px, 1.875vw, 36px);
+}
+
+.lpi .lpi-band p {
+  color: #fff;
+}
+
+.lpi-band-text {
+  flex: 0 0 61%;
+}
+
+.lpi-band-text p:last-child {
+  margin-bottom: 0;
+}
+
+.lpi-band-logo {
+  flex: 0 0 auto;
+}
+
+.lpi-band-logo img {
+  width: clamp(130px, 14vw, 240px);
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .lpi-band-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+/* Testimonial */
+
+.lpi-quote {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 20px;
+  padding-inline: clamp(0px, 3.1vw, 60px);
+}
+
+.lpi-quote-photo {
+  position: relative;
+  flex: 0 0 auto;
+  width: min(100%, clamp(240px, 16.67vw, 320px));
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.lpi-quote-photo img {
+  object-fit: cover;
+}
+
+.lpi-quote-text {
+  flex: 1;
+  padding-block: 30px;
+}
+
+.lpi-quote blockquote {
+  margin: 0 0 0.75em;
+  padding: 0;
+  border: 0;
+  font-size: clamp(21px, 1.5625vw, 30px);
+  line-height: 1.3;
+}
+
+.lpi-quote-text p {
+  margin-bottom: 0.5em;
+}
+
+@media (min-width: 768px) {
+  .lpi-quote {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 6%;
+  }
+}
+
+/* Three columns with a figure above each */
+
+.lpi-icons {
+  display: grid;
+  gap: clamp(25px, 2.6vw, 50px);
+  margin-top: clamp(10px, 1.04vw, 20px);
+  grid-template-columns: 1fr;
+  text-align: center;
+}
+
+.lpi-icon-figure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(45px, 3.65vw, 70px);
+  margin-bottom: clamp(15px, 1.04vw, 20px);
+  color: var(--lpi-blue);
+  font-size: clamp(40px, 3.65vw, 70px);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.lpi-icons p {
+  max-width: 254px;
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .lpi-icons {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Fewer stats than columns: centre them instead of leaving gaps. */
+  .lpi-icons.is-n1 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lpi-icons.is-n2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Card grid (Get involved style) */
+
+.lpi-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .lpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .lpi-grid.is-n1 {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 33%;
+    margin-inline: auto;
+  }
+
+  .lpi-grid.is-n2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lpi-grid.is-n3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.lpi-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.lpi-card-media {
+  position: relative;
+  display: block;
+  padding-bottom: 60%;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.lpi-card-media img {
+  object-fit: cover;
+}
+
+.lpi-card-badge {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--blue-wash);
+  color: var(--color-text-link-hover);
+  text-align: center;
+  line-height: 1.1;
+}
+
+.lpi-card-badge strong {
+  font-size: clamp(40px, 3.65vw, 70px);
+  font-weight: 600;
+}
+
+.lpi-card-badge span {
+  font-size: clamp(14px, 1.04vw, 20px);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lpi-card-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: clamp(15px, 1.5625vw, 30px);
+  font-size: clamp(13px, 0.73vw, 14px);
+}
+
+.lpi .lpi-card-text h3 {
+  font-size: clamp(21px, 1.25vw, 24px);
+}
+
+.lpi .lpi-card-text h3 a {
+  color: var(--lpi-text);
+}
+
+.lpi-card-text p:last-of-type {
+  margin-bottom: 1em;
+}
+
+.lpi-card-text .lpi-link {
+  margin-top: auto;
+}
+
+.lpi-card-meta {
+  color: var(--soft-ink);
+}
+
+.lpi-card-list {
+  margin: 0 0 1em;
+  padding-left: 1.2em;
+}
+
+.lpi-status {
+  display: inline-block;
+  padding: 2px 10px;
+  background: var(--lpi-ground);
+  font-weight: 700;
+}
+
+.lpi-status.is-open {
+  background: var(--lpi-yellow);
+}
+
+/* =========================================================
+   SITE-WIDE SKIN
+   Re-cuts the shared building blocks every interior page is
+   made from (type, page hero, bands, buttons, links, cards)
+   so those pages match the header and homepage. Colours are
+   still the SRIS palette.
+   ========================================================= */
+
+/* Open Sans for everything. */
+body {
+  --font-display: var(--font-lpi), "Open Sans", sans-serif;
+  --font-body: var(--font-lpi), "Open Sans", sans-serif;
+
+  font-size: clamp(14px, 0.9375vw, 18px);
+}
+
+:root {
+  /* Square corners and flat cards, as on lpi.org. */
+  --r-panel: 0;
+  --r-card: 0;
+  --r-media: 0;
+  --r-control: 0;
+  --r-pill: 0;
+
+  --shadow-1: none;
+  --shadow-2: 0 3px 6px rgba(0, 0, 0, 0.16);
+  --shadow-3: 0 6px 12px rgba(0, 0, 0, 0.18);
+
+  --shell-pad: var(--lpi-pad);
+}
+
+/* The footer keeps its original rounded, pill-shaped treatment. */
+.footer {
+  --r-panel: 24px;
+  --r-card: 16px;
+  --r-media: 12px;
+  --r-control: 8px;
+  --r-pill: 9999px;
+}
+
+.shell {
+  width: min(100%, 1324px);
+}
+
+/* Headings: medium weight, no tight tracking. The :not(#_) lifts the
+   selector above the page-specific class rules without touching them. */
+main :is(h1, h2, h3, h4):not(#_) {
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+main .pageHero h1:not(#_),
+main .researchDetailHero h1:not(#_) {
+  font-size: clamp(30px, 2.92vw, 56px);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+main .pageHeading h2:not(#_) {
+  font-size: clamp(24px, 1.9vw, 36px);
+}
+
+.eyebrow {
+  letter-spacing: 0.06em;
+}
+
+/* Page hero: a full-width primary band with the title on the left. */
+.pageHero,
+.researchDetailHero {
+  padding-block: 0;
+  border-bottom: 0;
+  background: var(--lpi-primary);
+  color: var(--color-text-on-primary);
+}
+
+.pageHero > .shell,
+.researchDetailHero > .shell {
+  width: min(100%, 1324px);
+  padding: clamp(30px, 3.65vw, 70px) var(--lpi-pad);
+  border-radius: 0;
+  background: transparent;
+  color: var(--white);
+}
+
+.pageHero > .shell::before,
+.researchDetailHero > .shell::before {
+  display: none;
+}
+
+.pageHero h1,
+.pageHero h2,
+.researchDetailHero h1,
+.researchDetailHero h2 {
+  color: var(--white);
+}
+
+.pageHero .lead,
+.pageHero .body,
+.pageHero p,
+.researchDetailHero .lead,
+.researchDetailHero p {
+  color: var(--white);
+}
+
+.pageHero .eyebrow,
+.pageHero .eyebrow.blue,
+.researchDetailHero .eyebrow,
+.researchDetailHero .eyebrow.blue {
+  background: none;
+  color: var(--white);
+}
+
+.pageHero .breadcrumb,
+.researchDetailHero .breadcrumb,
+.pageHero .breadcrumb span[aria-current],
+.researchDetailHero .breadcrumb span[aria-current] {
+  color: var(--white);
+}
+
+.pageHero .breadcrumb a:hover,
+.researchDetailHero .breadcrumb a:hover {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+.pageHero .breadcrumb i,
+.researchDetailHero .breadcrumb i {
+  color: var(--white);
+}
+
+/* On the primary band the main action is orange with dark text (highlight
+   colour, 6:1 contrast); outline buttons turn white. */
+.pageHero .button:not(.buttonGhost):not(.buttonLight),
+.researchDetailHero .button:not(.buttonGhost):not(.buttonLight) {
+  border-color: transparent;
+  background: var(--lpi-yellow);
+  color: var(--color-text-on-accent);
+}
+
+.pageHero .button:not(.buttonGhost):not(.buttonLight):hover,
+.researchDetailHero .button:not(.buttonGhost):not(.buttonLight):hover {
+  border-color: transparent;
+  background: var(--lpi-yellow-hover);
+  color: var(--color-text-on-accent);
+}
+
+.pageHero .buttonGhost,
+.researchDetailHero .buttonGhost {
+  border-color: var(--white);
+  color: var(--white);
+}
+
+.pageHero .buttonGhost:hover,
+.researchDetailHero .buttonGhost:hover {
+  background: var(--white);
+  color: var(--color-text-link);
+}
+
+/* Bands run full width like the homepage call-to-action. */
+.bandDeep,
+.bandBlue,
+.researchDetailNext {
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+}
+
+.bandBlue {
+  background: var(--blue);
+}
+
+/* Buttons: square, solid primary with a white label. */
+.button {
+  height: auto;
+  min-height: 48px;
+  padding: 14px 25px;
+  border: 0;
+  border-radius: 0;
+  background: var(--lpi-primary);
+  box-shadow: none;
+  color: var(--color-text-on-primary);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.3;
+}
+
+.button:hover {
+  border-color: transparent;
+  background: var(--lpi-primary-hover);
+  box-shadow: none;
+  color: var(--color-text-on-primary);
+}
+
+.buttonGhost {
+  border: 2px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+}
+
+.buttonGhost:hover {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--white);
+}
+
+.buttonLight {
+  border: 2px solid var(--white);
+  background: transparent;
+  color: var(--white);
+}
+
+.buttonLight:hover {
+  border-color: var(--white);
+  background: var(--white);
+  color: var(--color-text-link);
+}
+
+.bandDeep .button,
+.bandBlue .button,
+.researchDetailNext .button {
+  border: 0;
+  background: var(--lpi-yellow);
+  color: var(--color-text-on-accent);
+}
+
+.bandDeep .button:hover,
+.bandBlue .button:hover,
+.researchDetailNext .button:hover {
+  border: 0;
+  background: var(--lpi-yellow-hover);
+  color: var(--color-text-on-accent);
+}
+
+/* Text links read like LPI's "Learn more >" links. */
+.textlink {
+  padding-bottom: 0;
+  border-bottom: 0;
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.textlink:hover {
+  text-decoration: underline;
+}
+
+/* Hero buttons must not inherit the hero's display-size type. */
+.lpi .lpi-hero a.lpi-button {
+  font-size: clamp(15px, 1.05vw, 18px);
+}
+
+@media (max-width: 575px) {
+  .lpi .lpi-hero a.lpi-button,
+  .button {
+    width: 100%;
+  }
+}
+
+/* Legibility pass -------------------------------------------------
+   The orange accent only reaches 2.8:1 on light surfaces, so eyebrow
+   labels use the darker orange there; dark bands use light ink. */
+.eyebrow,
+.eyebrow.blue,
+.stats .eyebrow {
+  color: var(--orange-ink);
+}
+
+.bandDeep .eyebrow,
+.researchDetailNext .eyebrow,
+.footer .eyebrow,
+.footerBrand .eyebrow,
+.storyCopy .eyebrow {
+  color: var(--on-deep-muted);
+}
+
+.bandBlue .eyebrow {
+  color: var(--white);
+}
+
+.pageHero .eyebrow,
+.pageHero .eyebrow.blue,
+.researchDetailHero .eyebrow {
+  color: var(--white);
+}
+
+.pageHero > .shell p:not(.eyebrow),
+.researchDetailHero > .shell p:not(.eyebrow),
+.pageHeroGrid > p {
+  color: var(--white);
+}
+
+/* Detail-page heroes (person, practical, project, learning item, story).
+   Each page module defines its own navy panel; they are matched by their
+   module class names here so they join the orange hero band. */
+header[class*="detailHero"],
+header[class*="profileHero"] {
+  padding-block: 0;
+  border-bottom: 0;
+  background: var(--lpi-primary);
+  color: var(--color-text-on-primary);
+}
+
+header[class*="detailHero"] > .shell,
+header[class*="profileHero"] > .shell {
+  width: min(100%, 1324px);
+  padding: clamp(30px, 3.65vw, 70px) var(--lpi-pad);
+  border-radius: 0;
+  background: transparent;
+  color: var(--white);
+}
+
+header[class*="detailHero"] > .shell::before,
+header[class*="profileHero"] > .shell::before {
+  display: none;
+}
+
+header[class*="detailHero"] *:not(.button):not(#_),
+header[class*="profileHero"] *:not(.button):not(#_) {
+  color: var(--color-text-on-primary);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+header[class*="detailHero"] h1:not(#_),
+header[class*="profileHero"] h1:not(#_) {
+  font-size: clamp(30px, 2.92vw, 56px);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.researchDetailHero *:not(.button):not(#_) {
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.researchDetailHero *:not(.button):not(#_) {
+  color: var(--color-text-on-primary);
+}
+
+.textlink {
+  white-space: nowrap;
+}
+
+/* Secondary buttons: white outline on dark and blue bands, ink outline on
+   the orange status hero. */
+.bandDeep .button.buttonLight,
+.bandBlue .button.buttonLight,
+.researchDetailNext .button.buttonLight {
+  border: 2px solid var(--white);
+  background: transparent;
+  color: var(--white);
+}
+
+.bandDeep .button.buttonLight:hover,
+.bandBlue .button.buttonLight:hover,
+.researchDetailNext .button.buttonLight:hover {
+  border: 2px solid var(--white);
+  background: var(--white);
+  color: var(--color-text-link);
+}
+
+.statusPage .button.buttonLight {
+  border: 2px solid var(--white);
+  background: transparent;
+  color: var(--white);
+}
+
+.statusPage .button.buttonLight:hover {
+  border: 2px solid var(--white);
+  background: var(--white);
+  color: var(--color-text-link);
+}
+
+/* Interactive accents use the link blue (#2495d1). It is 3.3:1 on white,
+   so it is limited to large or non-text elements; body links stay on the
+   primary for AA contrast. */
+.lpi a.lpi-link::after,
+.textlink i {
+  color: currentColor;
+}
+
+/* Large numerals (70px): 3:1 is the requirement, and the brand
+   interactive blue is 3.3:1 on white. On the pale ground it is 2.96:1, so
+   they use the link colour, which passes everywhere. */
+.lpi-icon-figure {
+  color: var(--color-text-link);
+}
+
+
+
+/* On the supporting-blue band the action is orange (secondary CTA). */
+.lpi .lpi-band a.lpi-button {
+  background: var(--lpi-yellow);
+  color: var(--color-text-on-accent);
+}
+
+.lpi .lpi-band a.lpi-button:hover {
+  background: var(--lpi-yellow-hover);
+  color: var(--color-text-on-accent);
+}
+
+/* =========================================================
+   SPLIT HERO (every page hero except the home page)
+   A primary-blue band divided by a slanted edge with a soft
+   shadow: eyebrow and title on the left, the introduction (or
+   key facts) on the right, both vertically centred. Built on
+   the shared hero classes so every page type picks it up; the
+   slant only appears from tablet width up, and the two halves
+   simply stack on phones.
+   ========================================================= */
+
+@media (min-width: 992px) {
+  :is(
+    .pageHero,
+    .researchDetailHero,
+    header[class*="detailHero"],
+    header[class*="profileHero"],
+    header[class*="masthead"],
+    section[class*="intro"]
+  ) {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  /* The right-hand panel. Skewing a plain box (rather than clipping it)
+     keeps a real box-shadow, which is what gives the edge its soft depth. */
+  :is(
+    .pageHero,
+    .researchDetailHero,
+    header[class*="detailHero"],
+    header[class*="profileHero"],
+    header[class*="masthead"],
+    section[class*="intro"]
+  )::after {
+    content: "";
+
+    position: absolute;
+    z-index: 0;
+
+    top: 0;
+    bottom: 0;
+    left: 55%;
+
+    width: 70%;
+
+    background: var(--lpi-primary);
+    box-shadow: -8px 0 14px -4px rgba(8, 40, 54, 0.5);
+
+    transform: skewX(-13deg);
+    transform-origin: top left;
+
+    pointer-events: none;
+  }
+
+  :is(
+    .pageHero,
+    .researchDetailHero,
+    header[class*="detailHero"],
+    header[class*="profileHero"],
+    header[class*="masthead"],
+    section[class*="intro"]
+  ) > .shell {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Centre the two halves against each other, as in the reference. */
+  :is(
+    .pageHeroGrid,
+    .researchDetailHeroGrid,
+    [class*="detailHeroGrid"],
+    [class*="profileHeroGrid"]
+  ) {
+    align-items: center;
+  }
+
+  /* Keep the title in the left panel, wrapping before the slanted edge. */
+  :is(
+    .pageHeroGrid,
+    .researchDetailHeroGrid,
+    [class*="detailHeroGrid"],
+    [class*="profileHeroGrid"]
+  ) h1:not(#_) {
+    max-width: 12em;
+  }
+
+  /* A navigation bar that is part of a hero stays full width, above the panel. */
+  [class*="sectionNav"] {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Status pages put a large code on the left and the message on the right,
+     so the slant sits between them. */
+  .statusPage .pageHero::after {
+    left: 37%;
+  }
+}
+
+/* =========================================================
+   HOMEPAGE COLOUR
+   The sections used to share one pale ground with white cards,
+   so nothing stood out. They now alternate bands (white, deep
+   blue, tint, primary blue), and every card carries a brand
+   colour on its top edge and photo panel. Text on each fill
+   uses the measured on-colour tokens.
+   ========================================================= */
+
+/* ---------- Section bands ---------- */
+
+.lpi-section.lpi-tint {
+  background: var(--blue-wash);
+}
+
+.lpi-section.lpi-deep {
+  background: var(--deep);
+  color: var(--color-text-on-primary);
+}
+
+.lpi-section.lpi-primary {
+  background: var(--lpi-primary);
+  color: var(--color-text-on-primary);
+}
+
+:is(.lpi-deep, .lpi-primary) .lpi-head h2,
+:is(.lpi-deep, .lpi-primary) .lpi-head p {
+  color: var(--color-text-on-primary);
+}
+
+:is(.lpi-deep, .lpi-primary) .lpi-head a {
+  color: var(--color-text-on-primary);
+  text-decoration: underline;
+}
+
+:is(.lpi-deep, .lpi-primary) .lpi-head a:hover {
+  color: var(--color-text-on-primary);
+  text-decoration-thickness: 2px;
+}
+
+/* ---------- Section headings: bigger, with an accent bar ---------- */
+
+.lpi-head h2 {
+  font-size: clamp(26px, 2.1vw, 40px);
+}
+
+main .lpi-head h2:not(#_) {
+  font-weight: 600;
+}
+
+.lpi-head h2::after {
+  content: "";
+
+  display: block;
+
+  width: 64px;
+  height: 5px;
+
+  margin: 14px auto 0;
+
+  background: var(--orange);
+}
+
+/* ---------- Statistics on the deep band ---------- */
+
+.lpi-deep .lpi-icon-figure {
+  color: var(--color-text-on-primary);
+
+  font-size: clamp(48px, 4.6vw, 88px);
+}
+
+.lpi-deep .lpi-icons p {
+  color: var(--color-text-on-primary);
+
+  font-size: 1.1em;
+}
+
+/* ---------- Card tones ---------- */
+
+:is(.lpi-card, .lpi-block) {
+  --tone: var(--blue);
+  --tone-ink: var(--color-text-on-primary);
+
+  border-top: 5px solid var(--tone);
+}
+
+:is(.lpi-card, .lpi-block)[data-tone="support"] {
+  --tone: var(--teal);
+  --tone-ink: var(--color-text-on-supporting);
+}
+
+:is(.lpi-card, .lpi-block)[data-tone="deep"] {
+  --tone: var(--deep);
+  --tone-ink: var(--color-text-on-primary);
+}
+
+:is(.lpi-card, .lpi-block)[data-tone="accent"] {
+  --tone: var(--orange);
+  --tone-ink: var(--color-text-on-accent);
+}
+
+:is(.lpi-card, .lpi-block)[data-tone="interactive"] {
+  --tone: var(--light);
+  --tone-ink: var(--color-text-on-interactive);
+}
+
+/* Cards sit on dark bands too, so they set their own text colour. */
+.lpi-card {
+  color: var(--lpi-text);
+
+  box-shadow: 0 2px 10px rgba(14, 74, 99, 0.16);
+}
+
+.lpi-card-media {
+  background: var(--tone);
+}
+
+.lpi-card-badge {
+  background: var(--tone);
+  color: var(--tone-ink);
+}
+
+.lpi-card-badge strong {
+  font-size: clamp(48px, 4.4vw, 84px);
+}
+
+/* ---------- Student story ---------- */
+
+.lpi-quote-photo {
+  box-shadow: 14px 14px 0 var(--orange);
+}
+
+.lpi-quote blockquote {
+  padding-left: 22px;
+
+  border-left: 6px solid var(--orange);
+}
+
+@media (max-width: 767px) {
+  .lpi-quote-photo {
+    box-shadow: 10px 10px 0 var(--orange);
+
+    margin-bottom: 10px;
+  }
+}
+
+/* The shared link-state rules are more specific than the band link colour,
+   so links inside dark bands restate it (white on deep and primary blue). */
+:is(.lpi-deep, .lpi-primary) .lpi-head a.lpi-link:not(#_),
+:is(.lpi-deep, .lpi-primary) .lpi-head a.lpi-link:not(#_):hover,
+:is(.lpi-deep, .lpi-primary) .lpi-head a.lpi-link:not(#_):active {
+  color: var(--color-text-on-primary);
+  text-decoration: underline;
+}
+
+/* =========================================================
+   INNER PAGES COLOUR
+   Inner pages sat on one pale ground with white hairline cards.
+   Sections now alternate white and tint bands, headings carry the
+   orange accent bar, numbered lists and cards take the brand tones.
+   Fills use the measured on-colour text tokens.
+   ========================================================= */
+
+main .section:not(.sectionWash):not(.bandDeep):not(.bandBlue) {
+  background: #fff;
+}
+
+main .sectionWash:not(.bandDeep):not(.bandBlue) {
+  background: var(--blue-wash);
+}
+
+:is(.sectionHead, .pageHeading) h2::after {
+  content: "";
+
+  display: block;
+
+  width: 64px;
+  height: 5px;
+
+  margin-top: 14px;
+
+  background: var(--orange);
+}
+
+:is(.bandDeep, .bandBlue) :is(.sectionHead, .pageHeading) h2::after {
+  background: var(--orange);
+}
+
+/* Numbered lists: a brand-coloured numeral on each row. */
+.indexNum {
+  --tone: var(--blue);
+  --tone-ink: var(--color-text-on-primary);
+}
+
+.indexRow:nth-child(4n + 2) .indexNum {
+  --tone: var(--deep);
+  --tone-ink: var(--color-text-on-primary);
+}
+
+.indexRow:nth-child(4n + 3) .indexNum {
+  --tone: var(--orange);
+  --tone-ink: var(--color-text-on-accent);
+}
+
+.indexRow:nth-child(4n) .indexNum {
+  --tone: var(--deep);
+  --tone-ink: var(--color-text-on-primary);
+}
+
+main .indexNum:not(#_) {
+  background: var(--tone);
+  color: var(--tone-ink);
+
+  font-weight: 700;
+}
+
+.indexList {
+  border-top: 5px solid var(--orange);
+}
+
+/* Cards: a coloured top edge cycling through the palette. */
+main .card {
+  --tone: var(--blue);
+
+  border-top: 5px solid var(--tone);
+
+  box-shadow: 0 2px 10px rgba(14, 74, 99, 0.12);
+}
+
+main :is(.cardGrid, .bandGrid) > .card:nth-child(4n + 2) {
+  --tone: var(--deep);
+}
+
+main :is(.cardGrid, .bandGrid) > .card:nth-child(4n + 3) {
+  --tone: var(--orange);
+}
+
+main :is(.cardGrid, .bandGrid) > .card:nth-child(4n) {
+  --tone: var(--light);
+}
+
+main .card:hover {
+  background: var(--blue-wash);
+}
+
+/* ---------- Module sections: alternate white and tint ---------- */
+
+main :is(
+  [class*="about-module"][class*="__story"]:is(section),
+  [class*="about-module"][class*="__journey"]:is(section),
+  [class*="team-module"][class*="__founders"],
+  [class*="team-module"][class*="__committees"],
+  [class*="about-module"][class*="__formSection"],
+  [class*="learn-module"][class*="__areas"]
+):not(#_) {
+  background: #fff;
+}
+
+main :is(
+  [class*="about-module"][class*="__principles"],
+  [class*="team-module"][class*="__executives"],
+  [class*="team-module"][class*="__patronage"],
+  [class*="about-module"][class*="__contactDetails"],
+  [class*="about-module"][class*="__mapSection"],
+  [class*="learn-module"][class*="__featured"]:is(section),
+  [class*="learn-module"][class*="__categoryItems"],
+  [class*="events-index-module"][class*="__group"],
+  [class*="projects-to-join-module"][class*="__projects"],
+  [class*="showcase-module"][class*="__showcase"],
+  [class*="search-module"][class*="__results"],
+  .researchArchive
+):not(#_) {
+  background: var(--blue-wash);
+}
+
+/* ---------- Module cards: white on tint, coloured top edge ---------- */
+
+main :is(
+  article[class*="about-module"][class*="__contactItem"],
+  article[class*="team-module"][class*="__leaderCard"],
+  article[class*="team-module"][class*="__patronProfile"],
+  article[class*="learn-module"][class*="__featuredCard"],
+  article[class*="learn-module"][class*="__card"],
+  article[class*="events-index-module"][class*="__tile"],
+  article[class*="showcase-module"][class*="__card"],
+  article[class*="projects-to-join-module"][class*="__project"]
+) {
+  --tone: var(--blue);
+
+  background: #fff;
+
+  border-top: 5px solid var(--tone);
+
+  box-shadow: 0 2px 10px rgba(14, 74, 99, 0.12);
+}
+
+main :is(
+  article[class*="about-module"][class*="__contactItem"],
+  article[class*="team-module"][class*="__leaderCard"],
+  article[class*="learn-module"][class*="__featuredCard"],
+  article[class*="learn-module"][class*="__card"],
+  article[class*="events-index-module"][class*="__tile"],
+  article[class*="showcase-module"][class*="__card"],
+  article[class*="projects-to-join-module"][class*="__project"]
+):nth-child(4n + 2) {
+  --tone: var(--deep);
+}
+
+main :is(
+  article[class*="about-module"][class*="__contactItem"],
+  article[class*="team-module"][class*="__leaderCard"],
+  article[class*="learn-module"][class*="__featuredCard"],
+  article[class*="learn-module"][class*="__card"],
+  article[class*="events-index-module"][class*="__tile"],
+  article[class*="showcase-module"][class*="__card"],
+  article[class*="projects-to-join-module"][class*="__project"]
+):nth-child(4n + 3) {
+  --tone: var(--orange);
+}
+
+main :is(
+  article[class*="about-module"][class*="__contactItem"],
+  article[class*="team-module"][class*="__leaderCard"],
+  article[class*="learn-module"][class*="__featuredCard"],
+  article[class*="learn-module"][class*="__card"],
+  article[class*="events-index-module"][class*="__tile"],
+  article[class*="showcase-module"][class*="__card"],
+  article[class*="projects-to-join-module"][class*="__project"]
+):nth-child(4n) {
+  --tone: var(--light);
+}
+
+/* Principles and project numbers: brand-coloured numerals. */
+main :is(
+  [class*="about-module"][class*="__principle"],
+  [class*="projects-to-join-module"][class*="__project"]
+) {
+  --tone: var(--blue);
+  --tone-ink: var(--color-text-on-primary);
+}
+
+main :is(
+  [class*="about-module"][class*="__principle"],
+  [class*="projects-to-join-module"][class*="__project"]
+):nth-child(4n + 2) {
+  --tone: var(--deep);
+  --tone-ink: var(--color-text-on-primary);
+}
+
+main :is(
+  [class*="about-module"][class*="__principle"],
+  [class*="projects-to-join-module"][class*="__project"]
+):nth-child(4n + 3) {
+  --tone: var(--orange);
+  --tone-ink: var(--color-text-on-accent);
+}
+
+main :is(
+  [class*="about-module"][class*="__principle"],
+  [class*="projects-to-join-module"][class*="__project"]
+):nth-child(4n) {
+  --tone: var(--light);
+  --tone-ink: var(--color-text-on-interactive);
+}
+
+main :is(
+  [class*="about-module"][class*="__principle"] > span,
+  [class*="projects-to-join-module"][class*="__number"],
+  [class*="learn-module"][class*="__areaIndex"]
+):not(#_) {
+  background: var(--tone);
+  color: var(--tone-ink);
+}
+
+main [class*="learn-module"][class*="__area"]:not([class*="__areas"], [class*="__areaList"], [class*="__areaIndex"], [class*="__areaArrow"], [class*="__areasMore"]) {
+  --tone: var(--blue);
+  --tone-ink: var(--color-text-on-primary);
+}
+
+main [class*="learn-module"][class*="__area"]:not([class*="__areas"], [class*="__areaList"], [class*="__areaIndex"], [class*="__areaArrow"], [class*="__areasMore"]):nth-child(3n + 2) {
+  --tone: var(--orange);
+  --tone-ink: var(--color-text-on-accent);
+}
+
+main [class*="learn-module"][class*="__area"]:not([class*="__areas"], [class*="__areaList"], [class*="__areaIndex"], [class*="__areaArrow"], [class*="__areasMore"]):nth-child(3n) {
+  --tone: var(--deep);
+  --tone-ink: var(--color-text-on-primary);
+}
+
+main {
+  background: var(--blue-wash);
+}
+
+/* Research archive items, collaboration rows, membership blocks. */
+main .researchArchiveItem {
+  --tone: var(--blue);
+
+  background: #fff;
+
+  border-top: 5px solid var(--tone);
+
+  box-shadow: 0 2px 10px rgba(14, 74, 99, 0.12);
+}
+
+main .researchArchiveItem:nth-child(3n + 2) {
+  --tone: var(--orange);
+}
+
+main .researchArchiveItem:nth-child(3n) {
+  --tone: var(--deep);
+}
+
+main [class*="collaborations-module"][class*="__opportunity"]:not([class*="__opportunities"], [class*="__opportunityList"]) {
+  --tone: var(--blue);
+  --tone-ink: var(--color-text-on-primary);
+}
+
+main [class*="collaborations-module"][class*="__opportunity"]:not([class*="__opportunities"], [class*="__opportunityList"]):nth-child(4n + 2) {
+  --tone: var(--deep);
+}
+
+main [class*="collaborations-module"][class*="__opportunity"]:not([class*="__opportunities"], [class*="__opportunityList"]):nth-child(4n + 3) {
+  --tone: var(--orange);
+  --tone-ink: var(--color-text-on-accent);
+}
+
+main [class*="collaborations-module"][class*="__opportunity"]:not([class*="__opportunities"], [class*="__opportunityList"]):nth-child(4n) {
+  --tone: var(--light);
+  --tone-ink: var(--color-text-on-interactive);
+}
+
+main [class*="collaborations-module"][class*="__opportunity"] > span:first-child:not(#_) {
+  background: var(--tone);
+  color: var(--tone-ink);
+}
+
+main [class*="collaborations-module"][class*="__opportunities"] {
+  background: #fff;
+}
+
+/* Membership: tint the "join or renew" block, accent the headings and table. */
+main section[aria-labelledby="join-heading"]:not(#_) {
+  background: var(--blue-wash);
+}
+
+main section[aria-labelledby="fees-heading"] h2::after,
+main section[aria-labelledby="join-heading"] h2::after,
+main section[aria-labelledby="terms-heading"] h2::after {
+  content: "";
+
+  display: block;
+
+  width: 64px;
+  height: 5px;
+
+  margin-top: 14px;
+
+  background: var(--orange);
+}
+
+main [class*="membership-module"][class*="__table"] thead th {
+  background: var(--lpi-primary);
+  color: var(--color-text-on-primary);
+}
+
+
+/* =========================================================
+   CLOSING CALL-TO-ACTION BAND
+   Every page ends with a call-to-action just above the footer. They
+   all share the primary blue (white text, orange action button) so
+   they read as one pattern; the bands that were deep blue used to
+   merge into the footer.
+   ========================================================= */
+
+:is(.bandDeep, main > .bandBlue:last-child, .researchDetailNext, .lpi-band):not(#_) {
+  background: var(--blue);
+  color: var(--color-text-on-primary);
+}

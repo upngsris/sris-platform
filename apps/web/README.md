@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/create-next-app).
+# SRIS Production Phase 1
 
-## Getting Started
+This package converts the approved V4 homepage prototype into maintainable Next.js components while preserving the visual direction.
 
-First, run the development server:
+## What changed
+- `page.tsx` is now composition-only.
+- Header, footer and each homepage section are separate components.
+- Navigation data is centralized in `data/navigation.ts`.
+- Real `next/link` routes replace placeholder anchors.
+- Mobile navigation is now a viewport panel with body scroll locking.
+- Mobile stats use a 2×2 layout.
+- Shared `TextLink` and `ImagePlaceholder` primitives reduce duplication.
+- Static editorial content remains local for now; Sanity integration is deliberately deferred to Phase 2.
 
+## Copy into `apps/web`
+Copy the contents of this package into `apps/web`, preserving your existing `app/layout.tsx`.
+
+Recommended first:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git add .
+git commit -m "feat: approve SRIS homepage prototype v4"
+git checkout -b feat/production-homepage
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then copy the files and run:
+```bash
+pnpm dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Important
+The navigation routes are now explicit. Some destinations may 404 until those pages are scaffolded. That is intentional and makes the information architecture concrete before Sanity integration.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load Inter, a custom Google Font.
+## Next phase
+Phase 2 should define Sanity schemas and GROQ for:
+- homepage editorial settings
+- research projects
+- projects to join
+- events
+- skills tracks / learning content
+- student stories / showcase
+- people/team
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Keep route structure, design tokens and navigation definitions in code unless a genuine editorial requirement emerges.

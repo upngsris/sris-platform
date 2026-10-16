@@ -1,102 +1,53 @@
-import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css";
+import { Hero } from "@/components/home/hero";
+import { Signposts } from "@/components/home/signposts";
+import { AboutIntro } from "@/components/home/about-intro";
+import { FeaturedResearch } from "@/components/home/featured-research";
+import { DisciplineExplorer } from "@/components/home/discipline-explorer";
+import { ProjectsToJoin } from "@/components/home/projects-to-join";
+import { LearnAndDo } from "@/components/home/learn-and-do";
+import { StudentStory } from "@/components/home/student-story";
+import { Events } from "@/components/home/events";
+import { MembershipCta } from "@/components/home/membership-cta";
 
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
-};
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { HOME_PAGE_QUERY } from "@/sanity/lib/queries";
 
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
+import type { HomePageData } from "@/sanity/lib/types";
+
+import { pageMetadata, site } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "UPNG SRIS | Science, Research & Innovation Society",
+  description: site.description,
+  path: "/",
+});
+
+export default async function Home() {
+  const data = await sanityFetch<HomePageData>({
+    query: HOME_PAGE_QUERY,
+  });
 
   return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
+    <main className="lpi lpi-home">
+      <Hero data={data?.hero} />
 
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <ThemeImage
-          className={styles.logo}
-          srcLight="turborepo-dark.svg"
-          srcDark="turborepo-light.svg"
-          alt="Turborepo logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>apps/web/app/page.tsx</code>
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+      <Signposts />
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new/clone?demo-description=Learn+to+implement+a+monorepo+with+a+two+Next.js+sites+that+has+installed+three+local+packages.&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F4K8ZISWAzJ8X1504ca0zmC%2F0b21a1c6246add355e55816278ef54bc%2FBasic.png&demo-title=Monorepo+with+Turborepo&demo-url=https%3A%2F%2Fexamples-basic-web.vercel.sh%2F&from=templates&project-name=Monorepo+with+Turborepo&repository-name=monorepo-turborepo&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fturborepo%2Ftree%2Fmain%2Fexamples%2Fbasic&root-directory=apps%2Fdocs&skippable-integrations=1&teamSlug=vercel&utm_source=create-turbo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://turborepo.dev/docs?utm_source"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-        <Button appName="web" className={styles.secondary}>
-          Open alert
-        </Button>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://turborepo.dev?utm_source=create-turbo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to turborepo.dev →
-        </a>
-      </footer>
-    </div>
+      <MembershipCta data={data?.membershipCta} />
+
+      <StudentStory data={data?.featuredStory} />
+
+      <AboutIntro data={data?.about} />
+
+      <FeaturedResearch data={data?.featuredResearch} />
+
+      <ProjectsToJoin data={data?.featuredOpportunities} />
+
+      <LearnAndDo data={data?.featuredLearning} />
+
+      <Events data={data?.featuredEvents} />
+
+      <DisciplineExplorer />
+    </main>
   );
 }

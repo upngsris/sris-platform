@@ -1,0 +1,617 @@
+/* =========================================================
+   NEWSLETTER
+   A news-front layout: masthead and section bar, then three
+   columns — lead stories and latest news, a column of short
+   lists, and a narrow rail of tall photo stories.
+   ========================================================= */
+
+.page {
+  padding-bottom: 80px;
+}
+
+.cover {
+  object-fit: cover;
+}
+
+/* Category chip: a small navy block, as on a printed front page. */
+.label {
+  display: inline-block;
+
+  padding: 3px 7px;
+
+  border-radius: 0;
+
+  background: var(--deep);
+  color: var(--color-text-on-primary);
+
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.4;
+
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.meta {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 6px;
+
+  margin-top: 6px;
+
+  color: var(--soft-ink);
+
+  font-size: 12px;
+}
+
+.meta span::before {
+  content: "·";
+
+  margin-right: 6px;
+}
+
+/* ---------------------------------------------------------
+   Masthead
+   --------------------------------------------------------- */
+
+.masthead {
+  padding-top: 0;
+
+  background: var(--blue);
+  color: var(--color-text-on-primary);
+}
+
+.masthead :global(.breadcrumb),
+.masthead :global(.breadcrumb span[aria-current]),
+.masthead :global(.breadcrumb i) {
+  color: var(--white);
+}
+
+.masthead :global(.shell) {
+  padding-top: clamp(20px, 2.5vw, 40px);
+}
+
+.mastheadRow {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 16px 40px;
+
+  margin-top: 24px;
+  padding-bottom: 20px;
+}
+
+.mastheadRow h1 {
+  color: var(--white);
+
+  font-size: clamp(30px, 2.92vw, 56px);
+  font-weight: 400;
+  line-height: 1.1;
+
+  letter-spacing: 0;
+}
+
+.mastheadRow p {
+  max-width: 360px;
+
+  color: var(--white);
+
+  font-size: 1rem;
+  line-height: 1.55;
+  text-align: right;
+}
+
+.mastheadRow p span {
+  display: block;
+
+  margin-bottom: 2px;
+
+  color: var(--white);
+
+  font-weight: 600;
+}
+
+.sectionNav {
+  background: var(--deep);
+}
+
+.sectionNav ul {
+  display: flex;
+
+  overflow-x: auto;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  scrollbar-width: none;
+}
+
+.sectionNav a {
+  display: flex;
+
+  align-items: center;
+
+  height: 44px;
+
+  padding-inline: 20px;
+
+  color: var(--on-deep);
+
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-decoration: none;
+
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  transition: background 0.2s var(--ease);
+}
+
+.sectionNav a:hover,
+.sectionNav a[aria-current] {
+  background: var(--blue);
+}
+
+.sectionNav a:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: -4px;
+}
+
+.empty {
+  padding-top: 48px;
+}
+
+/* ---------------------------------------------------------
+   Columns
+   --------------------------------------------------------- */
+
+.layout {
+  display: grid;
+
+  grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(0, 2fr);
+
+  align-items: start;
+
+  gap: 28px;
+
+  padding-top: 32px;
+
+  scroll-margin-top: 120px;
+}
+
+.layout:not(:has(.rail)) {
+  grid-template-columns: minmax(0, 5fr) minmax(0, 4fr);
+}
+
+.mainCol,
+.sideCol {
+  display: grid;
+
+  gap: 28px;
+}
+
+.block {
+  scroll-margin-top: 120px;
+}
+
+.blockHeading {
+  padding-bottom: 10px;
+
+  border-bottom: 2px solid var(--deep);
+
+  font-size: 22px;
+  font-weight: 700;
+
+  letter-spacing: -0.01em;
+}
+
+.blockNote {
+  margin-top: 14px;
+
+  color: var(--muted);
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.seeAll {
+  display: inline-block;
+
+  margin-top: 14px;
+
+  color: var(--soft-ink);
+
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.seeAll:hover {
+  color: var(--color-text-link);
+}
+
+/* ---------------------------------------------------------
+   Overlay cards — title on the photograph
+   --------------------------------------------------------- */
+
+.overlay {
+  position: relative;
+
+  display: block;
+
+  overflow: hidden;
+
+  border-radius: var(--r-card);
+
+  background: var(--deep);
+  color: var(--color-text-on-primary);
+
+  text-decoration: none;
+}
+
+.overlayLead {
+  aspect-ratio: 5 / 4;
+}
+
+.overlaySmall {
+  aspect-ratio: 4 / 3;
+}
+
+.overlay::after {
+  content: "";
+
+  position: absolute;
+  z-index: 1;
+
+  inset: 0;
+
+  /* White text needs the scrim at 72% or more wherever it sits, even over
+     a pure white photo (4.5:1); this reaches 78% by mid-height. */
+  background: linear-gradient(
+    180deg,
+    rgba(14, 74, 99, 0) 25%,
+    rgba(14, 74, 99, 0.78) 55%,
+    rgba(14, 74, 99, 0.9) 100%
+  );
+}
+
+.overlay img {
+  transition: transform 0.5s var(--ease);
+}
+
+.overlay:hover img {
+  transform: scale(1.04);
+}
+
+.overlayPlaceholder {
+  position: absolute;
+
+  inset: 0;
+}
+
+.overlay > .label {
+  position: absolute;
+  z-index: 2;
+
+  top: 14px;
+  left: 14px;
+
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.overlayBody {
+  position: absolute;
+  z-index: 2;
+
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  padding: 20px;
+}
+
+.overlayBody h2 {
+  max-width: 520px;
+
+  color: var(--white);
+
+  font-size: clamp(24px, 2.3vw, 32px);
+  font-weight: 700;
+  line-height: 1.15;
+
+  text-wrap: balance;
+}
+
+.overlayBody h3 {
+  color: var(--white);
+
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.overlayBody .meta {
+  color: var(--on-deep-muted);
+}
+
+.overlay:focus-visible {
+  box-shadow: var(--ring);
+  outline: none;
+}
+
+.pair {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 20px;
+}
+
+/* ---------------------------------------------------------
+   Latest news — thumbnail, chip, headline, teaser
+   --------------------------------------------------------- */
+
+.newsList,
+.thumbList,
+.textList {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.newsList li + li,
+.thumbList li + li,
+.textList li + li {
+  border-top: 1px solid var(--line);
+}
+
+.newsRow {
+  display: grid;
+
+  grid-template-columns: 160px minmax(0, 1fr);
+
+  gap: 18px;
+
+  padding-block: 18px;
+}
+
+.newsThumb {
+  position: relative;
+
+  display: block;
+
+  aspect-ratio: 4 / 3;
+
+  overflow: hidden;
+
+  border-radius: var(--r-media);
+
+  background: var(--pale-deep);
+}
+
+.thumbPlaceholder {
+  position: absolute;
+
+  inset: 0;
+}
+
+/* The placeholder's dashed frame and caption are too large at thumb size. */
+.thumbPlaceholder::before,
+.thumbPlaceholder > span {
+  display: none;
+}
+
+.newsRow h3,
+.thumbRow h3,
+.textList h3 {
+  margin-top: 8px;
+
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.newsRow h3 a,
+.thumbRow h3 a,
+.textList h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.newsRow h3 a:hover,
+.thumbRow h3 a:hover,
+.textList h3 a:hover {
+  color: var(--color-text-link);
+}
+
+.newsRow p:not(.meta) {
+  margin-top: 8px;
+
+  color: var(--muted);
+
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+/* ---------------------------------------------------------
+   Side column lists
+   --------------------------------------------------------- */
+
+.thumbRow {
+  display: grid;
+
+  grid-template-columns: 72px minmax(0, 1fr);
+
+  gap: 14px;
+
+  padding-block: 14px;
+}
+
+.thumb {
+  position: relative;
+
+  display: block;
+
+  aspect-ratio: 1;
+
+  overflow: hidden;
+
+  border-radius: var(--r-control);
+
+  background: var(--pale-deep);
+}
+
+.thumbRow h3 {
+  margin-top: 6px;
+
+  font-size: 14px;
+}
+
+.textList li {
+  padding-block: 14px;
+}
+
+.textList h3 {
+  font-size: 14.5px;
+}
+
+/* ---------------------------------------------------------
+   Rail — tall photo stories
+   --------------------------------------------------------- */
+
+.rail {
+  display: grid;
+
+  gap: 20px;
+}
+
+.railCard {
+  display: block;
+
+  overflow: hidden;
+
+  border-radius: var(--r-card);
+
+  background: var(--deep);
+  color: var(--color-text-on-primary);
+
+  text-decoration: none;
+
+  transition: box-shadow 0.25s var(--ease);
+}
+
+.railCard:hover {
+  box-shadow: var(--shadow-photo);
+}
+
+.railImage {
+  position: relative;
+
+  aspect-ratio: 4 / 5;
+
+  overflow: hidden;
+}
+
+.railImage > .label {
+  position: absolute;
+  z-index: 2;
+
+  top: 12px;
+  left: 12px;
+
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.railBody {
+  padding: 16px;
+}
+
+.railBody h3 {
+  color: var(--white);
+
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.railBody p:not(.meta) {
+  margin-top: 8px;
+
+  color: var(--on-deep-muted);
+
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.railBody .meta {
+  color: var(--on-deep-soft);
+}
+
+/* =========================================================
+   RESPONSIVE OVERRIDES — widest to narrowest
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .layout,
+  .layout:not(:has(.rail)) {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  }
+
+  /* The rail drops beneath both columns as a row of cards. */
+  .rail {
+    grid-column: 1 / -1;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .railImage {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 900px) {
+  .layout,
+  .layout:not(:has(.rail)) {
+    grid-template-columns: 1fr;
+  }
+
+  .mastheadRow p {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .pair,
+  .rail {
+    grid-template-columns: 1fr;
+  }
+
+  .newsRow {
+    grid-template-columns: 104px minmax(0, 1fr);
+
+    gap: 14px;
+  }
+
+  .newsRow p:not(.meta) {
+    display: none;
+  }
+
+  .overlayLead {
+    aspect-ratio: 4 / 5;
+  }
+}

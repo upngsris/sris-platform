@@ -1,0 +1,356 @@
+/* =========================================================
+   EVENTS INDEX
+   A poster-style listing: an oversized wordmark beside the
+   page title, then four-up event tiles — title and date on
+   white, photograph, and a navy action bar.
+   ========================================================= */
+
+.page {
+  overflow-x: clip;
+
+  padding-bottom: 72px;
+}
+
+/* ---------------------------------------------------------
+   Intro
+   --------------------------------------------------------- */
+
+.intro {
+  padding-block: clamp(30px, 3.65vw, 70px);
+
+  background: var(--blue);
+  color: var(--color-text-on-primary);
+}
+
+.intro :global(.breadcrumb),
+.intro :global(.breadcrumb span[aria-current]),
+.intro :global(.breadcrumb i) {
+  color: var(--white);
+}
+
+.introGrid {
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr);
+
+  align-items: end;
+
+  gap: 40px;
+
+  margin-top: 28px;
+}
+
+.intro h1 {
+  color: var(--white);
+
+  font-size: clamp(30px, 2.92vw, 56px);
+  font-weight: 400;
+}
+
+.introCopy {
+  max-width: 440px;
+
+  margin-top: 18px;
+
+  color: var(--white);
+
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+/* The oversized "Events" set solid, then in outline, running off the edge. */
+.wordmark {
+  display: none;
+
+  justify-self: end;
+
+  margin-right: -12vw;
+
+  color: var(--deep);
+
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(96px, 15vw, 232px);
+  font-weight: 500;
+  line-height: 0.82;
+
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+
+  user-select: none;
+}
+
+.wordmarkOutline {
+  color: transparent;
+
+  -webkit-text-stroke: 2px var(--blue);
+}
+
+/* ---------------------------------------------------------
+   Groups
+   --------------------------------------------------------- */
+
+.group {
+  padding-top: 48px;
+}
+
+.groupHeading {
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 500;
+}
+
+.grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: var(--home-gap);
+
+  margin-top: 24px;
+}
+
+/* ---------------------------------------------------------
+   Tile
+   --------------------------------------------------------- */
+
+.tile {
+  display: flex;
+
+  flex-direction: column;
+
+  overflow: hidden;
+
+  border-radius: var(--r-card);
+
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+
+  transition:
+    box-shadow 0.25s var(--ease),
+    transform 0.25s var(--ease);
+}
+
+.tile:hover {
+  box-shadow: var(--shadow-photo);
+
+  transform: translateY(-2px);
+}
+
+.tileBody {
+  display: flex;
+
+  flex: 1;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  gap: 18px;
+
+  padding: 22px 22px 18px;
+}
+
+.tileBody h3 {
+  display: -webkit-box;
+
+  overflow: hidden;
+
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.45;
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.tileBody h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.tileBody h3 a:hover {
+  color: var(--color-text-link);
+}
+
+.tileDate {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.tileDate strong {
+  color: var(--deep);
+
+  font-family: var(--font-display), sans-serif;
+  font-size: 56px;
+  font-weight: 500;
+  line-height: 1;
+
+  letter-spacing: -0.03em;
+}
+
+.tileDate > span[aria-hidden] {
+  display: flex;
+
+  flex-direction: row;
+
+  color: var(--ink);
+
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.tileImage {
+  position: relative;
+
+  display: block;
+
+  aspect-ratio: 4 / 3;
+
+  overflow: hidden;
+
+  background: var(--pale-deep);
+}
+
+.tileImageAsset {
+  object-fit: cover;
+
+  transition: transform 0.5s var(--ease);
+}
+
+.tile:hover .tileImageAsset {
+  transform: scale(1.04);
+}
+
+.tilePlaceholder {
+  position: absolute;
+
+  inset: 0;
+}
+
+.tileActions {
+  display: flex;
+
+  background: var(--deep);
+}
+
+.tileActions a {
+  display: flex;
+
+  flex: 1;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+
+  color: var(--on-deep);
+
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+
+  transition: background 0.2s var(--ease);
+}
+
+.tileActions a + a {
+  border-left: 1px solid var(--on-deep-line);
+}
+
+.tileActions a:hover {
+  background: var(--blue);
+}
+
+.tileActions a:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: -4px;
+}
+
+/* ---------------------------------------------------------
+   See more
+   --------------------------------------------------------- */
+
+.moreButton {
+  display: block;
+
+  min-width: 240px;
+  height: 44px;
+
+  margin: 40px auto 0;
+  padding-inline: 28px;
+
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-pill);
+
+  background: var(--paper);
+  color: var(--ink);
+
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+
+.moreButton:hover {
+  border-color: var(--blue);
+
+  color: var(--color-text-link);
+}
+
+.moreButton:focus-visible {
+  box-shadow: var(--ring);
+  outline: none;
+}
+
+/* =========================================================
+   RESPONSIVE OVERRIDES — widest to narrowest
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .introGrid {
+    grid-template-columns: 1fr;
+
+    gap: 24px;
+  }
+
+  .wordmark {
+    display: none;
+
+    justify-self: start;
+
+    margin-right: 0;
+
+    font-size: clamp(80px, 22vw, 150px);
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .wordmark {
+    display: none;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tileDate strong {
+    font-size: 48px;
+  }
+}

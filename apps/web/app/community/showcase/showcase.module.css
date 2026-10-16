@@ -1,0 +1,437 @@
+/* =========================================================
+   STUDENT SHOWCASE
+   Hero, breadcrumb, headings, bands and empty states come
+   from the shared page chrome in globals.css.
+   ========================================================= */
+
+.showcase {
+  padding-block: 56px;
+}
+
+.grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 28px;
+}
+
+.card {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  border: 1px solid var(--line);
+
+  background: var(--paper);
+
+  transition: background 0.25s var(--ease);
+}
+
+.card:hover {
+  background: var(--hover);
+}
+
+.cardImage {
+  position: relative;
+
+  display: block;
+
+  width: 100%;
+
+  min-height: 280px;
+
+  overflow: hidden;
+
+  background: var(--pale-deep);
+}
+
+.cardImageAsset {
+  object-fit: cover;
+  object-position: center;
+
+  transition: transform 0.5s var(--ease);
+}
+
+.card:hover .cardImageAsset {
+  transform: scale(1.02);
+}
+
+.cardImagePlaceholder {
+  min-height: 280px;
+}
+
+.cardIndex {
+  position: absolute;
+  z-index: 2;
+
+  top: 0;
+  left: 0;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  height: 26px;
+
+  padding-inline: 11px;
+
+  background: var(--paper);
+  color: var(--color-text-link);
+
+  font-family: var(--font-display), sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.12em;
+}
+
+.cardMeta {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  padding: 22px 24px 0;
+
+  color: var(--soft-ink);
+
+  font-family: var(--font-body), sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cardMeta span + span::before {
+  content: "·";
+
+  margin-right: 10px;
+
+  color: var(--line-strong);
+}
+
+.card h2 {
+  padding: 10px 24px 0;
+
+  font-size: 18px;
+}
+
+.card h2 a {
+  transition: color 0.2s var(--ease);
+}
+
+.card h2 a:hover {
+  color: var(--color-text-link);
+}
+
+.card blockquote {
+  margin: 12px 0 0;
+
+  padding: 0 24px;
+
+  color: var(--muted);
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.card :global(.textlink) {
+  margin: 20px 24px 26px;
+}
+
+/* =========================================================
+   DETAIL
+   ========================================================= */
+
+.detailHero {
+  padding-block: 44px 48px;
+
+  border-bottom: 1px solid var(--line);
+
+  background: var(--pale);
+}
+
+.detailHeroGrid {
+  display: grid;
+
+  grid-template-columns: 7fr 5fr;
+
+  align-items: end;
+
+  gap: 72px;
+}
+
+.detailHero h1 {
+  max-width: 720px;
+
+  margin-top: 16px;
+
+  text-wrap: balance;
+}
+
+.detailIdentity {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+
+  padding-top: 16px;
+
+  border-top: 1px solid var(--line-strong);
+}
+
+.detailIdentity span {
+  color: var(--soft-ink);
+
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.detailIdentity strong {
+  font-family: var(--font-display), sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+
+  letter-spacing: -0.014em;
+}
+
+.detailMedia {
+  padding-top: 56px;
+}
+
+.detailImage {
+  position: relative;
+
+  min-height: 440px;
+
+  overflow: hidden;
+
+  border: 1px solid var(--line);
+
+  background: var(--pale);
+}
+
+.detailImageAsset {
+  object-fit: cover;
+  object-position: center;
+}
+
+.storyBody {
+  padding-block: 44px 52px;
+}
+
+.storyBodyGrid {
+  display: grid;
+
+  grid-template-columns: 3fr 8fr;
+
+  gap: 64px;
+}
+
+.detailQuote {
+  max-width: 720px;
+
+  margin: 0;
+
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(19px, 1.6vw, 24px);
+  font-weight: 500;
+  line-height: 1.42;
+
+  letter-spacing: -0.014em;
+}
+
+.storyAttribution {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: baseline;
+
+  gap: 12px;
+
+  margin-top: 28px;
+
+  padding-top: 18px;
+
+  border-top: 1px solid var(--line);
+}
+
+.storyAttribution strong {
+  font-family: var(--font-display), sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.storyAttribution span {
+  color: var(--soft-ink);
+
+  font-size: 12px;
+  font-weight: 500;
+
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+
+/* =========================================================
+   SURFACE SYSTEM
+   ========================================================= */
+
+.grid {
+  gap: var(--home-gap);
+}
+
+.card {
+  overflow: hidden;
+
+  border-radius: var(--r-card);
+}
+
+.card:hover {
+  background: var(--hover);
+}
+
+.cardImage {
+  margin: 12px 12px 0;
+
+  overflow: hidden;
+
+  border-radius: var(--r-media);
+}
+
+.cardIndex {
+  top: 12px;
+  left: 12px;
+
+  border-radius: var(--r-pill);
+
+  background: var(--light);
+  color: var(--color-text-on-interactive);
+}
+
+.detailHero {
+  padding-block: 28px 0;
+
+  border-bottom: 0;
+
+  background: var(--paper);
+}
+
+.detailHero > :global(.shell) {
+  width: min(100%, 1360px);
+
+  padding: 44px 56px 48px;
+
+  border-radius: var(--r-panel);
+
+  background: var(--panel);
+}
+
+.detailImage {
+  border: 0;
+  border-radius: var(--r-panel);
+}
+
+
+.cardImage {
+  width: auto;
+
+  align-self: stretch;
+}
+
+/* =========================================================
+   RESPONSIVE OVERRIDES
+   All max-width blocks live here, at the end of the file,
+   ordered widest to narrowest.
+
+   A media query carries no specificity, so a responsive rule
+   loses to any equally specific rule below it — including a
+   wider breakpoint. Keep new breakpoints in this section and
+   in this order.
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .showcase {
+    padding-block: 44px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+  }
+
+  .cardImage,
+  .cardImagePlaceholder {
+    min-height: 220px;
+  }
+
+  .detailHeroGrid,
+  .storyBodyGrid {
+    grid-template-columns: 1fr;
+
+    gap: 28px;
+  }
+
+  .detailHero {
+    padding-block: 32px 40px;
+  }
+
+  .detailMedia {
+    padding-top: 40px;
+  }
+
+  .detailImage {
+    min-height: 260px;
+  }
+
+  .storyBody {
+    padding-block: 48px 44px;
+  }
+  .detailHero > :global(.shell) {
+    padding: 28px 24px 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .showcase {
+    padding-block: 48px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detailImage {
+    min-height: 200px;
+  }
+}
+
+/* Story cards lift off the light canvas (see ELEVATION in globals.css). */
+.card {
+  box-shadow: var(--shadow-card);
+}
+
+/* The full story follows the quotation, separated by a single rule. */
+.storyArticle {
+  border-top: 1px solid var(--line);
+}

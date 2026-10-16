@@ -1,0 +1,515 @@
+/* =========================================================
+   UI STATE SYSTEM
+   Default / hover / active (pressed) / focus / disabled /
+   selected / info / warning / error / success, built from the
+   state tokens in globals.css (":root — UI STATE TOKENS").
+   Loaded last so it refines the component styles above it;
+   it never changes layout, only colour, border and focus.
+   Light theme only.
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   Focus
+   One visible indicator everywhere: a 3px ring in the
+   interactive blue. On dark and primary surfaces the ring
+   flips to white and the gap to the deep shade, so it stays
+   above 3:1 against whatever it sits on.
+   --------------------------------------------------------- */
+
+/* Primary, supporting and deep surfaces. The ring flips to white (3:1+ on
+   all of them), secondary text turns white (the soft light blue measures
+   only 4.1:1 on primary), and breadcrumb hover stays visible. The ring is
+   re-declared here because a custom property that references other
+   variables is resolved where it is declared, not where it is used. */
+:is(
+  .lpi-top,
+  .lpi-hero,
+  .lpi-band,
+  .pageHero,
+  .researchDetailHero,
+  .researchDetailNext,
+  .footer,
+  .lpi-deep,
+  .lpi-primary,
+  .bandDeep,
+  .bandBlue,
+  header[class*="detailHero"],
+  header[class*="profileHero"],
+  header[class*="masthead"],
+  section[class*="intro"],
+  section[class*="participationPanel"],
+  div[class*="participationPanel"],
+  [class*="heroPanel"],
+  [class*="sectionNav"]
+) {
+  --focus-ring: var(--white);
+  --ring-gap: var(--deep);
+  --ring: 0 0 0 2px var(--ring-gap), 0 0 0 5px var(--focus-ring);
+  --breadcrumb-hover: var(--white);
+}
+
+/* White cards inside a dark panel (event booking card, homepage cards on the
+   deep and primary bands) go back to the light-surface focus ring. */
+.lpi-card,
+aside[class*="booking"] {
+  --focus-ring: #1a7ab0;
+  --ring-gap: var(--white);
+  --ring: 0 0 0 2px var(--ring-gap), 0 0 0 5px var(--focus-ring);
+  --breadcrumb-hover: var(--color-text-link-hover);
+  --muted: var(--color-text-secondary);
+  --soft-ink: var(--color-text-secondary);
+}
+
+/* The search submit is a button on the field's white surface, even when
+   the field sits in a dark hero, so it gets the light-surface ring. */
+.searchSubmit {
+  --focus-ring: #1a7ab0;
+  --ring-gap: var(--white);
+  --ring: 0 0 0 2px var(--ring-gap), 0 0 0 5px var(--focus-ring);
+}
+
+/* Surfaces mid-tone enough that the light-blue secondary text fails. */
+:is(
+  .lpi-top,
+  .lpi-hero,
+  .lpi-band,
+  .pageHero,
+  .researchDetailHero,
+  .bandBlue,
+  header[class*="detailHero"],
+  header[class*="profileHero"],
+  header[class*="masthead"],
+  section[class*="intro"],
+  section[class*="participationPanel"],
+  div[class*="participationPanel"]
+) {
+  --muted: var(--color-text-on-dark-secondary);
+  --soft-ink: var(--color-text-on-dark-secondary);
+  --on-deep-muted: var(--color-text-on-dark-secondary);
+  --on-deep-soft: var(--color-text-on-dark-secondary);
+}
+
+:is(
+  .lpi-top,
+  .lpi-hero,
+  .lpi-band,
+  .pageHero,
+  .researchDetailHero,
+  .bandBlue,
+  header[class*="detailHero"],
+  header[class*="profileHero"],
+  header[class*="masthead"],
+  section[class*="intro"],
+  section[class*="participationPanel"],
+  div[class*="participationPanel"]
+) .eyebrow:not(#_) {
+  color: var(--color-text-on-dark-secondary);
+}
+
+.lpi a:focus-visible,
+.lpi button:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+/* ---------------------------------------------------------
+   Primary action — default, hover, pressed, disabled
+   --------------------------------------------------------- */
+
+.button:active,
+.lpi a.lpi-button:active,
+.lpi button.lpi-button:active {
+  background: var(--state-primary-active);
+  color: var(--color-text-on-primary);
+  box-shadow: none;
+}
+
+/* Accent actions: the orange fill on primary / supporting surfaces and
+   dark bands. Dark label by default; the pressed state deepens enough
+   that the label turns white to stay above 4.5:1. */
+.lpi .lpi-hero a.lpi-button:active,
+.lpi .lpi-band a.lpi-button:active,
+.pageHero .button:not(.buttonGhost):not(.buttonLight):active,
+.researchDetailHero .button:not(.buttonGhost):not(.buttonLight):active,
+.bandDeep .button:not(.buttonLight):active,
+.bandBlue .button:not(.buttonLight):active,
+.researchDetailNext .button:not(.buttonLight):active {
+  border-color: transparent;
+  background: var(--state-accent-active);
+  color: var(--color-text-on-accent);
+}
+
+/* Supporting blue: the secondary control. Outline at rest, a soft tint on
+   hover, a deeper tint while pressed. */
+.buttonGhost {
+  border-color: var(--state-support);
+  background: transparent;
+  color: var(--state-support-ink-hover);
+}
+
+.buttonGhost:hover {
+  border-color: var(--state-support-ink-hover);
+  background: var(--state-support-wash);
+  color: var(--state-support-ink-hover);
+}
+
+.buttonGhost:active {
+  background: var(--state-support-wash-active);
+  color: var(--state-support-ink-hover);
+}
+
+/* Outline buttons on dark and primary bands (white label). */
+.buttonLight:active,
+.pageHero .buttonGhost:active,
+.researchDetailHero .buttonGhost:active,
+.lpi .lpi-hero a.lpi-button.is-ghost:active {
+  background: var(--on-deep-muted);
+  color: var(--state-primary-hover);
+}
+
+/* Destructive / critical actions: the alert red. */
+.button.is-danger,
+.lpi a.lpi-button.is-danger {
+  background: var(--crimson);
+  color: var(--color-text-on-danger);
+}
+
+.button.is-danger:hover,
+.lpi a.lpi-button.is-danger:hover {
+  background: var(--state-error-hover);
+  color: var(--color-text-on-danger);
+}
+
+.button.is-danger:active,
+.lpi a.lpi-button.is-danger:active {
+  background: var(--state-error-active);
+  color: var(--color-text-on-danger);
+}
+
+/* Disabled: flat, muted and clearly not interactive. The :not(#_) lifts it
+   above the per-context fills (hero, band) without repeating them. */
+:is(.button, .lpi a.lpi-button, .lpi button.lpi-button):is(
+    :disabled,
+    [aria-disabled="true"]
+  ):not(#_) {
+  border-color: var(--state-disabled-line);
+  background: var(--state-disabled-bg);
+  box-shadow: none;
+  color: var(--state-disabled-ink);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------
+   Links — interactive blue family
+   The brand interactive blue is 3.3:1 on white, so link text
+   uses a deeper shade of the same hue (5.1:1); the brand
+   colour itself carries the focus ring and link arrows.
+   --------------------------------------------------------- */
+
+.textlink:not(:is(.bandDeep, .bandBlue, .researchDetailNext, .pageHero, .researchDetailHero, .footer) *),
+.backLink:not(:is(.bandDeep, .bandBlue, .researchDetailNext, .pageHero, .researchDetailHero, .footer) *),
+.lpi a.lpi-link,
+.lpi .lpi-quote a,
+.richText a {
+  color: var(--state-link);
+}
+
+.textlink:not(:is(.bandDeep, .bandBlue, .researchDetailNext, .pageHero, .researchDetailHero, .footer) *):hover,
+.backLink:not(:is(.bandDeep, .bandBlue, .researchDetailNext, .pageHero, .researchDetailHero, .footer) *):hover,
+.lpi a.lpi-link:hover,
+.lpi .lpi-quote a:hover,
+.richText a:hover {
+  color: var(--state-link-hover);
+}
+
+.textlink:not(:is(.bandDeep, .bandBlue, .researchDetailNext, .pageHero, .researchDetailHero, .footer) *):active,
+.backLink:not(:is(.bandDeep, .bandBlue, .researchDetailNext, .pageHero, .researchDetailHero, .footer) *):active,
+.lpi a.lpi-link:active,
+.richText a:active {
+  color: var(--state-link-active);
+}
+
+.textlink:focus-visible,
+.backLink:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+/* ---------------------------------------------------------
+   Form fields
+   The contact form and the term select are CSS modules, so their field
+   states (default, hover, focus, invalid, disabled) live in
+   about.module.css and team.module.css and read the same tokens:
+   --field-border, --field-border-hover, --state-error-*,
+   --state-disabled-*.
+   --------------------------------------------------------- */
+
+/* The search field is a composite control, so the ring goes on the whole
+   container when its input is focused. */
+.searchField:has(input:focus-visible) {
+  box-shadow: var(--ring);
+}
+
+/* ---------------------------------------------------------
+   Alerts — info / warning / error / success
+   A tint, a 4px edge and dark text; never colour alone, since
+   every alert also carries a heading or message of its own.
+   Reusable: <div class="alert alert--error" role="alert">.
+   --------------------------------------------------------- */
+
+.alert {
+  --alert-bg: var(--state-info-bg);
+  --alert-line: var(--state-info-line);
+  --alert-ink: var(--state-info-ink);
+}
+
+.alert {
+  padding: 14px 16px;
+  border-left: 4px solid var(--alert-line);
+  background: var(--alert-bg);
+  color: var(--alert-ink);
+}
+
+.alert--warning {
+  --alert-bg: var(--state-warning-bg);
+  --alert-line: var(--state-warning-line);
+  --alert-ink: var(--state-warning-ink);
+}
+
+.alert--error {
+  --alert-bg: var(--state-error-bg);
+  --alert-line: var(--state-error-line);
+  --alert-ink: var(--ink);
+}
+
+.alert--success {
+  --alert-bg: var(--state-success-bg);
+  --alert-line: var(--state-success-line);
+  --alert-ink: var(--ink);
+}
+
+.alert--success .eyebrow {
+  color: var(--state-success-ink);
+}
+
+/* ---------------------------------------------------------
+   Navigation — hover, pressed, current (selected), focus
+   Primary blue marks where you are; the supporting tint is
+   the hover and pressed wash.
+   --------------------------------------------------------- */
+
+@media (min-width: 992px) {
+  .lpi-menu > li > button:active {
+    background: var(--state-support-wash-hover);
+  }
+
+  .lpi-menu > li > button[aria-current="true"] {
+    box-shadow: inset 0 -4px 0 var(--state-primary);
+    color: var(--color-text-link-hover);
+    font-weight: 600;
+  }
+
+  .lpi-menu > li > button:focus-visible {
+    outline-offset: -4px;
+  }
+
+  .lpi .lpi-drop-inner a:hover {
+    color: var(--state-link-hover);
+  }
+
+  .lpi .lpi-drop-inner a:active {
+    color: var(--state-link-active);
+  }
+
+  .lpi .lpi-drop-inner a[aria-current="page"] {
+    box-shadow: inset 3px 0 0 var(--state-primary);
+    padding-left: 10px;
+  }
+
+  .lpi .lpi-drop-inner a[aria-current="page"] b {
+    color: var(--color-text-link-hover);
+  }
+}
+
+/* Utility bar: pressed states for the dark and red buttons. */
+.lpi .lpi-top li.alt a:hover,
+.lpi .lpi-top li.alt a:active {
+  background: var(--state-primary-active);
+  text-decoration: none;
+}
+
+.lpi .lpi-top li.altred a {
+  background: var(--crimson);
+}
+
+.lpi .lpi-top li.altred a:hover {
+  background: var(--state-error-hover);
+  text-decoration: none;
+}
+
+.lpi .lpi-top li.altred a:active {
+  background: var(--state-error-active);
+}
+
+/* Menu button: hover wash, pressed wash, expanded = selected. */
+.lpi-toggle:hover {
+  background: var(--state-support-wash);
+}
+
+.lpi-toggle:active {
+  background: var(--state-support-wash-hover);
+}
+
+.lpi-toggle[aria-expanded="true"] {
+  border-color: var(--state-primary);
+  background: var(--state-primary);
+  color: var(--color-text-on-primary);
+}
+
+.lpi-mobile button:hover {
+  color: var(--color-text-link-hover);
+}
+
+.lpi-mobile button[aria-expanded="true"],
+.lpi-mobile button[aria-current="true"] {
+  color: var(--color-text-link-hover);
+}
+
+.lpi .lpi-mobile-links a[aria-current="page"] {
+  box-shadow: inset 3px 0 0 var(--state-primary);
+  padding-left: 10px;
+  color: var(--color-text-link-hover);
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------
+   Menus and lists — suggestion list, filters, calendar
+   --------------------------------------------------------- */
+
+.searchPanel a:hover {
+  background: var(--state-support-wash);
+}
+
+.searchPanel a.isActive,
+.searchPanel a[aria-selected="true"] {
+  background: var(--state-support-wash-hover);
+  box-shadow: inset 3px 0 0 var(--state-primary);
+}
+
+.searchPanel a:active {
+  background: var(--state-support-wash-active);
+}
+
+.searchPanel a:focus-visible {
+  outline-offset: -3px;
+}
+
+/* Selected controls (filters, calendar months, tabs) keep the primary
+   fill from their modules; pressed deepens it. */
+[aria-pressed="true"]:active,
+a[aria-current="page"]:active {
+  filter: brightness(0.92);
+}
+
+/* ---------------------------------------------------------
+   Cards
+   --------------------------------------------------------- */
+
+.lpi-card {
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.lpi-card:hover {
+  box-shadow: var(--shadow-2);
+}
+
+.lpi-card:has(a:focus-visible) {
+  box-shadow: var(--shadow-2);
+}
+
+.lpi-card-text h3 a:hover {
+  color: var(--state-link-hover);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lpi-card {
+    transition: none;
+  }
+}
+
+/* ---------------------------------------------------------
+   Breadcrumbs
+   Hover colour comes from --breadcrumb-hover so it can never equal the
+   surface it sits on (the old rule turned the link primary-on-primary,
+   1:1, on blue heroes). Separators are 4.5:1 text, not a faint grey.
+   --------------------------------------------------------- */
+
+.breadcrumb a:hover:not(#_) {
+  color: var(--breadcrumb-hover, var(--color-text-link-hover));
+  text-decoration: underline;
+}
+
+.breadcrumb i:not(#_) {
+  color: currentColor;
+}
+
+/* ---------------------------------------------------------
+   Status is never colour alone
+   Alerts spell out their type; selected controls add an underline.
+   --------------------------------------------------------- */
+
+.alert--info::before,
+.alert--warning::before,
+.alert--error::before,
+.alert--success::before {
+  font-weight: 700;
+}
+
+.alert--info::before {
+  content: "Information: ";
+}
+
+.alert--warning::before {
+  content: "Warning: ";
+}
+
+.alert--error::before {
+  content: "Error: ";
+}
+
+.alert--success::before {
+  content: "Success: ";
+}
+
+main :is(a, button)[aria-pressed="true"]:not([class*="categoryCard"]),
+main a[aria-current="page"],
+main a[aria-current="true"]:not([class*="categoryCard"]) {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+}
+
+/* ---------------------------------------------------------
+   Interactive blue as a fill (informational highlight)
+   Dark label (5.0:1); hover and pressed get lighter, so the label stays
+   above 4.5:1 in every state.
+   --------------------------------------------------------- */
+
+.button.is-interactive,
+.lpi a.lpi-button.is-interactive {
+  background: var(--state-interactive);
+  color: var(--color-text-on-interactive);
+}
+
+.button.is-interactive:hover,
+.lpi a.lpi-button.is-interactive:hover {
+  background: var(--state-interactive-hover);
+  color: var(--color-text-on-interactive);
+}
+
+.button.is-interactive:active,
+.lpi a.lpi-button.is-interactive:active {
+  background: var(--state-interactive-active);
+  color: var(--color-text-on-interactive);
+}
