@@ -2365,10 +2365,9 @@ body {
   line-height: 0;
 }
 
-/* Reversed lockup, drawn for the navy footer ground. */
-.footerLogo {
-  width: auto;
-  height: 88px;
+/* Reversed lockup on the navy footer ground. */
+.footerBrand .brand-lockup {
+  font-size: 15px;
 }
 
 .footerBrand .body {
