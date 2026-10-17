@@ -1450,18 +1450,19 @@
   color: var(--on-deep-line);
 }
 
+/* Orange accent button, as on the page heroes: dark text on orange. */
 .profileHero .certificateTrigger {
-  border-color: var(--white);
+  border-color: transparent;
 
-  background: var(--white);
-  color: var(--deep);
+  background: var(--lpi-yellow);
+  color: var(--color-text-on-accent);
 }
 
 .profileHero .certificateTrigger:hover {
-  border-color: var(--wash);
+  border-color: transparent;
 
-  background: var(--wash);
-  color: var(--deep);
+  background: var(--lpi-yellow-hover);
+  color: var(--color-text-on-accent);
 }
 
 .profilePortrait {
